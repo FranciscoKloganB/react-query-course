@@ -10,7 +10,7 @@ function App() {
   return (
     <AppContainer>
       {!isRootPath ? <Link to="/">Back to Issues List</Link> : <span>&nbsp;</span>}
-      <Heading>Issue Tracker</Heading>
+      <Heading className="mb-2 lg:mb-6">Issue Tracker</Heading>
       <Routes>
         <Route path="/" element={<Issues />} />
         <Route path="/add" element={<AddIssue />} />
