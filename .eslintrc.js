@@ -3,21 +3,24 @@ module.exports = {
   env: {
     node: true,
     browser: true,
-    es2021: true,
-    jest: true
+    es2021: true
   },
   extends: [
     "eslint:recommended",
-    "plugin:prettier/recommended",
     "plugin:react/recommended",
-    "plugin:react/jsx-runtime"
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
   ],
   ignorePatterns: ["node_modules"],
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
     ecmaVersion: 13,
     sourceType: "module"
   },
-  plugins: ["no-only-tests"],
+  plugins: ["no-only-tests", "react", "react-hooks", "@typescript-eslint"],
   rules: {
     curly: "error",
     quotes: [
@@ -28,6 +31,7 @@ module.exports = {
         allowTemplateLiterals: true
       }
     ],
+    "@typescript-eslint/no-unused-vars": "off",
     "max-len": [
       "error",
       {
@@ -40,10 +44,12 @@ module.exports = {
       }
     ],
     "no-only-tests/no-only-tests": "error",
-    "no-unused-vars": "off",
     "react/react-in-jsx-scope": "off"
   },
   settings: {
+    "import/resolver": {
+      typescript: {}
+    },
     react: {
       pragma: "React", // Pragma to use, default to "React"
       fragment: "Fragment", // Fragment to use default to "Fragment"

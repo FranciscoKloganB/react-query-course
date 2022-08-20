@@ -1,6 +1,7 @@
 import { useQuery } from "react-query"
 
 import { IssueItem } from "./IssueItem"
+import { Border, Paragraph } from "./styled"
 
 function issuesFetcher() {
   return fetch("api/issues").then((res) => res.json())
@@ -11,24 +12,26 @@ export default function IssuesList() {
 
   return (
     <div>
-      <h2>Issues List</h2>
       {isLoading ? (
-        <p>Loading...</p>
+        <Paragraph>Loading...</Paragraph>
       ) : (
         <ul>
           {data.map((issue: Issue) => (
-            <IssueItem
-              key={issue.id}
-              id={issue.id}
-              assignee={issue.assignee}
-              commentsCount={issue.comments.length}
-              createdBy={issue.createdBy}
-              createdDate={issue.createdDate}
-              labels={issue.labels}
-              number={issue.number}
-              status={issue.status}
-              title={issue.title}
-            />
+            <div key={issue.id}>
+              <Border>
+                <IssueItem
+                  id={issue.id}
+                  assignee={issue.assignee}
+                  commentsCount={issue.comments.length}
+                  createdBy={issue.createdBy}
+                  createdDate={issue.createdDate}
+                  labels={issue.labels}
+                  number={issue.number}
+                  status={issue.status}
+                  title={issue.title}
+                />
+              </Border>
+            </div>
           ))}
         </ul>
       )}

@@ -1,5 +1,4 @@
 import { Link, Route, Routes, useMatch } from "react-router-dom"
-import tw from "tailwind-styled-components"
 
 import { AppContainer, Heading } from "./components/styled"
 import AddIssue from "./pages/AddIssue"

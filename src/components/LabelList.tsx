@@ -1,3 +1,5 @@
+import { Subtitle } from "./styled"
+
 export default function LabelList() {
-  return <h3>Labels</h3>
+  return <Subtitle>Labels</Subtitle>
 }
