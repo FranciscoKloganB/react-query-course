@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"
 
 export default function IssueDetails() {
-  const { number } = useParams();
+  const { number } = useParams()
 
-  return <h1>Issue {number}</h1>;
+  return <h1>Issue {number}</h1>
 }

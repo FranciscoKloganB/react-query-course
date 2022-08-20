@@ -4,18 +4,19 @@ module.exports = {
     es2021: true,
     jest: true
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
-  ],
+  extends: ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
   ignorePatterns: ["node_modules"],
   plugins: ["no-only-tests"],
   rules: {
     curly: "error",
-    quotes: ["error", "double", {
-      avoidEscape: false, allowTemplateLiterals: true
-    }],
+    quotes: [
+      "error",
+      "double",
+      {
+        avoidEscape: false,
+        allowTemplateLiterals: true
+      }
+    ],
     "max-len": [
       "error",
       {
