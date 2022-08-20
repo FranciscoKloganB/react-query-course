@@ -57,8 +57,8 @@ export const Search = tw.input`
   focus:text-slate-900
   focus:placeholder-slate-400
   focus:ring-2
-  focus:ring-yellow-500
-  focus:border-yellow-500
+  focus:ring-yellow-400
+  focus:border-yellow-400
   sm:text-sm
 `
 
