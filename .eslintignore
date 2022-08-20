@@ -8,5 +8,7 @@
 deploy/
 dist/
 locales/
-node_modules/
 storybook-static/
+node_modules/
+package-lock.json
+package.json
