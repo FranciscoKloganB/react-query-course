@@ -1,0 +1,12 @@
+{
+  "editor.autoClosingQuotes": "always",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.quickSuggestions": {
+    "strings": true // forces VS Code to trigger completions when editing "string"
+  },
+  "editor.rulers": [100],
+  "prettier.enable": true,
+  "prettier.configPath": ".prettierrc.js"
+}
