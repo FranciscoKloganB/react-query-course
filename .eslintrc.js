@@ -34,6 +34,7 @@ module.exports = {
       }
     ],
     "no-only-tests/no-only-tests": "error",
+    "no-unused-vars": "off",
     "react/react-in-jsx-scope": "off"
   }
 }
