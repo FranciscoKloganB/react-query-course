@@ -22,9 +22,7 @@ new Promise((res) => setTimeout(res, 100))
       <React.StrictMode>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
-            <div className="container mx-auto px-24">
-              <App />
-            </div>
+            <App />
           </BrowserRouter>
         </QueryClientProvider>
       </React.StrictMode>,

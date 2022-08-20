@@ -1,10 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-
 const defaultTheme = require("tailwindcss/defaultTheme")
 
-// eslint-disable-next-line no-undef
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx}"],
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx,ts,tsx}"],
   theme: {
     fontSize: {
       xs: ["0.75rem", { lineHeight: "1rem" }],
@@ -25,6 +23,9 @@ module.exports = {
       borderRadius: {
         "4xl": "2rem",
         "5xl": "2.5rem"
+      },
+      colors: {
+        "navy-blue": "#202A44"
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],

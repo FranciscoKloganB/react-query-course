@@ -9,13 +9,24 @@
   "editor.rulers": [100],
   "prettier.enable": true,
   "prettier.configPath": ".prettierrc.js",
+  "tailwindCSS.experimental.classRegex": [
+    "tw`([^`]*)", // tw`...`
+    "tw\\.[^`]+`([^`]*)`", // tw.xxx<xxx>`...`
+    "tw\\(.*?\\).*?`([^`]*)" // tw(Component)<xxx>`...`
+  ],
   "tailwindCSS.includeLanguages": {
     "javascript": "javascript",
-    "javascriptreact": "javascript"
+    "javascriptreact": "javascript",
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
   },
-  "tailwindCSS.experimental.classRegex": [
-      "tw`([^`]*)", // tw`...`
-      "tw\\.[^`]+`([^`]*)`", // tw.xxx<xxx>`...`
-      "tw\\(.*?\\).*?`([^`]*)" // tw(Component)<xxx>`...`
-  ]
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
