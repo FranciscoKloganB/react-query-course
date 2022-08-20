@@ -19,7 +19,8 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es6",
-    "types": ["types"]
+    "types": ["node", "react"]
   },
+  "include": ["**/*.d.ts", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "public"]
 }
