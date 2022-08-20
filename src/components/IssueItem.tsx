@@ -46,25 +46,31 @@ export function IssueItem({
             )}
           </span>
         </EdgeColumn>
-        <div className="col-span-8">
-          <Link to={issueDetailHref}>
-            <Span>{title}</Span>
-          </Link>
+        <div className="col-span-8 lg:col-span-7">
           <div>
-            <Paragraph className="text-base">
-              <Small>
-                #{number} set to <strong>{status}</strong> by <strong>{createdBy}</strong> —{" "}
-                {relativeDate(createdDate)}
-              </Small>
-            </Paragraph>
+            <Link to={issueDetailHref}>
+              <Span>{title}</Span>
+            </Link>
+            <div>
+              <Paragraph className="text-base">
+                <Small>
+                  #{number} set to <strong>{status}</strong> by <strong>{createdBy}</strong> —{" "}
+                  {relativeDate(createdDate)}
+                </Small>
+              </Paragraph>
+            </div>
+            <div>
+              <ul className="mt-2">
+                {labels.map((label) => (
+                  <Chip key={label}>{label}</Chip>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div>
-            <ul className="mt-2">
-              {labels.map((label) => (
-                <Chip key={label}>{label}</Chip>
-              ))}
-            </ul>
-          </div>
+        </div>
+        {/* FIXME: Remove background color when assignee ID is replaced with profile avatar */}
+        <div className="col-span-1 my-auto hidden bg-red-600 text-end lg:inline-block">
+          {assignee}
         </div>
         <EdgeColumn>
           <div className="flex flex-row items-center gap-x-2 ">
