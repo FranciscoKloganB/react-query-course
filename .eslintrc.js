@@ -7,6 +7,10 @@ module.exports = {
   },
   extends: ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
   ignorePatterns: ["node_modules"],
+  parserOptions: {
+    ecmaVersion: 13,
+    sourceType: "module"
+  },
   plugins: ["no-only-tests"],
   rules: {
     curly: "error",
