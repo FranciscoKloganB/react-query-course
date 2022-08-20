@@ -20,7 +20,7 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: "module"
   },
-  plugins: ["no-only-tests", "react", "react-hooks", "@typescript-eslint"],
+  plugins: ["no-only-tests", "unused-imports", "react", "react-hooks", "@typescript-eslint"],
   rules: {
     curly: "error",
     quotes: [
@@ -44,7 +44,8 @@ module.exports = {
       }
     ],
     "no-only-tests/no-only-tests": "error",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "unused-imports/no-unused-imports": "error"
   },
   settings: {
     "import/resolver": {

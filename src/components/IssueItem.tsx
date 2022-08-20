@@ -1,7 +1,7 @@
 import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
 import { Link } from "react-router-dom"
 import { isClosedIssue } from "../enums/IssueStatus.enum"
-import { Paragraph, Span, Small } from "./styled"
+import { Paragraph, Span, Small, Chip } from "./styled"
 import { relativeDate } from "../helpers/relativeDate"
 import tw from "tailwind-styled-components"
 
@@ -58,13 +58,23 @@ export function IssueItem({
               </Small>
             </Paragraph>
           </div>
+          <div>
+            <ul className="mt-2">
+              {labels.map((label) => (
+                <Chip key={label}>{label}</Chip>
+              ))}
+            </ul>
+          </div>
         </div>
         <EdgeColumn>
           <div className="flex flex-row items-center gap-x-2 ">
+            <Span className="sr-only">
+              Issue {number} has {commentsCount} comments
+            </Span>
             <Span>
               <GoComment className="mt-1" />
             </Span>
-            <Span className="text-sm"> {commentsCount}</Span>
+            <Span className="hidden text-sm md:inline-block">{commentsCount}</Span>
           </div>
         </EdgeColumn>
       </div>

@@ -10,7 +10,7 @@ export default function Issues() {
           <Title>Issues</Title>
           <IssuesList />
         </section>
-        <aside>
+        <aside className="flex flex-1 flex-row gap-2">
           <LabelList />
         </aside>
       </main>
