@@ -1,13 +1,12 @@
+import { worker } from "@uidotdev/react-query-api"
 import React from "react"
 import ReactDOM from "react-dom"
-
-import "./index.css"
-
-import { worker } from "@uidotdev/react-query-api"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { BrowserRouter } from "react-router-dom"
 
 import App from "./App"
+
+import "@/styles/tailwind.css"
 
 const queryClient = new QueryClient()
 
@@ -23,7 +22,7 @@ new Promise((res) => setTimeout(res, 100))
       <React.StrictMode>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
-            <div className="container">
+            <div className="container mx-auto px-24">
               <App />
             </div>
           </BrowserRouter>

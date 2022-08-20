@@ -7,7 +7,7 @@ import Issues from "./pages/Issues"
 function App() {
   const isRootPath = useMatch({ path: "/", end: true })
   return (
-    <div className="App">
+    <div>
       {!isRootPath ? <Link to="/">Back to Issues List</Link> : <span>&nbsp;</span>}
       <h1>Issue Tracker</h1>
       <Routes>
