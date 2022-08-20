@@ -5,6 +5,7 @@
 .husky/
 .next/
 .vscode/
+!.vscode/settings.json
 deploy/
 dist/
 locales/

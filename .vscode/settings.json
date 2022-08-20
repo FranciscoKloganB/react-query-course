@@ -8,5 +8,14 @@
   },
   "editor.rulers": [100],
   "prettier.enable": true,
-  "prettier.configPath": ".prettierrc.js"
+  "prettier.configPath": ".prettierrc.js",
+  "tailwindCSS.includeLanguages": {
+    "javascript": "javascript",
+    "javascriptreact": "javascript"
+  },
+  "tailwindCSS.experimental.classRegex": [
+      "tw`([^`]*)", // tw`...`
+      "tw\\.[^`]+`([^`]*)`", // tw.xxx<xxx>`...`
+      "tw\\(.*?\\).*?`([^`]*)" // tw(Component)<xxx>`...`
+  ]
 }

@@ -5,7 +5,12 @@ module.exports = {
     es2021: true,
     jest: true
   },
-  extends: ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
+  extends: [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime"
+  ],
   ignorePatterns: ["node_modules"],
   parserOptions: {
     ecmaVersion: 13,
@@ -36,5 +41,12 @@ module.exports = {
     "no-only-tests/no-only-tests": "error",
     "no-unused-vars": "off",
     "react/react-in-jsx-scope": "off"
+  },
+  settings: {
+    react: {
+      pragma: "React", // Pragma to use, default to "React"
+      fragment: "Fragment", // Fragment to use default to "Fragment"
+      version: "detect" // React version. "detect" automatically picks the version you have installed.
+    }
   }
 }
