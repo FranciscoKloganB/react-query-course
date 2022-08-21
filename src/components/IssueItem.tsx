@@ -3,7 +3,7 @@ import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
 import { AiOutlineWarning } from "react-icons/ai"
 
 import { Link } from "react-router-dom"
-import { isClosedIssue } from "@enums/IssueStatus.enum"
+import { isClosedIssue } from "@enums"
 import { Paragraph, Span, Small, Chip } from "@components/styled"
 import { relativeDate } from "@helpers/relativeDate"
 import tw from "tailwind-styled-components"
@@ -56,7 +56,7 @@ export function IssueItem({
         <div className="col-span-8 lg:col-span-7">
           <div>
             <Link to={issueDetailHref}>
-              <Span className="hover:text-yellow-200">{title}</Span>
+              <Span className="hover:text-yellow-400">{title}</Span>
             </Link>
             <div>
               <Paragraph className="text-base">
