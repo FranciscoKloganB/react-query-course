@@ -1,16 +1,17 @@
 import IssuesList from "@components/IssuesList"
-import LabelList from "@components/LabelList"
 import SearchInput from "@components/SearchInput"
-import { Subtitle, Title } from "@components/styled"
+import { Paragraph, Subtitle, Title } from "@components/styled"
 import { GoSearch } from "react-icons/go"
+import LabelsPanel from "../components/LabelsPanel"
 
 export default function Issues() {
   return (
     <div>
-      <main className="grid lg:grid-cols-[75%_25%] lg:gap-x-12">
-        <aside className="lg:order-last">
+      <main className="grid lg:grid-cols-[75%_25%]">
+        <aside className="lg:order-last lg:ml-6">
           <Subtitle>Labels</Subtitle>
-          <LabelList />
+          <Paragraph>Select a label to filter</Paragraph>
+          <LabelsPanel />
         </aside>
         <section>
           <Subtitle>Search Issues</Subtitle>

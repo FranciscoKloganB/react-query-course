@@ -1,6 +1,6 @@
 import Tooltip from "rc-tooltip"
 import tw from "tailwind-styled-components"
-import { StatusOverlayVariants } from "./variants"
+import { LabelVariants, StatusOverlayVariants } from "./variants"
 
 export const AppContainer = tw.div`
   container mx-auto pr-4 pl-3 py-3 lg:pt-6
@@ -21,11 +21,10 @@ export const Chip = tw.button`
   font-semibold
   border
   rounded-[999px]
-  text-purple-600
-  border-purple-600
-  bg-purple-400
   bg-opacity-25
   whitespace-nowrap
+  ${(p: { $color: keyof typeof LabelVariants["colors"] }) =>
+    LabelVariants.colors[p.$color] ?? LabelVariants.colors.default}
 `
 
 export const Heading = tw.h1`

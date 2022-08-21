@@ -23,3 +23,16 @@ export const StatusOverlayVariants = {
     "2xl": "h-4 w-4"
   }
 }
+
+export const LabelVariants = {
+  colors: {
+    red: `text-red-600 border-red-600 bg-red-400`,
+    blue: `text-blue-600 border-blue-600 bg-blue-400`,
+    cyan: `text-cyan-600 border-cyan-600 bg-cyan-400`,
+    orange: `text-orange-600 border-orange-600 bg-orange-400`,
+    lime: `text-lime-600 border-lime-600 bg-lime-400`,
+    white: `text-white border-white-600 bg-gray-200`,
+    rebeccapurple: `text-purple-600 border-purple-600 bg-purple-400`,
+    default: `text-amber-300 border-amber-300 bg-amber-200`
+  }
+}

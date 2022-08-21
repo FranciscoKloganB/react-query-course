@@ -3,12 +3,13 @@ import { BsThreeDots } from "react-icons/bs"
 
 import { Link } from "react-router-dom"
 import { isClosedIssue } from "@enums"
-import { Paragraph, Span, Small, Chip } from "@components/styled"
+import { Paragraph, Span, Small } from "@components/styled"
 import { relativeDate } from "@helpers/relativeDate"
 import tw from "tailwind-styled-components"
 import { useUser } from "@hooks"
 
 import { AssigneeProfilePicture } from "./ui/AssigneeProfilePicture"
+import LabelsList from "./LabelsList"
 
 type IssueItemProps = {
   id: string
@@ -75,11 +76,7 @@ export function IssueItem({
               </Paragraph>
             </div>
             <div>
-              <ul className="mt-2">
-                {labels.map((label) => (
-                  <Chip key={label}>{label}</Chip>
-                ))}
-              </ul>
+              <LabelsList className="mt-2" labels={labels} />
             </div>
           </div>
         </div>
