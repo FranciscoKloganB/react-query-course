@@ -3,7 +3,7 @@ import { useQuery } from "react-query"
 export function useUser(userId: string) {
   const keys = ["users", userId]
 
-  const fetcher = ({ queryKey }: { queryKey: typeof keys }) => {
+  function fetcher({ queryKey }: { queryKey: typeof keys }): Promise<User> {
     const [users, userId] = queryKey
 
     return fetch(`api/${users}/${userId}`).then((res) => res.json())

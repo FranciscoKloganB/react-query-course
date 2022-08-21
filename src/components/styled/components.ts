@@ -1,6 +1,6 @@
-import { OnlineStatus } from "@enums"
 import Tooltip from "rc-tooltip"
 import tw from "tailwind-styled-components"
+import { StatusOverlayVariants } from "./variants"
 
 export const AppContainer = tw.div`
   container mx-auto pr-4 pl-3 py-3 lg:pt-6
@@ -37,23 +37,16 @@ export const StatusOverlay = tw.span`
   top-0
   right-0
   block
-  h-1.5
-  w-1.5
   -translate-y-1/2
   translate-x-1/2
   transform
   rounded-full
   ring-2
   ring-white
-  ${(p: { $status: OnlineStatus; $size: "xs" | "sm" | "md" | "lg" }) => {
-    if (p.$status === OnlineStatus.ONLINE) {
-      return "bg-green-400"
-    } else if (p.$status === OnlineStatus.OFFLINE) {
-      return "bg-red-400"
-    } else {
-      return "bg-gray-300"
-    }
-  }}
+  ${(p: {
+    $size: keyof typeof StatusOverlayVariants["sizes"]
+    $status: keyof typeof StatusOverlayVariants["colors"]
+  }) => `${StatusOverlayVariants.colors[p.$status]} ${StatusOverlayVariants.sizes[p.$size]}`}
 `
 
 export const Paragraph = tw.p`

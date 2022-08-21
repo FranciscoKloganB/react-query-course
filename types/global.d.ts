@@ -1,5 +1,5 @@
-import { OnlineStatus } from "@/src/enums"
-import { IssueStatus } from "@/src/enums/issue-status.enum"
+import type { OnlineStatus } from "@enums"
+import type { IssueStatus } from "@enums"
 
 /**
  * Generic TypesOf<T> returns the union of types within an iterable, e.g.: an array, object or enum

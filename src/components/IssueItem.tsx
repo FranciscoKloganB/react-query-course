@@ -9,6 +9,7 @@ import { relativeDate } from "@helpers/relativeDate"
 import tw from "tailwind-styled-components"
 import { useUser } from "@hooks"
 import { Tooltip, TooltipSpan } from "@components/styled"
+import { ProfilePicture } from "./ui/ProfilePicture"
 
 type IssueItemProps = {
   id: string
@@ -82,8 +83,10 @@ export function IssueItem({
             {user.isLoading ? (
               <ImSpinner className="animate-spin text-white" />
             ) : user.isSuccess ? (
-              // FIXME: Switch places with Tooltiped Warning
-              <Span>{assignee}</Span>
+              <ProfilePicture
+                alt={`user ${user.data.id} avatar`}
+                src={user.data.profilePictureUrl}
+              />
             ) : (
               <Tooltip
                 placement="top"
