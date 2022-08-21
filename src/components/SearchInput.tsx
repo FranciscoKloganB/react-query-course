@@ -1,5 +1,5 @@
 import React from "react"
-import { Search, SearchContainer, SearchIconContainer } from "./styled"
+import { Search, SearchContainer, SearchIconContainer } from "@components/styled"
 
 export default function AppSearch({ children }: { children: React.ReactElement }) {
   return (

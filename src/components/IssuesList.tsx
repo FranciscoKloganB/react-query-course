@@ -1,6 +1,6 @@
 import { useIssues } from "@hooks"
 import { IssueItem } from "./IssueItem"
-import { Border, Paragraph } from "./styled"
+import { Border, Paragraph } from "@components/styled"
 
 export default function IssuesList() {
   const issues = useIssues()

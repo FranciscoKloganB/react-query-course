@@ -1,9 +1,14 @@
+import { ImSpinner } from "react-icons/im"
 import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
+import { AiOutlineWarning } from "react-icons/ai"
+
 import { Link } from "react-router-dom"
 import { isClosedIssue } from "@enums/IssueStatus.enum"
-import { Paragraph, Span, Small, Chip } from "./styled"
+import { Paragraph, Span, Small, Chip } from "@components/styled"
 import { relativeDate } from "@helpers/relativeDate"
 import tw from "tailwind-styled-components"
+import { useUser } from "@hooks"
+import { Tooltip, TooltipSpan } from "@components/styled"
 
 type IssueItemProps = {
   id: string
@@ -33,6 +38,8 @@ export function IssueItem({
   title
 }: IssueItemProps) {
   const issueDetailHref = `/issue/${id}`
+
+  const user = useUser(assignee)
 
   return (
     <li>
@@ -68,9 +75,25 @@ export function IssueItem({
             </div>
           </div>
         </div>
-        {/* FIXME: Remove background color when assignee ID is replaced with profile avatar */}
-        <div className="col-span-1 my-auto hidden bg-red-600 text-end lg:inline-block">
-          {assignee}
+        {/* <div className="relative col-span-1 my-auto hidden lg:inline-block">
+          <span className="absolute -inset-y-3 right-0"> */}{" "}
+        <div className="col-span-1 my-auto hidden lg:inline-block">
+          <span className="flex justify-end">
+            {user.isLoading ? (
+              <ImSpinner className="animate-spin text-white" />
+            ) : user.isSuccess ? (
+              // FIXME: Switch places with Tooltiped Warning
+              <Span>{assignee}</Span>
+            ) : (
+              <Tooltip
+                placement="top"
+                trigger={["click"]}
+                overlay={<TooltipSpan>Unable to load user avatar</TooltipSpan>}
+              >
+                <AiOutlineWarning className="text-yellow-600" />
+              </Tooltip>
+            )}
+          </span>
         </div>
         {commentsCount && (
           <EdgeColumn>

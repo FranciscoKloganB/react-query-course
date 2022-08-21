@@ -1,3 +1,4 @@
+import Tooltip from "rc-tooltip"
 import tw from "tailwind-styled-components"
 
 export const AppContainer = tw.div`
@@ -5,7 +6,7 @@ export const AppContainer = tw.div`
 `
 
 export const Border = tw.div`
-  border-[1px] rounded-lg my-3 py-2 border-slate-600
+  border rounded-lg my-3 py-2 border-slate-600
 `
 
 export const Chip = tw.button`
@@ -17,7 +18,7 @@ export const Chip = tw.button`
   text-center
   font-sans
   font-semibold
-  border-[1px]
+  border
   rounded-[999px]
   text-purple-600
   border-purple-600
@@ -30,16 +31,12 @@ export const Heading = tw.h1`
   font-display text-4xl font-extrabold text-white text-center sm:text-5xl
 `
 
-export const Title = tw.h2`
-  pt-4
-  font-display
-  font-bold
-  text-white
-  text-2xl
-  text-center
-  md:text-left
-  sm:text-3xl
-  tracking-tight
+export const Paragraph = tw.p`
+  font-sans text-base tracking-tight text-white
+`
+
+export const Small = tw.small`
+  font-sans tracking-tight text-slate-400
 `
 
 export const Search = tw.input`
@@ -76,6 +73,10 @@ export const SearchIconContainer = tw.div`
   pointer-events-none
 `
 
+export const Span = tw.span`
+  font-sans text-base tracking-tight text-white
+`
+
 export const Subtitle = tw.h3`
   font-display
   font-semibold
@@ -86,14 +87,22 @@ export const Subtitle = tw.h3`
   tracking-tight
 `
 
-export const Paragraph = tw.p`
-  font-sans text-base tracking-tight text-white
+export const Title = tw.h2`
+  pt-4
+  font-display
+  font-bold
+  text-white
+  text-2xl
+  text-center
+  md:text-left
+  sm:text-3xl
+  tracking-tight
 `
 
-export const Small = tw.small`
-  font-sans tracking-tight text-slate-400
+export const TooltipSpan = tw.span`
+  text-xs
+  font-sans
+  text-gray-900
 `
 
-export const Span = tw.span`
-  font-sans text-base tracking-tight text-white
-`
+export { Tooltip }

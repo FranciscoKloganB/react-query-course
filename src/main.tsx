@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom"
 import App from "./App"
 
 import "@styles/tailwind.css"
+import "@styles/rc-tooltip.css"
 
 const queryClient = new QueryClient()
 
