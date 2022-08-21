@@ -8,7 +8,5 @@ export function useIssues() {
     return fetch(`api/${issues}`).then((res) => res.json())
   }
 
-  const query = useQuery(keys, fetcher)
-
-  return { ...query, issues: query.data }
+  return useQuery(keys, fetcher)
 }

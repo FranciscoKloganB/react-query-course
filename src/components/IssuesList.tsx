@@ -3,9 +3,9 @@ import { IssueItem } from "./IssueItem"
 import { Border, Paragraph } from "./styled"
 
 export default function IssuesList() {
-  const { error, issues, isLoading, isError } = useIssues()
+  const issues = useIssues()
 
-  if (isLoading) {
+  if (issues.isLoading) {
     return (
       <div>
         <Paragraph>Loading...</Paragraph>
@@ -13,10 +13,10 @@ export default function IssuesList() {
     )
   }
 
-  if (isError) {
+  if (issues.isError) {
     return (
       <div>
-        <Paragraph>{error}</Paragraph>
+        <Paragraph>{issues.error}</Paragraph>
       </div>
     )
   }
@@ -24,7 +24,7 @@ export default function IssuesList() {
   return (
     <div>
       <ul>
-        {issues.map((issue: Issue) => (
+        {issues.data.map((issue: Issue) => (
           <div key={issue.id}>
             <Border>
               <IssueItem
