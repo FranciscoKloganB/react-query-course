@@ -15,8 +15,8 @@ In particular this repository slightly changes the tooling:
 - `TypeScript` instead of `JavaScript`
 - `Tailwind` instead of pure `CSS`
   - Revamped UI and UX
-   - Better responsiveness and accessibility
-   - Most styles were built by me, e.g.: few taken from `Tailwind UI` or similar OSS TW component libs.
+  - Better responsiveness and accessibility
+  - Most styles were built by me, e.g.: few taken from `Tailwind UI` or similar OSS TW component libs.
   - `Styled-Components`
 - Code-quality devtools:
   - Eslint
