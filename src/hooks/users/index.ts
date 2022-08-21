@@ -6,7 +6,11 @@ export function useUser(userId: string) {
   function fetcher({ queryKey }: { queryKey: typeof keys }): Promise<User> {
     const [, userId] = queryKey
 
-    return fetch(`api/users/${userId}`).then((res) => res.json())
+    if (userId) {
+      return fetch(`api/users/${userId}`).then((res) => res.json())
+    }
+
+    throw new Error("Can not fetch user with ID null")
   }
 
   return useQuery(keys, fetcher)
