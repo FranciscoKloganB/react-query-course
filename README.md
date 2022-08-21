@@ -4,20 +4,19 @@
 
 This project is an app for tracking issues. The backend is fully mocked with [MSW](https://mswjs.io) - the project is building the UI and data fetching using [React Query](https://react-query.tanstack.com)
 
-
-You can view the final project **[here](https://react-query-issue-tracker.ui.dev)**
+My final implementation can be found at **[work in progress]**
 
 ## Info
 
-This is the repository was originally forked from [ui.dev](https://ui.dev)'s "React Query" course project. However, it decoupled itself from it, since the very first lesson project lesson.
+This is the repository was originally forked from **[ui.dev](https://ui.dev)** "React Query" course project. However, it decoupled itself from it, since the very first lesson project lesson.
 
 In particular this repository slightly changes the tooling:
 
 - `TypeScript` instead of `JavaScript`
 - `Tailwind` instead of pure `CSS`
   - Revamped UI and UX
-    - Better responsiveness and accessibility
-    - Most styles were built by me, e.g.: few taken from `Tailwind UI` or similar OSS TW component libs.
+   - Better responsiveness and accessibility
+   - Most styles were built by me, e.g.: few taken from `Tailwind UI` or similar OSS TW component libs.
   - `Styled-Components`
 - Code-quality devtools:
   - Eslint
@@ -26,3 +25,5 @@ In particular this repository slightly changes the tooling:
   - Typechecking on build
 - Vitest
   - Unit and Integration (no E2E)
+
+The original course can be found at **[https://ui.dev/checkout/react-query?from=tanstack]** and the originally final app at **[https://react-query-issue-tracker.ui.dev]**
