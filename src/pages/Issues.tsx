@@ -10,7 +10,7 @@ export default function Issues() {
       <main className="grid lg:grid-cols-[75%_25%]">
         <aside className="lg:order-last lg:ml-6">
           <Subtitle>Labels</Subtitle>
-          <Paragraph>Select a label to filter</Paragraph>
+          <Paragraph className="hidden lg:inline-block">Select a label to filter</Paragraph>
           <LabelsPanel />
         </aside>
         <section>
