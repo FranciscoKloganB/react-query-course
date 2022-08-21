@@ -87,7 +87,7 @@ export const Subtitle = tw.h3`
 `
 
 export const Paragraph = tw.p`
-  font-sans text-lg tracking-tight text-white
+  font-sans text-base tracking-tight text-white
 `
 
 export const Small = tw.small`
@@ -95,5 +95,5 @@ export const Small = tw.small`
 `
 
 export const Span = tw.span`
-  font-sans text-lg tracking-tight text-white
+  font-sans text-base tracking-tight text-white
 `
