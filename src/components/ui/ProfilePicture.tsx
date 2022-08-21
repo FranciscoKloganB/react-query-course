@@ -13,12 +13,12 @@ type ProfilePictureProps = {
 export function ProfilePicture({
   alt,
   src,
-  size = "md",
+  size = "sm",
   status = OnlineStatus.INACTIVE
 }: ProfilePictureProps) {
   return (
     <span className="relative inline-block">
-      <img className={clsx(AvatarVariants[size], "rounded-md")} src={src} alt={alt} />
+      <img className={clsx(AvatarVariants[size], "rounded-full")} src={src} alt={alt} />
       <StatusOverlay $size={size} $status={status} />
     </span>
   )

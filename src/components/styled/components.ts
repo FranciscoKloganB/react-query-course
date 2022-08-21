@@ -37,9 +37,6 @@ export const StatusOverlay = tw.span`
   top-0
   right-0
   block
-  -translate-y-1/2
-  translate-x-1/2
-  transform
   rounded-full
   ring-2
   ring-white
