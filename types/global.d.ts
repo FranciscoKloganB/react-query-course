@@ -1,4 +1,5 @@
-import { IssueStatus } from "@enums/IssueStatus.enum"
+import { OnlineStatus } from "@/src/enums"
+import { IssueStatus } from "@/src/enums/issue-status.enum"
 
 /**
  * Generic TypesOf<T> returns the union of types within an iterable, e.g.: an array, object or enum
@@ -36,5 +37,12 @@ declare global {
     number: number
     status: ValuesOf<IssueStatus>
     title: string
+  }
+
+  type User = {
+    id: string
+    name: string
+    profilePictureUrl: string
+    onlineStatus?: OnlineStatus
   }
 }
