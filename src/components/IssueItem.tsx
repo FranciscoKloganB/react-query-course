@@ -1,6 +1,5 @@
-import { ImSpinner } from "react-icons/im"
 import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
-import { AiOutlineWarning } from "react-icons/ai"
+import { BsThreeDots } from "react-icons/bs"
 
 import { Link } from "react-router-dom"
 import { isClosedIssue } from "@enums"
@@ -8,8 +7,8 @@ import { Paragraph, Span, Small, Chip } from "@components/styled"
 import { relativeDate } from "@helpers/relativeDate"
 import tw from "tailwind-styled-components"
 import { useUser } from "@hooks"
-import { Tooltip, TooltipSpan } from "@components/styled"
-import { ProfilePicture } from "./ui/ProfilePicture"
+
+import { AssigneeProfilePicture } from "./ui/AssigneeProfilePicture"
 
 type IssueItemProps = {
   id: string
@@ -29,9 +28,9 @@ const EdgeColumn = tw.div`
 
 export function IssueItem({
   id,
-  assignee,
+  assignee: assigneeId,
   commentsCount,
-  createdBy,
+  createdBy: createdById,
   createdDate,
   labels,
   number,
@@ -40,7 +39,16 @@ export function IssueItem({
 }: IssueItemProps) {
   const issueDetailHref = `/issue/${id}`
 
-  const user = useUser(assignee)
+  const assignee = useUser(assigneeId)
+  const createdBy = useUser(createdById)
+
+  const creator = createdBy.isSuccess ? (
+    <strong>{createdBy.data?.name}</strong>
+  ) : (
+    <Span>
+      <BsThreeDots className="inline-flex animate-bounce" />
+    </Span>
+  )
 
   return (
     <li>
@@ -62,8 +70,7 @@ export function IssueItem({
             <div>
               <Paragraph className="text-base">
                 <Small>
-                  #{number} set to <strong>{status}</strong> by <strong>{createdBy}</strong> —{" "}
-                  {relativeDate(createdDate)}
+                  #{number} set to <u>{status}</u> {relativeDate(createdDate)} by {creator}
                 </Small>
               </Paragraph>
             </div>
@@ -76,26 +83,9 @@ export function IssueItem({
             </div>
           </div>
         </div>
-        {/* <div className="relative col-span-1 my-auto hidden lg:inline-block">
-          <span className="absolute -inset-y-3 right-0"> */}{" "}
         <div className="col-span-1 my-auto hidden lg:inline-block">
           <span className="flex justify-end">
-            {user.isLoading ? (
-              <ImSpinner className="animate-spin text-white" />
-            ) : user.isSuccess ? (
-              <ProfilePicture
-                alt={`user ${user.data.id} avatar`}
-                src={user.data.profilePictureUrl}
-              />
-            ) : (
-              <Tooltip
-                placement="top"
-                trigger={["click"]}
-                overlay={<TooltipSpan>Unable to load user avatar</TooltipSpan>}
-              >
-                <AiOutlineWarning className="text-yellow-600" />
-              </Tooltip>
-            )}
+            {assigneeId && <AssigneeProfilePicture userQuery={assignee} />}
           </span>
         </div>
         {commentsCount && (

@@ -1,7 +1,7 @@
 import { useIssues } from "@hooks"
 import { IssueItem } from "./IssueItem"
 import { Border, Paragraph } from "@components/styled"
-import { ImSpinner } from "react-icons/im"
+import { FaSpinner } from "react-icons/fa"
 
 export default function IssuesList() {
   const issues = useIssues()
@@ -9,7 +9,7 @@ export default function IssuesList() {
   if (issues.isLoading) {
     return (
       <div className="w-full text-center">
-        <ImSpinner className="m-auto animate-spin text-white" />
+        <FaSpinner className="m-auto animate-spin text-white" />
       </div>
     )
   }
