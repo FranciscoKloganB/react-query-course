@@ -23,6 +23,7 @@ yarn-error.log*
 # misc
 .DS_Store
 *.pem
+snippet.js
 
 # netlify
 .netlify

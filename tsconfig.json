@@ -37,5 +37,5 @@
     "types": ["node", "react"]
   },
   "include": ["**/*.d.ts", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "public"]
+  "exclude": ["node_modules", "public", "snippet.js"]
 }
