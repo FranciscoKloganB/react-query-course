@@ -39,6 +39,12 @@ declare global {
     title: string
   }
 
+  type Label = {
+    id: string
+    color: string
+    name: string
+  }
+
   type User = {
     id: string
     name: string
