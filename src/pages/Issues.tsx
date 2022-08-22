@@ -8,7 +8,7 @@ export default function Issues() {
   return (
     <div>
       <main className="grid lg:grid-cols-[75%_25%]">
-        <aside className="lg:order-last lg:ml-6">
+        <aside className="lg:order-last lg:ml-6 xl:ml-12">
           <Subtitle>Labels</Subtitle>
           <Paragraph className="hidden lg:inline-block">Select a label to filter</Paragraph>
           <LabelsPanel />

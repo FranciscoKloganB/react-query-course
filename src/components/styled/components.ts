@@ -3,7 +3,7 @@ import tw from "tailwind-styled-components"
 import { LabelVariants, StatusOverlayVariants } from "./variants"
 
 export const AppContainer = tw.div`
-  container mx-auto pr-4 pl-3 py-3 lg:pt-6
+  container mx-auto px-4 xl:px-14 2xl:px-16 py-3 lg:pt-6
 `
 
 export const Border = tw.div`
