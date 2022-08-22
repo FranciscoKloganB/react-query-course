@@ -2,14 +2,14 @@ import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
 
 import { Link } from "react-router-dom"
 import { isClosedIssue } from "@enums"
-import { Paragraph, Span, Small } from "@components/styled"
+import { Paragraph, Span, Small } from "@styled"
 import { relativeDate } from "@helpers/relativeDate"
 import tw from "tailwind-styled-components"
-import { useLabels, useUser } from "@hooks"
+import { useUser } from "@hooks"
 
-import { AssigneeProfilePicture } from "./ui/AssigneeProfilePicture"
-import LabelsList from "./LabelsList"
-import { Dots } from "./ui/Dots"
+import { AssigneeProfilePicture } from "@ui/AssigneeProfilePicture"
+import LabelsList from "@components/LabelsList"
+import { Dots } from "@ui/Dots"
 
 type IssueItemProps = {
   id: string

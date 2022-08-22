@@ -1,5 +1,5 @@
 import { useLabels } from "@hooks"
-import LabelsList from "./LabelsList"
+import LabelsList from "@components/LabelsList"
 
 export default function LabelsPanel() {
   const labelsQuery = useLabels()

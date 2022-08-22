@@ -1,7 +1,7 @@
-import { OnlineStatus } from "@/src/enums"
-import { AvatarVariants } from "@components/styled/variants"
+import { OnlineStatus } from "@enums"
+import { AvatarVariants } from "@styled"
 import clsx from "clsx"
-import { StatusOverlay } from "../styled"
+import { StatusOverlay } from "@styled"
 
 type ProfilePictureProps = {
   alt: string

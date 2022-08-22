@@ -1,6 +1,6 @@
 import { useIssues } from "@hooks"
-import { IssueItem } from "./IssueItem"
-import { Border, Paragraph } from "@components/styled"
+import { IssueItem } from "@components/IssueItem"
+import { Border, Paragraph } from "@styled"
 import { FaSpinner } from "react-icons/fa"
 
 export default function IssuesList() {

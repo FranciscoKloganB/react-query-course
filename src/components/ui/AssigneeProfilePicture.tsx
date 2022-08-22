@@ -1,7 +1,7 @@
 import { FaSpinner } from "react-icons/fa"
 import { AiOutlineWarning } from "react-icons/ai"
-import { Tooltip, TooltipSpan } from "@components/styled"
-import { ProfilePicture } from "./ProfilePicture"
+import { Tooltip, TooltipSpan } from "@styled"
+import { ProfilePicture } from "@ui/ProfilePicture"
 import { UseQueryResult } from "react-query"
 
 export function AssigneeProfilePicture({

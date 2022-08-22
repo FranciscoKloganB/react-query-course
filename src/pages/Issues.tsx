@@ -1,8 +1,8 @@
 import IssuesList from "@components/IssuesList"
 import SearchInput from "@components/SearchInput"
-import { Paragraph, Subtitle, Title } from "@components/styled"
+import { Paragraph, Subtitle, Title } from "@styled"
 import { GoSearch } from "react-icons/go"
-import LabelsPanel from "../components/LabelsPanel"
+import LabelsPanel from "@components/LabelsPanel"
 
 export default function Issues() {
   return (

@@ -1,4 +1,4 @@
-import { useLabels } from "@/src/hooks"
+import { useLabels } from "@hooks"
 import { Chip } from "@styled"
 
 export function LabelChip({ labelName }: { labelName: string }) {
