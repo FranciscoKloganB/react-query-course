@@ -34,7 +34,7 @@ export default function IssuesList() {
                 commentsCount={issue.comments.length}
                 createdBy={issue.createdBy}
                 createdDate={issue.createdDate}
-                labels={issue.labels}
+                labelNames={issue.labels}
                 number={issue.number}
                 status={issue.status}
                 title={issue.title}

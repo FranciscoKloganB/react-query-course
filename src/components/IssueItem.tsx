@@ -1,15 +1,15 @@
 import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
-import { BsThreeDots } from "react-icons/bs"
 
 import { Link } from "react-router-dom"
 import { isClosedIssue } from "@enums"
 import { Paragraph, Span, Small } from "@components/styled"
 import { relativeDate } from "@helpers/relativeDate"
 import tw from "tailwind-styled-components"
-import { useUser } from "@hooks"
+import { useLabels, useUser } from "@hooks"
 
 import { AssigneeProfilePicture } from "./ui/AssigneeProfilePicture"
 import LabelsList from "./LabelsList"
+import { Dots } from "./ui/Dots"
 
 type IssueItemProps = {
   id: string
@@ -17,7 +17,7 @@ type IssueItemProps = {
   commentsCount: number
   createdBy: string
   createdDate: string
-  labels: string[]
+  labelNames: string[]
   number: number
   status: string
   title: string
@@ -33,7 +33,7 @@ export function IssueItem({
   commentsCount,
   createdBy: createdById,
   createdDate,
-  labels,
+  labelNames,
   number,
   status,
   title
@@ -43,13 +43,7 @@ export function IssueItem({
   const assignee = useUser(assigneeId)
   const createdBy = useUser(createdById)
 
-  const creator = createdBy.isSuccess ? (
-    <strong>{createdBy.data?.name}</strong>
-  ) : (
-    <Span>
-      <BsThreeDots className="inline-flex animate-bounce" />
-    </Span>
-  )
+  const creator = createdBy.isSuccess ? <strong>{createdBy.data?.name}</strong> : <Dots />
 
   return (
     <li>
@@ -76,7 +70,7 @@ export function IssueItem({
               </Paragraph>
             </div>
             <div>
-              <LabelsList className="mt-2" labels={labels} />
+              <LabelsList className="mt-2" labels={labelNames} />
             </div>
           </div>
         </div>
