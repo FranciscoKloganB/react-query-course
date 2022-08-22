@@ -11,7 +11,11 @@ export default function LabelsList({ labels, className }: LabelsListProps) {
       {labels.map((label) => {
         const name = typeof label === "string" ? label : label.name
 
-        return <LabelChip key={name} labelName={name} />
+        return (
+          <li key={name}>
+            <LabelChip labelName={name} />
+          </li>
+        )
       })}
     </ul>
   )
