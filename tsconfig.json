@@ -25,10 +25,14 @@
       "@hooks/*": ["./src/hooks/*"],
       "@pages": ["./src/pages"],
       "@pages/*": ["./src/pages/*"],
+      "@styled": ["./src/components/styled"],
+      "@styled/*": ["./src/components/styled/*"],
       "@styles": ["./src/styles"],
       "@styles/*": ["./src/styles/*"],
       "@types": ["./src/types"],
-      "@types/*": ["./types/*"]
+      "@types/*": ["./types/*"],
+      "@ui": ["./src/components/ui"],
+      "@ui/*": ["./src/components/ui/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
