@@ -70,7 +70,7 @@ export function IssueItem({
               </Paragraph>
             </div>
             <div>
-              <LabelsList className="mt-2" labels={labelNames} />
+              <LabelsList className="mt-2" selected={labelNames} />
             </div>
           </div>
         </div>

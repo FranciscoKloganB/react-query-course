@@ -1,6 +1,6 @@
 import type { OnlineStatus } from "@enums"
 import type { IssueStatus } from "@enums"
-
+import type { LabelVariants } from "@styled"
 /**
  * Generic TypesOf<T> returns the union of types within an iterable, e.g.: an array, object or enum
  *
@@ -9,7 +9,7 @@ import type { IssueStatus } from "@enums"
  * type TypesOfFoo = TypesOf<Foo> = string | number
  * ```
  */
-type TypesIn<T> = T[keyof T]
+type TypesOf<T> = T[keyof T]
 
 /**
  * The generic ValuesOf is simply semantic, since it always returns T.
@@ -22,7 +22,7 @@ type TypesIn<T> = T[keyof T]
  * type ValuesOfBar = ValuesOf<Bar> // "x" | "y", which is the same as Bar
  * ```
  */
-type ValuesOf<T> = typeof T[keyof typeof T]
+type ValuesOf<T> = T
 
 declare global {
   type Issue = {
@@ -41,7 +41,7 @@ declare global {
 
   type Label = {
     id: string
-    color: string
+    color: keyof typeof LabelVariants["colors"]
     name: string
   }
 

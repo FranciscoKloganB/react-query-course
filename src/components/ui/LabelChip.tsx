@@ -1,7 +1,16 @@
 import { useLabels } from "@hooks"
 import { Chip } from "@styled"
+import clsx from "clsx"
 
-export function LabelChip({ labelName }: { labelName: string }) {
+export function LabelChip({
+  name,
+  className,
+  toggle
+}: {
+  name: string
+  className?: string
+  toggle?: (s: string) => void
+}) {
   const labels = useLabels()
 
   if (labels.isLoading) {
@@ -9,14 +18,23 @@ export function LabelChip({ labelName }: { labelName: string }) {
   }
 
   if (labels.isError) {
-    return <Chip $color="default">{labelName}</Chip>
+    return <Chip $color="default">{name}</Chip>
   }
 
-  const label = labels.data.find((queryLabel) => queryLabel.name === labelName) ?? {
+  const label: Label = labels.data.find((queryLabel) => queryLabel.name === name) ?? {
     color: "default",
-    id: labelName,
-    name: labelName
+    id: name,
+    name: name
   }
 
-  return <Chip $color={label.color}>{label.name}</Chip>
+  const onClick = toggle ?? (() => ({}))
+  const isNotInteractive = !toggle
+  const props = {
+    $color: label.color,
+    className: clsx(className, isNotInteractive && "pointer-events-none"),
+    onClick: onClick,
+    tabIndex: isNotInteractive ? -1 : undefined
+  }
+
+  return <Chip {...props}>{label.name}</Chip>
 }

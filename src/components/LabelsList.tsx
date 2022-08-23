@@ -1,19 +1,28 @@
 import clsx from "clsx"
 import { LabelChip } from "@ui/LabelChip"
+import { useLabels } from "@hooks"
+import { Dots } from "@ui/Dots"
 
 type LabelsListProps = {
-  labels: string[] | Label[]
+  selected: string[]
   className?: string
 }
-export default function LabelsList({ labels, className }: LabelsListProps) {
+
+export default function LabelsList({ selected, className }: LabelsListProps) {
+  const labels = useLabels()
+
+  if (labels.isLoading) {
+    return <Dots />
+  }
+
+  const selectedLabels = labels.data?.filter((label) => selected.includes(label.name)) ?? []
+
   return (
     <ul className={clsx("flex flex-wrap", className)}>
-      {labels.map((label) => {
-        const name = typeof label === "string" ? label : label.name
-
+      {selectedLabels.map((label) => {
         return (
-          <li key={name}>
-            <LabelChip labelName={name} />
+          <li key={label.id}>
+            <LabelChip name={label.name} />
           </li>
         )
       })}
