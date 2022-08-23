@@ -13,18 +13,16 @@ export function LabelChip({
 }) {
   const labels = useLabels()
 
-  if (labels.isLoading) {
+  if (labels.isLoading || labels.isError) {
     return null
   }
 
-  if (labels.isError) {
-    return <Chip $color="default">{name}</Chip>
-  }
+  const label = labels.data.find((queryLabel) => queryLabel.name === name)
 
-  const label: Label = labels.data.find((queryLabel) => queryLabel.name === name) ?? {
-    color: "default",
-    id: name,
-    name: name
+  if (!label) {
+    console.error(`Could not find label with name '${name}. Are you sure it exists?'`)
+
+    return null
   }
 
   const onClick = toggle ?? (() => ({}))
