@@ -3,8 +3,8 @@ import { IssueItem } from "@components/IssueItem"
 import { Border, Paragraph } from "@styled"
 import { FaSpinner } from "react-icons/fa"
 
-export default function IssuesList() {
-  const issues = useIssues()
+export default function IssuesList({ labelFilters }: { labelFilters: string[] }) {
+  const issues = useIssues({ labels: labelFilters })
 
   if (issues.isLoading) {
     return (

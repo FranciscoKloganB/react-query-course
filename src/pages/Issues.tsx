@@ -35,7 +35,7 @@ export default function Issues() {
             <GoSearch />
           </SearchInput>
           <Title>Issues</Title>
-          <IssuesList />
+          <IssuesList labelFilters={selectedLabels} />
         </section>
       </main>
     </div>
