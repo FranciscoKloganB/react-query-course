@@ -25,7 +25,7 @@ type TypesOf<T> = T[keyof T]
 type ValuesOf<T> = T
 
 declare global {
-  type Issue = {
+  type IssueDto = {
     id: string
     assignee: string
     comments: string[]
@@ -38,6 +38,12 @@ declare global {
     status: ValuesOf<IssueStatus>
     title: string
   }
+
+  type Issue =
+    | Omit<IssueDto, "labels">
+    | {
+        labelIDs: string[]
+      }
 
   type Label = {
     id: string
