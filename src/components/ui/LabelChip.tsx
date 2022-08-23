@@ -1,15 +1,14 @@
 import { useLabels } from "@hooks"
 import { Chip } from "@styled"
-import clsx from "clsx"
 
 export function LabelChip({
   name,
   className,
-  toggle
+  onClick
 }: {
   name: string
   className?: string
-  toggle?: (s: string) => void
+  onClick?: (s: string) => void
 }) {
   const labels = useLabels()
 
@@ -25,13 +24,12 @@ export function LabelChip({
     return null
   }
 
-  const onClick = toggle ?? (() => ({}))
-  const isNotInteractive = !toggle
+  const isNotInteractive = !onClick
   const props = {
+    $as: isNotInteractive ? "span" : "button",
     $color: label.color,
-    className: clsx(className, isNotInteractive && "pointer-events-none"),
-    onClick: onClick,
-    tabIndex: isNotInteractive ? -1 : undefined
+    className: className,
+    onClick
   }
 
   return <Chip {...props}>{label.name}</Chip>

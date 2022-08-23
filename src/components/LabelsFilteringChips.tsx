@@ -28,7 +28,7 @@ export default function LabelsFilteringChips({
             <LabelChip
               className={clsx(selected.includes(label.name) && "border-yellow-600 brightness-200")}
               name={label.name}
-              toggle={() => toggle(label.name)}
+              onClick={() => toggle(label.name)}
             />
           </li>
         )
