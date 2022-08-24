@@ -16,6 +16,7 @@
     "up:install": "taze major --install"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^1.0.0",
     "@uidotdev/react-query-api": "^0.1.18",
     "clsx": "^1.2.1",
     "rc-tooltip": "^5.2.2",
