@@ -4,6 +4,7 @@ import { Subtitle, Title, Tooltip, TooltipSpan } from "@styled"
 import { GoSearch } from "react-icons/go"
 import { useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
+import { Select } from "@components/radix/Select"
 
 export default function Issues() {
   /** Selected labels is passed down to children components to filter out undesired issues */
@@ -36,6 +37,7 @@ export default function Issues() {
             toggle={handleLabelToggle}
           />
           <Subtitle>Status</Subtitle>
+          <Select />
         </aside>
         <section>
           <SearchInput>
