@@ -39,11 +39,7 @@ declare global {
     title: string
   }
 
-  type Issue =
-    | Omit<IssueDto, "labels">
-    | {
-        labelIDs: string[]
-      }
+  type Issue = { labelIDs: string[] } & Omit<IssueDto, "labels">
 
   type Label = {
     id: string

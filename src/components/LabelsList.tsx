@@ -9,17 +9,25 @@ type LabelsListProps = {
 }
 
 export default function LabelsList({ selected, className }: LabelsListProps) {
-  const labels = useLabels()
+  const labelsQuery = useLabels()
 
-  if (labels.isLoading) {
+  if (labelsQuery.isLoading) {
     return <Dots />
   }
 
-  const selectedLabels = labels.data?.filter((label) => selected.includes(label.name)) ?? []
+  if (labelsQuery.isError) {
+    console.warn("LabelsList could not obtain labels from useLabels query.")
+
+    return null
+  }
+
+  const labels = labelsQuery.data.filter(
+    (label) => selected.includes(label.name) || selected.includes(label.id)
+  )
 
   return (
     <ul className={clsx("flex flex-wrap", className)}>
-      {selectedLabels.map((label) => {
+      {labels.map((label) => {
         return (
           <li key={label.id}>
             <LabelChip name={label.name} />

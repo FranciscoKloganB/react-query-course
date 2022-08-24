@@ -3,8 +3,8 @@ import { IssueItem } from "@components/IssueItem"
 import { Border, Paragraph } from "@styled"
 import { FaSpinner } from "react-icons/fa"
 
-export default function IssuesList({ labelFilters }: { labelFilters: string[] }) {
-  const issues = useIssues({ labels: labelFilters })
+export default function IssuesList({ filterByName }: { filterByName: string[] }) {
+  const issues = useIssues({ labels: filterByName })
 
   if (issues.isLoading) {
     return (
@@ -22,6 +22,7 @@ export default function IssuesList({ labelFilters }: { labelFilters: string[] })
     )
   }
 
+  console.log("Issue items", issues.data)
   return (
     <div>
       <ul>
@@ -34,7 +35,7 @@ export default function IssuesList({ labelFilters }: { labelFilters: string[] })
                 commentsCount={issue.comments.length}
                 createdBy={issue.createdBy}
                 createdDate={issue.createdDate}
-                labelNames={issue.labels}
+                labelIDs={issue.labelIDs}
                 number={issue.number}
                 status={issue.status}
                 title={issue.title}

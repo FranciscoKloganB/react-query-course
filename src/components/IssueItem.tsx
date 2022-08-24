@@ -17,7 +17,7 @@ type IssueItemProps = {
   commentsCount: number
   createdBy: string
   createdDate: string
-  labelNames: string[]
+  labelIDs: string[]
   number: number
   status: string
   title: string
@@ -33,7 +33,7 @@ export function IssueItem({
   commentsCount,
   createdBy: createdById,
   createdDate,
-  labelNames,
+  labelIDs,
   number,
   status,
   title
@@ -70,7 +70,8 @@ export function IssueItem({
               </Paragraph>
             </div>
             <div>
-              <LabelsList className="mt-2" selected={labelNames} />
+              {/* selected={["help"]} ?? */}
+              <LabelsList className="mt-2" selected={labelIDs} />
             </div>
           </div>
         </div>
