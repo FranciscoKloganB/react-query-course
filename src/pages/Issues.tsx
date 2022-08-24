@@ -1,6 +1,6 @@
 import IssuesList from "@components/IssuesList"
 import SearchInput from "@components/SearchInput"
-import { Paragraph, Subtitle, Title } from "@styled"
+import { Subtitle, Title, Tooltip, TooltipSpan } from "@styled"
 import { GoSearch } from "react-icons/go"
 import { useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
@@ -21,16 +21,23 @@ export default function Issues() {
     <div>
       <main className="grid lg:grid-cols-[75%_25%]">
         <aside className="lg:order-last lg:ml-6 xl:ml-12">
-          <Subtitle>Labels</Subtitle>
-          <Paragraph className="hidden lg:inline-block">Select a label to filter</Paragraph>
+          <Tooltip
+            placement="topLeft"
+            trigger={["hover"]}
+            overlay={
+              <TooltipSpan>Click the label chips to toggle filter by their name</TooltipSpan>
+            }
+          >
+            <Subtitle className="py-0">Labels</Subtitle>
+          </Tooltip>
           <LabelsFilteringChips
             className="mt-2 justify-center gap-x-2 gap-y-3 md:justify-start"
             selected={selectedLabels}
             toggle={handleLabelToggle}
           />
+          <Subtitle>Status</Subtitle>
         </aside>
         <section>
-          <Subtitle>Search Issues</Subtitle>
           <SearchInput>
             <GoSearch />
           </SearchInput>

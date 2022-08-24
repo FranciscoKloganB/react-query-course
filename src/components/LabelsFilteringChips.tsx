@@ -26,7 +26,10 @@ export default function LabelsFilteringChips({
         return (
           <li key={label.id}>
             <LabelChip
-              className={clsx(selected.includes(label.name) && "border-yellow-600 brightness-200")}
+              className={clsx(
+                selected.includes(label.name) && "border-yellow-600 brightness-200",
+                "hover:border-yellow-600 hover:brightness-125"
+              )}
               name={label.name}
               onClick={() => toggle(label.name)}
             />
