@@ -40,6 +40,6 @@
     "target": "es6",
     "types": ["node", "react"]
   },
-  "include": ["**/*.d.ts", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "public", "snippet.js"]
 }

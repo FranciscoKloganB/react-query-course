@@ -1,4 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
+const radix = require("tailwindcss-radix")
 const defaultTheme = require("tailwindcss/defaultTheme")
 
 /** @type {import('tailwindcss').Config} */
@@ -37,5 +38,5 @@ module.exports = {
       }
     }
   },
-  plugins: []
+  plugins: [radix({ variantPrefix: "radix" })]
 }
