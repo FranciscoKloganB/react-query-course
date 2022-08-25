@@ -59,29 +59,28 @@ export const Search = tw.input`
   py-2
   pl-10
   pr-3
-  text-sm
-  placeholder-slate-500
-  bg-white border
-  border-slate-300
+  font-sans
+  text-xs
   rounded-md
+  bg-white border
   focus:outline-none
-  focus:text-slate-900
-  focus:placeholder-slate-400
   focus:ring-2
   focus:ring-yellow-400
   focus:border-yellow-400
-  sm:text-sm
+  focus:text-slate-900
+  placeholder:text-slate-600
+  focus:placeholder:text-slate-400
+  md:text-sm
 `
 
 export const SearchContainer = tw.div`
-  items-center justify-center
+  items-center justify-center text-md text-slate-600
 `
 
 export const SearchIconContainer = tw.div`
-  pl-3
   absolute
   flex
-  left-0
+  left-4
   inset-y-0
   items-center
   pointer-events-none

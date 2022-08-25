@@ -1,7 +1,7 @@
 import React from "react"
-import { Search, SearchContainer, SearchIconContainer } from "@styled"
+import { Search as SearchStyled, SearchContainer, SearchIconContainer } from "@styled"
 
-export default function AppSearch({ children }: { children: React.ReactElement }) {
+export default function Search({ children }: { children: React.ReactElement }) {
   return (
     <SearchContainer>
       <div className="max-w-full">
@@ -10,7 +10,7 @@ export default function AppSearch({ children }: { children: React.ReactElement }
         </label>
         <div className="relative">
           <SearchIconContainer>{children}</SearchIconContainer>
-          <Search id="search" name="search" placeholder="search issues" type="search" />
+          <SearchStyled id="search" name="search" placeholder="search issues" type="search" />
         </div>
       </div>
     </SearchContainer>

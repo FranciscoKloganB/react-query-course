@@ -1,6 +1,5 @@
 import * as SelectPrimitive from "@radix-ui/react-select"
 import tw from "tailwind-styled-components"
-import styled from "styled-components"
 import React from "react"
 
 /** Styles the trigger (button) that opens the Radix Select component. */
@@ -12,12 +11,12 @@ const StyledTrigger = tw(SelectPrimitive.SelectTrigger)`
   items-center
   justify-start
   rounded-md
-  p-4
   h-9
-  gap-5
+  gap-[5px]
   font-sans
   text-base
   md:text-sm
+  leading-none
   bg-white
   border
   focus:border-yellow-400
@@ -33,7 +32,10 @@ const StyledTrigger = tw(SelectPrimitive.SelectTrigger)`
 `
 
 /** Styles the provided icon (currently applying no custom styles). */
-const StyledIcon = tw(SelectPrimitive.SelectIcon)``
+const StyledIcon = tw(SelectPrimitive.SelectIcon)`
+  pl-[15px]
+  text-md
+`
 
 /** When the Select state is open, this is the parent element of all items selection panel. */
 const StyledContent = tw(SelectPrimitive.Content)`
@@ -56,21 +58,24 @@ function Content({ children, ...props }: { children: React.ReactNode; props?: un
 
 /** Renders a selectable item within the selection panel when Select state is open. */
 const StyledItem = tw(SelectPrimitive.Item)`
-  relative
+  font-sans
+  leading-none
+  text-xs
+  md:text-sm
+  text-slate-900
+  rounded-md
   flex
   items-center
   h-6
   pr-8
   pl-6
-  font-sans
-  rounded-md
+  relative
   select-none
-  text-xs
-  md:text-sm
-  text-white
   hover:bg-yellow-400
-  disabled:pointer-events-none
-  disabled:text-slate-400
+  radix-disabled:pointer-events-none
+  radix-disabled:text-slate-400
+  radix-highlighted:bg-yellow-400
+  radix-highlighted:text-slate-900
 `
 
 /** Styles the labels of a group of Selectable Items. */
@@ -91,27 +96,27 @@ const StyledItemIndicator = tw(SelectPrimitive.ItemIndicator)`
   absolute left-0 w-6 inline-flex items-center justify-center text-yellow-400
 `
 
-// flex items-center justify-center h-6 bg-red-600 text-yellow-400 cursor-default
-const scrollButtonStyles = `
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: 24px,
-  backgroundColor: 'white',
-  color: theme('colors.yellow.500');
-  cursor: 'default',
+/** Styles the panel arrow up */
+const StyledScrollUpButton = tw(SelectPrimitive.ScrollUpButton)`
+  flex
+  items-center
+  justify-center
+  h-6
+  bg-transparent
+  text-yellow-400
+  cursor-default
 `
 
-/** Styles the dropdown */
-const StyledScrollUpButton = styled(SelectPrimitive.ScrollUpButton)`
-  ${scrollButtonStyles}
+/** Styles the panel arrow down */
+const StyledScrollDownButton = tw(SelectPrimitive.ScrollDownButton)`
+  flex
+  items-center
+  justify-center
+  h-6
+  bg-transparent
+  text-yellow-400
+  cursor-default
 `
-// StyledScrollUpButton = tw(StyledScrollUpButton)`${scrollButtonStyles}`
-
-const StyledScrollDownButton = styled(SelectPrimitive.ScrollDownButton)`
-  ${scrollButtonStyles}
-`
-// StyledScrollDownButton = tw(StyledScrollDownButton)`${scrollButtonStyles}`
 
 // Exports
 export const SelectRoot = SelectPrimitive.Root

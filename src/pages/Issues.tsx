@@ -1,10 +1,10 @@
 import IssuesList from "@components/IssuesList"
-import SearchInput from "@components/SearchInput"
+import Search from "@/src/components/ui/Search"
 import { Subtitle, Title, Tooltip, TooltipSpan } from "@styled"
-import { GoSearch } from "react-icons/go"
 import { useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
-import { Select } from "@components/radix/Select"
+import { Select } from "@/src/components/ui/Select"
+import { BiSearchAlt } from "react-icons/bi"
 
 export default function Issues() {
   /** Selected labels is passed down to children components to filter out undesired issues */
@@ -39,10 +39,10 @@ export default function Issues() {
           <Subtitle>Status</Subtitle>
           <Select />
         </aside>
-        <section>
-          <SearchInput>
-            <GoSearch />
-          </SearchInput>
+        <section className="pt-4 lg:pt-0">
+          <Search>
+            <BiSearchAlt className="text-md ml-1" />
+          </Search>
           <Title>Issues</Title>
           <IssuesList filterByName={selectedLabels} />
         </section>
