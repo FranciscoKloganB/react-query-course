@@ -78,7 +78,7 @@ export default function Issues() {
             <BiSearchAlt className="text-md ml-1" />
           </IssuesSearch>
           <Title>Issues</Title>
-          <IssuesList filterByName={selectedLabels} />
+          <IssuesList filterByLabels={selectedLabels} />
         </section>
       </main>
     </div>
