@@ -2,9 +2,20 @@ import { useIssues } from "@hooks"
 import { IssueItem } from "@components/IssueItem"
 import { Border, Paragraph } from "@styled"
 import { FaSpinner } from "react-icons/fa"
+import { IssueStatus } from "../enums"
 
-export default function IssuesList({ filterByLabels }: { filterByLabels: string[] }) {
-  const issues = useIssues({ labels: filterByLabels })
+type IssuesListProps = {
+  searchQuery: string
+  filterByLabels: string[]
+  filterByStatus?: IssueStatus
+}
+
+export default function IssuesList({
+  searchQuery,
+  filterByLabels,
+  filterByStatus
+}: IssuesListProps) {
+  const issues = useIssues({ labels: filterByLabels, status: filterByStatus })
 
   if (issues.isLoading) {
     return (

@@ -20,7 +20,7 @@ function buildIssueProgressStatuses() {
 }
 
 export default function Issues() {
-  /** Selected labels is passed down to children components to filter out undesired issues */
+  const [searchIssues, setSearchIssues] = useState<string>("")
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
   const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
 
@@ -78,7 +78,11 @@ export default function Issues() {
             <BiSearchAlt className="text-md ml-1" />
           </IssuesSearch>
           <Title>Issues</Title>
-          <IssuesList filterByLabels={selectedLabels} />
+          <IssuesList
+            searchQuery={searchIssues}
+            filterByLabels={selectedLabels}
+            filterByStatus={selectedStatus}
+          />
         </section>
       </main>
     </div>

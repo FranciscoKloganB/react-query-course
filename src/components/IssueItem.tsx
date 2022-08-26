@@ -43,7 +43,7 @@ export function IssueItem({
   const assignee = useUser(assigneeId)
   const createdBy = useUser(createdById)
 
-  const creator = createdBy.isSuccess ? <strong>{createdBy.data?.name}</strong> : <Dots />
+  const creator = createdBy?.isSuccess ? <strong>{createdBy.data.name}</strong> : <Dots />
 
   return (
     <li>

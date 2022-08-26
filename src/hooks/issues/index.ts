@@ -1,4 +1,7 @@
+import { IssueStatus } from "@/src/enums"
 import { useQuery } from "react-query"
+
+const toDomainIssue = (dto: IssueDto): Issue => ({ labelIDs: dto.labels, ...dto })
 
 /**
  * Gets data for labels from GitHub API
@@ -13,20 +16,31 @@ import { useQuery } from "react-query"
  * Transforming GitHub DTO to include the label names is not viable since it would involve making
  * extra requests.
  */
-export function useIssues({ labels }: { labels: string[] }) {
-  const keys = ["issues", { labels }]
+export function useIssues({ labels, status }: { labels: string[]; status?: IssueStatus }) {
+  const keys = ["issues", { labels, status }]
 
   function fetcher(): Promise<Issue[]> {
-    const queryString = labels.map((label) => `labels[]=${label}`).join("&")
+    let queryString = labels.map((label) => `labels[]=${label}`).join("&")
+
+    if (status) {
+      queryString += `&status=${status}`
+    }
 
     return fetch(`api/issues?${queryString}`)
       .then((res) => res.json())
-      .then((data) =>
-        data.map((dto: IssueDto) => ({
-          labelIDs: dto.labels,
-          ...dto
-        }))
-      )
+      .then((data) => data.map((dto: IssueDto) => toDomainIssue(dto)))
+  }
+
+  return useQuery(keys, fetcher)
+}
+
+export function useIssuesSearch({ titleQuery }: { titleQuery: string }) {
+  const keys = ["search", "issues", { query: titleQuery }]
+
+  function fetcher(): Promise<Issue[]> {
+    return fetch(`api/search/issues?q=${titleQuery}`)
+      .then((res) => res.json())
+      .then((data) => data.map((dto: IssueDto) => toDomainIssue(dto)))
   }
 
   return useQuery(keys, fetcher)

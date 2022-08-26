@@ -13,5 +13,7 @@ export function useUser(userId: string) {
     throw new Error("Can not fetch user with ID null")
   }
 
-  return useQuery(keys, fetcher)
+  if (userId) {
+    return useQuery(keys, fetcher)
+  }
 }
