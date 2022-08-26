@@ -62,7 +62,7 @@ const StyledItem = tw(SelectPrimitive.Item)`
   leading-none
   text-xs
   md:text-sm
-  text-slate-900
+  text-white
   rounded-md
   flex
   items-center
@@ -80,7 +80,7 @@ const StyledItem = tw(SelectPrimitive.Item)`
 
 /** Styles the labels of a group of Selectable Items. */
 const StyledLabel = tw(SelectPrimitive.Label)`
-  py-0 px-6 text-xs leading-6 text-yellow-400
+  py-0 px-6 text-xs leading-6 text-yellow-400 capitalize
 `
 
 /** Styles the seperators between groups Selectable Items. */

@@ -48,8 +48,6 @@ export default function Issues() {
     }
   }
 
-  console.log("Groups", groups)
-
   return (
     <div>
       <main className="grid lg:grid-cols-[75%_25%]">

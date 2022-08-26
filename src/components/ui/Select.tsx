@@ -18,18 +18,38 @@ import {
 
 import type { SelectRootProps } from "@rdx/select"
 
-export type SelectGroups = Array<{
+type SelectGroup = {
   label: string
   items: Array<{
     display: string
     value: string
   }>
-}>
+}
 
-export function Select(props: SelectRootProps & { groups: SelectGroups }) {
+function RenderGroup({ group }: { group: SelectGroup }) {
+  return (
+    <>
+      <SelectGroup>
+        <SelectLabel>{group.label}</SelectLabel>
+        {group.items.map((item) => (
+          <SelectItem key={item.value} value={item.value}>
+            <SelectItemText>{item.display}</SelectItemText>
+            <SelectItemIndicator>
+              <BiCheck />
+            </SelectItemIndicator>
+          </SelectItem>
+        ))}
+      </SelectGroup>
+    </>
+  )
+}
+
+export function Select(props: SelectRootProps & { groups: SelectGroup[] }) {
+  const lastOfGroups = props.groups.length - 1
+
   return (
     <div className="flex justify-start lg:justify-center">
-      <SelectRoot>
+      <SelectRoot defaultValue={props.defaultValue} onValueChange={props.onValueChange}>
         <SelectTrigger aria-label="Food">
           <SelectIcon>
             <BiChevronDown className="text-xl" />
@@ -41,33 +61,12 @@ export function Select(props: SelectRootProps & { groups: SelectGroups }) {
             <BiChevronUp className="text-xl" />
           </SelectScrollUpButton>
           <SelectViewport>
-            <SelectGroup>
-              <SelectLabel>Fruits</SelectLabel>
-              <SelectItem value="apple">
-                <SelectItemText>Apple</SelectItemText>
-                <SelectItemIndicator>
-                  <BiCheck />
-                </SelectItemIndicator>
-              </SelectItem>
-            </SelectGroup>
-
-            <SelectSeparator />
-
-            <SelectGroup>
-              <SelectLabel>Vegetables</SelectLabel>
-              <SelectItem value="aubergine">
-                <SelectItemText>Aubergine</SelectItemText>
-                <SelectItemIndicator>
-                  <BiCheck />
-                </SelectItemIndicator>
-              </SelectItem>
-              <SelectItem value="leek">
-                <SelectItemText>leek</SelectItemText>
-                <SelectItemIndicator>
-                  <BiCheck />
-                </SelectItemIndicator>
-              </SelectItem>
-            </SelectGroup>
+            {props.groups.map((group, index) => (
+              <div key={group.label}>
+                <RenderGroup group={group} />
+                {index !== lastOfGroups && <SelectSeparator />}
+              </div>
+            ))}
           </SelectViewport>
           <SelectScrollDownButton>
             <BiChevronDown className="text-xl" />
