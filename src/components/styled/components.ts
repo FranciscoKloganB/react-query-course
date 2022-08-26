@@ -54,13 +54,14 @@ export const Small = tw.small`
 `
 
 export const Search = tw.input`
+  leading-normal
   block
   w-full
-  py-2
+  h-9
   pl-10
   pr-3
   font-sans
-  text-xs
+  text-sm
   rounded-md
   bg-white border
   focus:outline-none
@@ -70,7 +71,6 @@ export const Search = tw.input`
   focus:text-slate-900
   placeholder:text-slate-600
   focus:placeholder:text-slate-400
-  md:text-sm
 `
 
 export const SearchContainer = tw.div`

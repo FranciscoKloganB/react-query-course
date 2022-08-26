@@ -1,14 +1,30 @@
 import IssuesList from "@components/IssuesList"
 import Search from "@/src/components/ui/Search"
 import { Subtitle, Title, Tooltip, TooltipSpan } from "@styled"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
 import { Select } from "@/src/components/ui/Select"
 import { BiSearchAlt } from "react-icons/bi"
+import { IssueStatus } from "@enums"
+
+function buildIssueProgressStatuses() {
+  return [
+    {
+      label: "issue status",
+      items: Object.keys(IssueStatus).map((key: string) => ({
+        display: IssueStatus[key as keyof typeof IssueStatus] as string,
+        value: key
+      }))
+    }
+  ]
+}
 
 export default function Issues() {
   /** Selected labels is passed down to children components to filter out undesired issues */
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
+  const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
+
+  const groups = useMemo(() => buildIssueProgressStatuses(), [])
 
   function handleLabelToggle(label: string) {
     setSelectedLabels((currentLabels) =>
@@ -17,6 +33,22 @@ export default function Issues() {
         : currentLabels.concat(label)
     )
   }
+
+  function handleStatusSelection(enumKey: string) {
+    const status = IssueStatus[enumKey as keyof typeof IssueStatus]
+
+    if (status) {
+      setSelectedStatus(status)
+    } else {
+      console.error(
+        "Issues page could not filter issues by status because of invalid selection",
+        enumKey,
+        status
+      )
+    }
+  }
+
+  console.log("Groups", groups)
 
   return (
     <div>
@@ -37,7 +69,11 @@ export default function Issues() {
             toggle={handleLabelToggle}
           />
           <Subtitle>Status</Subtitle>
-          <Select />
+          <Select
+            defaultValue={selectedStatus}
+            onValueChange={handleStatusSelection}
+            groups={groups}
+          />
         </aside>
         <section className="pt-4 lg:pt-0">
           <Search>

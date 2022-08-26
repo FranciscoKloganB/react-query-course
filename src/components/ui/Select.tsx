@@ -16,7 +16,17 @@ import {
   SelectViewport
 } from "@rdx/select"
 
-export function Select() {
+import type { SelectRootProps } from "@rdx/select"
+
+export type SelectGroups = Array<{
+  label: string
+  items: Array<{
+    display: string
+    value: string
+  }>
+}>
+
+export function Select(props: SelectRootProps & { groups: SelectGroups }) {
   return (
     <div className="flex justify-start lg:justify-center">
       <SelectRoot>

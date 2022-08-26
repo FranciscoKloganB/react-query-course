@@ -133,3 +133,5 @@ export const SelectLabel = StyledLabel
 export const SelectSeparator = StyledSeparator
 export const SelectScrollUpButton = StyledScrollUpButton
 export const SelectScrollDownButton = StyledScrollDownButton
+
+export type SelectRootProps = SelectPrimitive.SelectProps
