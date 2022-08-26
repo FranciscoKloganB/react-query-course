@@ -25,6 +25,8 @@
       "@hooks/*": ["./src/hooks/*"],
       "@pages": ["./src/pages"],
       "@pages/*": ["./src/pages/*"],
+      "@rdx": ["./src/components/radix/styled"],
+      "@rdx/*": ["./src/components/radix/styled/*"],
       "@styled": ["./src/components/styled"],
       "@styled/*": ["./src/components/styled/*"],
       "@styles": ["./src/styles"],

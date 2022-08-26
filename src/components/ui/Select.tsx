@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
   SelectViewport
-} from "../radix/styled/select"
+} from "@rdx/select"
 
 export function Select() {
   return (
