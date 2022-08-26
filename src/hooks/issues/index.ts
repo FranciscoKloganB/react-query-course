@@ -17,7 +17,6 @@ export function useIssues({ labels }: { labels: string[] }) {
   const keys = ["issues", { labels }]
 
   function fetcher(): Promise<Issue[]> {
-    console.log("Label Filters", labels)
     const queryString = labels.map((label) => `labels[]=${label}`).join("&")
 
     return fetch(`api/issues?${queryString}`)

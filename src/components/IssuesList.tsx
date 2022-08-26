@@ -22,7 +22,6 @@ export default function IssuesList({ filterByName }: { filterByName: string[] })
     )
   }
 
-  console.log("Issue items", issues.data)
   return (
     <div>
       <ul>
