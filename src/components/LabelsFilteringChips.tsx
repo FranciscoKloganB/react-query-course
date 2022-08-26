@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { LabelChip } from "@ui/LabelChip"
+import { LabelChip } from "@components/LabelChip"
 import { useLabels } from "@hooks"
 import { Dots } from "@ui/Dots"
 

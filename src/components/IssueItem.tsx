@@ -7,7 +7,7 @@ import { relativeDate } from "@helpers/relativeDate"
 import tw from "tailwind-styled-components"
 import { useUser } from "@hooks"
 
-import { AssigneeProfilePicture } from "@ui/AssigneeProfilePicture"
+import { AssigneeProfilePicture } from "@components/AssigneeProfilePicture"
 import LabelsList from "@components/LabelsList"
 import { Dots } from "@ui/Dots"
 

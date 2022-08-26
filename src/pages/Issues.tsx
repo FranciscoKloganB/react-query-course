@@ -1,9 +1,9 @@
 import IssuesList from "@components/IssuesList"
-import Search from "@/src/components/ui/Search"
+import { Search as IssuesSearch } from "@/src/components/ui/Search"
 import { Subtitle, Title, Tooltip, TooltipSpan } from "@styled"
 import { useMemo, useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
-import { Select } from "@/src/components/ui/Select"
+import { Select as StatusSelect } from "@components/ui/Select"
 import { BiSearchAlt } from "react-icons/bi"
 import { IssueStatus } from "@enums"
 
@@ -67,16 +67,16 @@ export default function Issues() {
             toggle={handleLabelToggle}
           />
           <Subtitle>Status</Subtitle>
-          <Select
+          <StatusSelect
             defaultValue={selectedStatus}
             onValueChange={handleStatusSelection}
             groups={groups}
           />
         </aside>
         <section className="pt-4 lg:pt-0">
-          <Search>
+          <IssuesSearch>
             <BiSearchAlt className="text-md ml-1" />
-          </Search>
+          </IssuesSearch>
           <Title>Issues</Title>
           <IssuesList filterByName={selectedLabels} />
         </section>
