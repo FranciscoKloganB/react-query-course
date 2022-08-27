@@ -6,6 +6,7 @@ import LabelsFilteringChips from "@components/LabelsFilteringChips"
 import { Select as StatusSelect } from "@components/ui/Select"
 import { BiSearchAlt } from "react-icons/bi"
 import { IssueStatus } from "@enums"
+import TwoColumnLayout from "@/layouts/BaseLayout"
 
 function buildIssueProgressStatuses() {
   return [
@@ -49,9 +50,9 @@ export default function Issues() {
   }
 
   return (
-    <div>
-      <main className="grid lg:grid-cols-[75%_25%]">
-        <aside className="lg:order-last lg:ml-6 xl:ml-12">
+    <TwoColumnLayout
+      aside={
+        <>
           <Tooltip
             placement="topLeft"
             trigger={["hover"]}
@@ -72,8 +73,10 @@ export default function Issues() {
             onValueChange={handleStatusSelection}
             groups={groups}
           />
-        </aside>
-        <section className="pt-4 lg:pt-0">
+        </>
+      }
+      section={
+        <>
           <IssuesSearch>
             <BiSearchAlt className="text-md ml-1" />
           </IssuesSearch>
@@ -83,8 +86,8 @@ export default function Issues() {
             filterByLabels={selectedLabels}
             filterByStatus={selectedStatus}
           />
-        </section>
-      </main>
-    </div>
+        </>
+      }
+    />
   )
 }
