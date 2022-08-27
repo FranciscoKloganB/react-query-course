@@ -1,4 +1,4 @@
-export function relativeDate(/** @type {Date | number | string}*/ date) {
+export function relativeDate(date: Date | number | string) {
   const timediff = +new Date() - +new Date(date)
   const delta = Math.round(timediff) / 1000
 
