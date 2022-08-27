@@ -1,5 +1,5 @@
 import IssuesList from "@components/IssuesList"
-import { Search as IssuesSearch } from "@/src/components/ui/Search"
+import { Search as IssuesSearch } from "@components/ui/Search"
 import { Subtitle, Title, Tooltip, TooltipSpan } from "@styled"
 import { useMemo, useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"

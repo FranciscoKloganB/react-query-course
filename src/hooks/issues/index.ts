@@ -1,7 +1,19 @@
-import { IssueStatus } from "@/src/enums"
+import { IssueStatus } from "@enums"
 import { useQuery } from "react-query"
 
 const toDomainIssue = (dto: IssueDto): Issue => ({ labelIDs: dto.labels, ...dto })
+
+export function useIssue(number: number | string) {
+  const keys = ["issues", number]
+
+  function fetcher(): Promise<Issue> {
+    return fetch(`api/issues/${number}`)
+      .then((res) => res.json())
+      .then((dto) => toDomainIssue(dto))
+  }
+
+  return useQuery(keys, fetcher)
+}
 
 /**
  * Gets data for labels from GitHub API

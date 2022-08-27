@@ -1,8 +1,8 @@
 import { useIssues } from "@hooks"
 import { IssueItem } from "@components/IssueItem"
 import { Border, Paragraph } from "@styled"
-import { FaSpinner } from "react-icons/fa"
 import { IssueStatus } from "../enums"
+import { FullSpinner } from "./ui/FullSpinner"
 
 type IssuesListProps = {
   searchQuery: string
@@ -18,11 +18,7 @@ export default function IssuesList({
   const issues = useIssues({ labels: filterByLabels, status: filterByStatus })
 
   if (issues.isLoading) {
-    return (
-      <div className="w-full text-center">
-        <FaSpinner className="m-auto animate-spin text-white" />
-      </div>
-    )
+    return <FullSpinner />
   }
 
   if (issues.isError) {
