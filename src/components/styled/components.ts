@@ -10,6 +10,24 @@ export const Border = tw.div`
   border rounded-lg my-3 py-2 border-slate-600
 `
 
+// TODO: Improve this button, it is very ugly - not very intuitive to hover as yellow
+export const Button = tw.div`
+  max-w-fit
+  px-4
+  py-1
+  hover:border-yellow-400 focus:border
+  font-sans
+  text-sm
+  text-slate-900
+  rounded-md
+  bg-white
+  hover:bg-yellow-400
+  focus:outline-none
+  focus:ring-2
+  focus:ring-yellow-400
+  focus:border-yellow-400
+`
+
 export const Chip = tw.button`
   flex
   max-w-xs
@@ -63,7 +81,8 @@ export const Search = tw.input`
   font-sans
   text-sm
   rounded-md
-  bg-white border
+  bg-white
+  border
   focus:outline-none
   focus:ring-2
   focus:ring-yellow-400
