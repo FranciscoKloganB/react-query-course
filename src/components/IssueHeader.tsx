@@ -1,5 +1,5 @@
 import { IssueStatus } from "@enums"
-import { Title } from "@styled"
+import { Span, Subtitle } from "@styled"
 import { StatusChip } from "@components/StatusChip"
 
 type IssueHeaderProps = {
@@ -21,10 +21,13 @@ export function IssueHeader({
 }: IssueHeaderProps) {
   return (
     <header>
-      <Title>
-        {title} — #{number}
-      </Title>
-      <StatusChip status={status} />
+      <Subtitle>
+        {title} — <span className="text-slate-400">#{number}</span>
+      </Subtitle>
+      <div className="flex gap-2 align-middle">
+        <StatusChip status={status} />
+        <Span>{createdBy}</Span>
+      </div>
     </header>
   )
 }

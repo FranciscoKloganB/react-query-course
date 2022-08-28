@@ -1,7 +1,7 @@
 import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
 
 import { Link } from "react-router-dom"
-import { isClosedIssue } from "@enums"
+import { isOpenIssue } from "@enums"
 import { Paragraph, Span, Small } from "@styled"
 import { relativeDate } from "@helpers/relativeDate"
 import tw from "tailwind-styled-components"
@@ -49,10 +49,10 @@ export function IssueItem({
       <div className="grid grid-cols-12">
         <EdgeColumn>
           <span>
-            {isClosedIssue(status) ? (
-              <GoIssueClosed className="text-red-600" />
+            {isOpenIssue(status) ? (
+              <GoIssueClosed className="text-green-600" />
             ) : (
-              <GoIssueOpened className="text-green-600 " />
+              <GoIssueOpened className="text-red-600 " />
             )}
           </span>
         </EdgeColumn>

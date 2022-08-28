@@ -7,6 +7,12 @@ export enum IssueStatus {
   TODO = "todo"
 }
 
-export function isClosedIssue(status: string) {
-  return status === IssueStatus.DONE || IssueStatus.CANCELLED
+export function isOpenIssue(status: string | IssueStatus) {
+  return [IssueStatus.BACKLOG, IssueStatus.TODO, IssueStatus.IN_PROGRESS].includes(
+    status as IssueStatus
+  )
+}
+
+export function isClosedIssue(status: IssueStatus) {
+  return !isOpenIssue(status)
 }
