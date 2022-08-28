@@ -7,7 +7,7 @@ export const AppContainer = tw.div`
 `
 
 export const Border = tw.div`
-  border rounded-lg my-3 py-2 border-slate-600
+  border rounded-lg p-2 border-slate-600
 `
 
 // TODO: Improve this button, it is very ugly - not very intuitive to hover as yellow
