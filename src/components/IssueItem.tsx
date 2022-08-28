@@ -42,7 +42,7 @@ export function IssueItem({
 
   const createdBy = useUser(createdById)
 
-  const creatorName = createdBy?.isSuccess ? <strong>{createdBy.data.name}</strong> : <Dots />
+  const creatorName = createdBy?.isLoading ? <Dots /> : <strong>{createdBy.data?.name}</strong>
 
   return (
     <li>

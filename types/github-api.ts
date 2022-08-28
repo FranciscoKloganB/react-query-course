@@ -53,4 +53,11 @@ declare global {
     profilePictureUrl: string
     onlineStatus?: OnlineStatus
   }
+
+  type UserComment = {
+    id: string
+    comment: string
+    createdBy: string
+    createdDate: string
+  }
 }

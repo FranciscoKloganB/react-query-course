@@ -31,7 +31,7 @@ export default function IssuesList({
 
   return (
     <div>
-      <ul>
+      <ul className="mt-3 space-y-3">
         {issues.data.map((issue: Issue) => (
           <div key={issue.id}>
             <Border>

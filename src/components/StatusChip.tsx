@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { IssueStatus, isClosedIssue } from "@enums"
+import { IssueStatus, isOpenIssue } from "@enums"
 import { GoIssueClosed, GoIssueOpened } from "react-icons/go"
 
 const spanClassnames = `
@@ -7,7 +7,7 @@ const spanClassnames = `
   content-center
   gap-2
   max-w-fit
-  py-[2px]
+  py-1
   px-2
   text-sm
   text-center
@@ -20,12 +20,12 @@ const spanClassnames = `
 `
 
 export function StatusChip({ status }: { status: IssueStatus }) {
-  const isClosed = isClosedIssue(status)
-  const classes = clsx(spanClassnames, isClosed ? "bg-red-600" : "bg-green-600")
+  const isOpen = isOpenIssue(status)
+  const classes = clsx(spanClassnames, isOpen ? "bg-green-600" : "bg-red-600")
 
   return (
     <div className={classes}>
-      <span className="my-auto text-lg">{isClosed ? <GoIssueClosed /> : <GoIssueOpened />}</span>{" "}
+      <span className="my-auto text-lg">{isOpen ? <GoIssueOpened /> : <GoIssueClosed />}</span>{" "}
       {status}
     </div>
   )
