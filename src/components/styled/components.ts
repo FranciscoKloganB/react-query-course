@@ -15,7 +15,8 @@ export const Button = tw.div`
   max-w-fit
   px-4
   py-1
-  hover:border-yellow-400 focus:border
+  hover:border-yellow-400
+  focus:border
   font-sans
   text-sm
   text-slate-900

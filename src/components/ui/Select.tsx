@@ -48,9 +48,9 @@ export function Select(props: SelectRootProps & { groups: SelectGroup[] }) {
   const lastOfGroups = props.groups.length - 1
 
   return (
-    <div className="flex justify-start lg:justify-center">
+    <div className="flex">
       <SelectRoot defaultValue={props.defaultValue} onValueChange={props.onValueChange}>
-        <SelectTrigger aria-label="Food">
+        <SelectTrigger aria-label="Issue Label Filters">
           <SelectIcon>
             <BiChevronDown className="text-xl" />
           </SelectIcon>
