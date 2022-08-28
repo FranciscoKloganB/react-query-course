@@ -9,7 +9,7 @@ import { useUser } from "@hooks"
 
 import { AssigneeProfilePicture } from "@components/AssigneeProfilePicture"
 import LabelsList from "@components/LabelsList"
-import { Dots } from "@ui/Dots"
+import { Dots } from "@ui"
 
 type IssueItemProps = {
   id: string
@@ -40,10 +40,9 @@ export function IssueItem({
 }: IssueItemProps) {
   const issueDetailHref = `/issue/${id}`
 
-  const assignee = useUser(assigneeId)
   const createdBy = useUser(createdById)
 
-  const creator = createdBy?.isSuccess ? <strong>{createdBy.data.name}</strong> : <Dots />
+  const creatorName = createdBy?.isSuccess ? <strong>{createdBy.data.name}</strong> : <Dots />
 
   return (
     <li>
@@ -65,7 +64,7 @@ export function IssueItem({
             <div>
               <Paragraph className="text-base">
                 <Small>
-                  #{number} set to <u>{status}</u> {relativeDate(createdDate)} by {creator}
+                  #{number} set to <u>{status}</u> {relativeDate(createdDate)} by {creatorName}
                 </Small>
               </Paragraph>
             </div>
@@ -77,7 +76,7 @@ export function IssueItem({
         </div>
         <div className="col-span-1 my-auto hidden lg:inline-block">
           <span className="flex justify-end">
-            {assigneeId && <AssigneeProfilePicture userQuery={assignee} />}
+            <AssigneeProfilePicture userId={assigneeId} />
           </span>
         </div>
         {commentsCount && (

@@ -1,14 +1,16 @@
 import { FaSpinner } from "react-icons/fa"
 import { AiOutlineWarning } from "react-icons/ai"
 import { Tooltip, TooltipSpan } from "@styled"
-import { ProfilePicture } from "@ui/ProfilePicture"
-import { UseQueryResult } from "react-query"
+import { ProfilePicture } from "@ui"
+import { useUser } from "@hooks"
 
-export function AssigneeProfilePicture({
-  userQuery
-}: {
-  userQuery: UseQueryResult<User, unknown>
-}) {
+export function AssigneeProfilePicture({ userId }: { userId: string }) {
+  if (!userId) {
+    return null
+  }
+
+  const userQuery = useUser(userId)
+
   if (userQuery.isLoading) {
     return <FaSpinner className="animate-spin text-white" />
   }
@@ -25,14 +27,10 @@ export function AssigneeProfilePicture({
     )
   }
 
-  if (userQuery.isSuccess) {
-    return (
-      <ProfilePicture
-        alt={`user ${userQuery.data.id} avatar`}
-        src={userQuery.data.profilePictureUrl}
-      />
-    )
-  }
-
-  return null
+  return (
+    <ProfilePicture
+      alt={`user ${userQuery.data.id} avatar`}
+      src={userQuery.data.profilePictureUrl}
+    />
+  )
 }
