@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useIssue } from "@hooks"
 import { IssueHeader } from "./IssueHeader"
-import { Spinner } from "./ui/Spinner"
+import { FullSpinner } from "./ui"
 
 export default function IssueDetails() {
   const { number } = useParams()
@@ -15,7 +15,7 @@ export default function IssueDetails() {
   const issueQuery = useIssue(number)
 
   if (issueQuery.isLoading) {
-    return <Spinner />
+    return <FullSpinner />
   }
 
   if (issueQuery.isError) {

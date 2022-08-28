@@ -27,6 +27,8 @@
       "@pages/*": ["./src/pages/*"],
       "@rdx": ["./src/components/radix/styled"],
       "@rdx/*": ["./src/components/radix/styled/*"],
+      "@rrd": ["./src/components/react-router-dom/styled"],
+      "@rrd/*": ["./src/components/react-router-dom/styled/*"],
       "@styled": ["./src/components/styled"],
       "@styled/*": ["./src/components/styled/*"],
       "@styles": ["./src/styles"],
