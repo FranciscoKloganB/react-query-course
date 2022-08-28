@@ -4,10 +4,10 @@ import { useQuery } from "react-query"
 const toDomainIssue = (dto: IssueDto): Issue => ({ labelIDs: dto.labels, ...dto })
 
 export function useIssue(number: string) {
-  const keys = ["issues", number]
+  const keys = ["issues", "number", number]
 
   function fetcher({ queryKey }: { queryKey: typeof keys }): Promise<Issue> {
-    const [, number] = queryKey
+    const [, , number] = queryKey
 
     return fetch(`/api/issues/${number}`)
       .then((res) => res.json())

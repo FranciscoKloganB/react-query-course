@@ -38,7 +38,7 @@ export function IssueItem({
   status,
   title
 }: IssueItemProps) {
-  const issueDetailHref = `/issue/${id}`
+  const issueDetailHref = `/issues/${number}`
 
   const createdBy = useUser(createdById)
 

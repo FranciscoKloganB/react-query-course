@@ -22,7 +22,7 @@ export function IssueHeader({
   return (
     <header>
       <Title>
-        {title} #{number}
+        {title} — #{number}
       </Title>
       <StatusChip status={status} />
     </header>
