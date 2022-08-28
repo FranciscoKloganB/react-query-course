@@ -1,5 +1,6 @@
-import { IssueStatus } from "../enums"
-import { Title } from "./styled"
+import { IssueStatus } from "@enums"
+import { Title } from "@styled"
+import { StatusChip } from "@components/StatusChip"
 
 type IssueHeaderProps = {
   comments: string[]
@@ -10,10 +11,20 @@ type IssueHeaderProps = {
   status?: IssueStatus
 }
 
-export function IssueHeader({ number, title, status = IssueStatus.TODO }: IssueHeaderProps) {
+export function IssueHeader({
+  comments,
+  createdBy,
+  createdDate,
+  number,
+  title,
+  status = IssueStatus.TODO
+}: IssueHeaderProps) {
   return (
     <header>
-      <Title>{title}</Title>
+      <Title>
+        {title} #{number}
+      </Title>
+      <StatusChip status={status} />
     </header>
   )
 }

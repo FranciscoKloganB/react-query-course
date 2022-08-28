@@ -1,25 +1,20 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useIssue } from "@hooks"
 import { IssueHeader } from "./IssueHeader"
 import { FullSpinner } from "./ui"
 
-export default function IssueDetails() {
+export function IssueDetails() {
   const { number } = useParams()
+  const navigate = useNavigate()
 
-  if (!number) {
-    console.warn("Issue Details can not render properly with undefined number prop")
-
-    return null
-  }
-
-  const issueQuery = useIssue(number)
+  const issueQuery = useIssue(number ?? "")
 
   if (issueQuery.isLoading) {
     return <FullSpinner />
   }
 
   if (issueQuery.isError) {
-    // TODO: Redirect to 404
+    navigate("./", { replace: true })
 
     return null
   }

@@ -3,11 +3,13 @@ import { useQuery } from "react-query"
 
 const toDomainIssue = (dto: IssueDto): Issue => ({ labelIDs: dto.labels, ...dto })
 
-export function useIssue(number: number | string) {
+export function useIssue(number: string) {
   const keys = ["issues", number]
 
-  function fetcher(): Promise<Issue> {
-    return fetch(`api/issues/${number}`)
+  function fetcher({ queryKey }: { queryKey: typeof keys }): Promise<Issue> {
+    const [, number] = queryKey
+
+    return fetch(`/api/issues/${number}`)
       .then((res) => res.json())
       .then((dto) => toDomainIssue(dto))
   }
@@ -38,7 +40,7 @@ export function useIssues({ labels, status }: { labels: string[]; status?: Issue
       queryString += `&status=${status}`
     }
 
-    return fetch(`api/issues?${queryString}`)
+    return fetch(`/api/issues?${queryString}`)
       .then((res) => res.json())
       .then((data) => data.map((dto: IssueDto) => toDomainIssue(dto)))
   }
@@ -50,7 +52,7 @@ export function useIssuesSearch({ titleQuery }: { titleQuery: string }) {
   const keys = ["search", "issues", { query: titleQuery }]
 
   function fetcher(): Promise<Issue[]> {
-    return fetch(`api/search/issues?q=${titleQuery}`)
+    return fetch(`/api/search/issues?q=${titleQuery}`)
       .then((res) => res.json())
       .then((data) => data.map((dto: IssueDto) => toDomainIssue(dto)))
   }

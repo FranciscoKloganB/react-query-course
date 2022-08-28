@@ -7,7 +7,7 @@ export function useUser(userId: string) {
     const [, userId] = queryKey
 
     if (userId) {
-      return fetch(`api/users/${userId}`).then((res) => res.json())
+      return fetch(`/api/users/${userId}`).then((res) => res.json())
     }
 
     throw new Error("Can not fetch user with ID null")
