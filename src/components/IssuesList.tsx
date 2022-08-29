@@ -14,16 +14,16 @@ type IssuesListProps = {
 export default function IssuesList({ filterByLabels, filterByStatus }: IssuesListProps) {
   const [search, setSearch] = useState<string>("")
   const searchQuery = useIssuesSearch(search)
-  const issues = useIssues({ labels: filterByLabels, status: filterByStatus })
+  const issuesQuery = useIssues({ labels: filterByLabels, status: filterByStatus })
 
-  if (issues.isLoading) {
+  if (issuesQuery.isLoading) {
     return <FullSpinner />
   }
 
-  if (issues.isError) {
+  if (issuesQuery.isError) {
     return (
       <div>
-        <Paragraph>{issues.error}</Paragraph>
+        <Paragraph>{issuesQuery.error}</Paragraph>
       </div>
     )
   }
@@ -34,7 +34,7 @@ export default function IssuesList({ filterByLabels, filterByStatus }: IssuesLis
         <BiSearchAlt className="text-md ml-1" />
       </Search>
       <ul className="mt-4 space-y-3">
-        {issues.data.map((issue: Issue) => (
+        {issuesQuery.data.map((issue: Issue) => (
           <div key={issue.id}>
             <Border>
               <IssueItem
