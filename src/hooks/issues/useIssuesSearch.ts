@@ -10,5 +10,15 @@ export function useIssuesSearch(searchValue: string) {
       .then((data) => data.map((dto: IssueDto) => toDomainIssue(dto)))
   }
 
-  return useQuery(keys, fetcher, { enabled: !!searchValue })
+  const query = useQuery(keys, fetcher, { enabled: !!searchValue })
+
+  /**
+   * fetchStatus === idle means the query is not trying to get new data
+   *  When isLoading is `true`, the query is trying to get data, but has no data currently
+   *  When isLoading is `false`, it means the query is either in success or error state
+   */
+  const isDisabled = query.fetchStatus === "idle" && query.isLoading === false
+  const isEnabled = query.fetchStatus === "idle" && query.isLoading === true
+
+  return { isDisabled, isEnabled, ...query }
 }

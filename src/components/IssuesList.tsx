@@ -1,16 +1,19 @@
-import { useIssues } from "@hooks"
+import { useIssues, useIssuesSearch } from "@hooks"
 import { IssueItem } from "@components/IssueItem"
 import { Border, Paragraph } from "@styled"
-import { IssueStatus } from "../enums"
-import { FullSpinner } from "./ui/FullSpinner"
+import { IssueStatus } from "@enums"
+import { FullSpinner, Search } from "@ui"
+import { useState } from "react"
+import { BiSearchAlt } from "react-icons/bi"
 
 type IssuesListProps = {
-  searchQuery: string
   filterByLabels: string[]
   filterByStatus?: IssueStatus
 }
 
 export default function IssuesList({ filterByLabels, filterByStatus }: IssuesListProps) {
+  const [search, setSearch] = useState<string>("")
+  const searchQuery = useIssuesSearch(search)
   const issues = useIssues({ labels: filterByLabels, status: filterByStatus })
 
   if (issues.isLoading) {
@@ -26,8 +29,11 @@ export default function IssuesList({ filterByLabels, filterByStatus }: IssuesLis
   }
 
   return (
-    <div>
-      <ul className="mt-3 space-y-3">
+    <div className="mt-3">
+      <Search state={search} setState={setSearch}>
+        <BiSearchAlt className="text-md ml-1" />
+      </Search>
+      <ul className="mt-4 space-y-3">
         {issues.data.map((issue: Issue) => (
           <div key={issue.id}>
             <Border>

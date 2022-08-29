@@ -1,10 +1,8 @@
 import IssuesList from "@components/IssuesList"
-import { Search as IssuesSearch } from "@components/ui/Search"
 import { Subtitle, Title, Tooltip, TooltipSpan } from "@styled"
 import { useMemo, useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
 import { Select as StatusSelect } from "@components/ui/Select"
-import { BiSearchAlt } from "react-icons/bi"
 import { IssueStatus } from "@enums"
 
 function buildIssueProgressStatuses() {
@@ -20,7 +18,6 @@ function buildIssueProgressStatuses() {
 }
 
 export default function Issues() {
-  const [search, setSearch] = useState<string>("")
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
   const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
 
@@ -74,15 +71,8 @@ export default function Issues() {
           />
         </aside>
         <section className="pt-4 lg:pt-0">
-          <IssuesSearch state={search} setState={setSearch}>
-            <BiSearchAlt className="text-md ml-1" />
-          </IssuesSearch>
           <Title>Issues</Title>
-          <IssuesList
-            searchQuery={search}
-            filterByLabels={selectedLabels}
-            filterByStatus={selectedStatus}
-          />
+          <IssuesList filterByLabels={selectedLabels} filterByStatus={selectedStatus} />
         </section>
       </main>
     </div>
