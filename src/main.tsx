@@ -1,8 +1,10 @@
-import { worker } from "@uidotdev/react-query-api"
 import React from "react"
 import ReactDOM from "react-dom"
-import { QueryClient, QueryClientProvider } from "react-query"
+
+import { worker } from "@uidotdev/react-query-api"
+
 import { BrowserRouter } from "react-router-dom"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 import App from "./App"
@@ -28,7 +30,7 @@ new Promise((res) => setTimeout(res, 100))
               <App />
             </div>
           </BrowserRouter>
-          <ReactQueryDevtools />
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </React.StrictMode>,
       document.getElementById("root")

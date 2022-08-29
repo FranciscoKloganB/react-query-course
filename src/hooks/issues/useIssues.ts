@@ -1,5 +1,5 @@
 import { IssueStatus } from "@enums"
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
 
 /**
