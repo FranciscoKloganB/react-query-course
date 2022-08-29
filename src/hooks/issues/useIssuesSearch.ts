@@ -19,6 +19,10 @@ export function useIssuesSearch(searchValue: string) {
    * `fetchStatus` informs us of the results of our query's requests whereas `status` tells about
    * the results of our query. It is important to note that as soon as `data` isLoaded `fetchStatus`
    * always goes back to being `idle`.
+   *
+   * Note that the fetching state is different from the loading state. A query only has the
+   * loading state the first time it loads and there's no data, while the fetching state is used
+   * by the query cache any time a query is refetched, including the first time.
    */
 
   // Query does not need to run (the query is disabled or already has `data`)
