@@ -3,6 +3,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { BrowserRouter } from "react-router-dom"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 import App from "./App"
 
@@ -27,6 +28,7 @@ new Promise((res) => setTimeout(res, 100))
               <App />
             </div>
           </BrowserRouter>
+          <ReactQueryDevtools />
         </QueryClientProvider>
       </React.StrictMode>,
       document.getElementById("root")
