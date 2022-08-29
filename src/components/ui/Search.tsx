@@ -1,7 +1,21 @@
 import React from "react"
 import { Search as SearchStyled, SearchContainer, SearchIconContainer } from "@styled"
+import { useDebouncedCallback } from "use-debounce"
 
-export function Search({ children }: { children: React.ReactElement }) {
+interface ISearchEvent {
+  target: { value: string }
+}
+
+type SearchProps = {
+  children: React.ReactElement
+  state: string
+  setState: React.Dispatch<React.SetStateAction<string>>
+  delay?: number
+}
+
+export function Search({ children, state, setState, delay = 500 }: SearchProps) {
+  const debouncedSetState = useDebouncedCallback((value) => setState(value), delay)
+
   return (
     <SearchContainer>
       <div className="max-w-full">
@@ -10,7 +24,14 @@ export function Search({ children }: { children: React.ReactElement }) {
         </label>
         <div className="relative">
           <SearchIconContainer>{children}</SearchIconContainer>
-          <SearchStyled id="search" name="search" placeholder="search issues" type="search" />
+          <SearchStyled
+            defaultValue={state}
+            onChange={(e: ISearchEvent) => debouncedSetState(e.target.value)}
+            id="search"
+            name="search"
+            placeholder="search issues"
+            type="search"
+          />
         </div>
       </div>
     </SearchContainer>
