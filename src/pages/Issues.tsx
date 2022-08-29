@@ -20,7 +20,7 @@ function buildIssueProgressStatuses() {
 }
 
 export default function Issues() {
-  const [searchIssues, setSearchIssues] = useState<string>("")
+  const [search, setSearch] = useState<string>("")
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
   const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
 
@@ -74,12 +74,12 @@ export default function Issues() {
           />
         </aside>
         <section className="pt-4 lg:pt-0">
-          <IssuesSearch>
+          <IssuesSearch state={search} setState={setSearch}>
             <BiSearchAlt className="text-md ml-1" />
           </IssuesSearch>
           <Title>Issues</Title>
           <IssuesList
-            searchQuery={searchIssues}
+            searchQuery={search}
             filterByLabels={selectedLabels}
             filterByStatus={selectedStatus}
           />

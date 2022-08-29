@@ -10,11 +10,7 @@ type IssuesListProps = {
   filterByStatus?: IssueStatus
 }
 
-export default function IssuesList({
-  searchQuery,
-  filterByLabels,
-  filterByStatus
-}: IssuesListProps) {
+export default function IssuesList({ filterByLabels, filterByStatus }: IssuesListProps) {
   const issues = useIssues({ labels: filterByLabels, status: filterByStatus })
 
   if (issues.isLoading) {
