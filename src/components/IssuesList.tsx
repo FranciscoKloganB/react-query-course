@@ -37,20 +37,30 @@ function __RenderList__({ issues }: { issues: Issue[] }) {
 
 export default function IssuesList({ filterByLabels, filterByStatus }: IssuesListProps) {
   const [search, setSearch] = useState<string>("")
-  const searchQuery = useIssuesSearch(search)
   const issuesQuery = useIssues({ labels: filterByLabels, status: filterByStatus })
+  const searchQuery = useIssuesSearch(search)
 
   return (
-    <div className="mt-3">
+    <div className="mt-3 space-y-3">
       <Search state={search} setState={setSearch}>
         <BiSearchAlt className="text-md ml-1" />
       </Search>
-      {searchQuery.isLoading ? (
+      {issuesQuery.isLoading ? (
         <FullSpinner />
-      ) : issuesQuery.isSuccess ? (
-        <__RenderList__ issues={issuesQuery.data} />
+      ) : searchQuery.isDisabled && issuesQuery.isSuccess ? (
+        <>
+          <Paragraph>{issuesQuery.data.length} results</Paragraph>
+          <__RenderList__ issues={issuesQuery.data} />
+        </>
+      ) : searchQuery.isLoading ? (
+        <FullSpinner />
+      ) : searchQuery.isSuccess ? (
+        <>
+          <Paragraph>{searchQuery.data.count} results</Paragraph>
+          <__RenderList__ issues={searchQuery.data.items} />
+        </>
       ) : (
-        <Paragraph>{issuesQuery.error}</Paragraph>
+        <Paragraph>Unable to load issues...</Paragraph>
       )}
     </div>
   )
