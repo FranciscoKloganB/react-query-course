@@ -11,47 +11,47 @@ type IssuesListProps = {
   filterByStatus?: IssueStatus
 }
 
+function __RenderList__({ issues }: { issues: Issue[] }) {
+  return (
+    <ul className="mt-4 space-y-3">
+      {issues.map((issue: Issue) => (
+        <div key={issue.id}>
+          <Border>
+            <IssueItem
+              id={issue.id}
+              assignee={issue.assignee}
+              commentsCount={issue.comments.length}
+              createdBy={issue.createdBy}
+              createdDate={issue.createdDate}
+              labelIDs={issue.labelIDs}
+              number={issue.number}
+              status={issue.status}
+              title={issue.title}
+            />
+          </Border>
+        </div>
+      ))}
+    </ul>
+  )
+}
+
 export default function IssuesList({ filterByLabels, filterByStatus }: IssuesListProps) {
   const [search, setSearch] = useState<string>("")
   const searchQuery = useIssuesSearch(search)
   const issuesQuery = useIssues({ labels: filterByLabels, status: filterByStatus })
-
-  if (issuesQuery.isLoading) {
-    return <FullSpinner />
-  }
-
-  if (issuesQuery.isError) {
-    return (
-      <div>
-        <Paragraph>{issuesQuery.error}</Paragraph>
-      </div>
-    )
-  }
 
   return (
     <div className="mt-3">
       <Search state={search} setState={setSearch}>
         <BiSearchAlt className="text-md ml-1" />
       </Search>
-      <ul className="mt-4 space-y-3">
-        {issuesQuery.data.map((issue: Issue) => (
-          <div key={issue.id}>
-            <Border>
-              <IssueItem
-                id={issue.id}
-                assignee={issue.assignee}
-                commentsCount={issue.comments.length}
-                createdBy={issue.createdBy}
-                createdDate={issue.createdDate}
-                labelIDs={issue.labelIDs}
-                number={issue.number}
-                status={issue.status}
-                title={issue.title}
-              />
-            </Border>
-          </div>
-        ))}
-      </ul>
+      {searchQuery.isLoading ? (
+        <FullSpinner />
+      ) : issuesQuery.isSuccess ? (
+        <__RenderList__ issues={issuesQuery.data} />
+      ) : (
+        <Paragraph>{issuesQuery.error}</Paragraph>
+      )}
     </div>
   )
 }
