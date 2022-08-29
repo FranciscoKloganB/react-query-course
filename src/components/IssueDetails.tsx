@@ -1,13 +1,20 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { useIssue, useIssueComments } from "@hooks"
 import { IssueHeader } from "./IssueHeader"
 import { FullSpinner } from "./ui"
 import { HorizontalDivider } from "./ui/HorizontalDivider"
 import { Comment } from "./Comment"
+import { useRef } from "react"
+import { Paragraph, Subtitle } from "./styled"
 
 export function IssueDetails() {
   const { number = "" } = useParams()
+
+  const location = useLocation()
   const navigate = useNavigate()
+
+  const originalPathRef = useRef(location.pathname)
+  const redirecting = useRef(false)
 
   const issueQuery = useIssue(number)
   const commentsQuery = useIssueComments(number)
@@ -17,10 +24,25 @@ export function IssueDetails() {
   }
 
   if (issueQuery.isError) {
-    navigate("./", { replace: true })
+    if (!redirecting.current) {
+      redirecting.current = true
+      setTimeout(() => {
+        if (location.pathname === originalPathRef.current) {
+          navigate("/", { replace: true })
+        }
+      }, 5000)
+    }
 
-    return null
+    return (
+      <div>
+        <Subtitle>Sorry. We could not load the details for this issue.</Subtitle>
+        <Paragraph>Please try again later.</Paragraph>
+        <Paragraph>You will be redirected to the main page in 5 seconds.</Paragraph>
+      </div>
+    )
   }
+
+  const comments = commentsQuery.data ?? []
 
   return (
     <div>
@@ -30,7 +52,7 @@ export function IssueDetails() {
         {commentsQuery.isLoading ? (
           <FullSpinner />
         ) : (
-          commentsQuery.data?.map((comment) => <Comment key={comment.id} {...comment} />)
+          comments.map((comment) => <Comment key={comment.id} {...comment} />)
         )}
       </div>
     </div>
