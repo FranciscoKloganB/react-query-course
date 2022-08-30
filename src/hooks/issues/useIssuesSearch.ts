@@ -6,14 +6,17 @@ import { toDomainIssue } from "./toDomainIssue"
 export function useIssuesSearch(searchValue: string) {
   const keys = ["issues", "search", searchValue]
 
-  function fetcher(): Promise<{ count: number; items: Issue[] }> {
-    return baseClient(`/api/search/issues?q=${searchValue}`).then((data) => ({
-      count: data.count,
-      items: data.items.map((dto: IssueDto) => toDomainIssue(dto))
-    }))
-  }
-
-  const query = useQuery(keys, fetcher, { enabled: !!searchValue, staleTime: seconds(15) })
+  const query = useQuery(
+    keys,
+    ({ signal }) =>
+      baseClient<SearchOf<IssueDto>>(`/api/search/issues?q=${searchValue}`, { signal }).then(
+        (data) => ({
+          count: data.count,
+          items: data.items.map((dto: IssueDto) => toDomainIssue(dto))
+        })
+      ),
+    { enabled: !!searchValue, staleTime: seconds(15) }
+  )
 
   /**
    * `fetchStatus` informs us of the results of our query's requests whereas `status` tells about

@@ -25,6 +25,8 @@ type TypesOf<T> = T[keyof T]
 type ValuesOf<T> = T
 
 declare global {
+  type SearchOf<T> = { count: number; items: T[] }
+
   type IssueDto = {
     id: string
     assignee: string

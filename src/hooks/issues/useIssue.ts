@@ -6,11 +6,13 @@ import { toDomainIssue } from "./toDomainIssue"
 export function useIssue(number: string) {
   const keys = ["issues", "number", number]
 
-  function fetcher({ queryKey }: { queryKey: typeof keys }): Promise<Issue> {
-    const [, , number] = queryKey
-
-    return baseClient(`/api/issues/${number}`).then((dto) => toDomainIssue(dto))
-  }
-
-  return useQuery(keys, fetcher, { staleTime: seconds(30) })
+  return useQuery(
+    keys,
+    ({ signal }) =>
+      baseClient<IssueDto>(`/api/issues/${number}`, { signal }).then((dto) => toDomainIssue(dto)),
+    { staleTime: seconds(30) }
+  )
 }
+
+const ctrl = new AbortController()
+const signal = ctrl.signal
