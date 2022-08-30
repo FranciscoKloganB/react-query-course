@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
+import { minutes } from "@helpers"
 
 export function useUser(userId: string) {
   const keys = ["users", userId]
@@ -13,5 +14,5 @@ export function useUser(userId: string) {
     throw new Error("Can not fetch user with ID null")
   }
 
-  return useQuery(keys, fetcher)
+  return useQuery(keys, fetcher, { staleTime: minutes(5) })
 }

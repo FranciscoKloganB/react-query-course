@@ -1,3 +1,4 @@
+import { seconds } from "@/src/helpers"
 import { useQuery } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
 
@@ -12,5 +13,5 @@ export function useIssue(number: string) {
       .then((dto) => toDomainIssue(dto))
   }
 
-  return useQuery(keys, fetcher)
+  return useQuery(keys, fetcher, { staleTime: seconds(30) })
 }

@@ -1,3 +1,4 @@
+import { minutes } from "@/src/helpers"
 import { useQuery } from "@tanstack/react-query"
 
 export function useLabels() {
@@ -7,5 +8,5 @@ export function useLabels() {
     return fetch("api/labels").then((res) => res.json())
   }
 
-  return useQuery(keys, fetcher)
+  return useQuery(keys, fetcher, { staleTime: minutes(15) })
 }

@@ -1,3 +1,4 @@
+import { minutes } from "@/src/helpers"
 import { IssueStatus } from "@enums"
 import { useQuery } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
@@ -30,5 +31,5 @@ export function useIssues({ labels, status }: { labels: string[]; status?: Issue
       .then((data) => data.map((dto: IssueDto) => toDomainIssue(dto)))
   }
 
-  return useQuery(keys, fetcher)
+  return useQuery(keys, fetcher, { staleTime: minutes(1) })
 }
