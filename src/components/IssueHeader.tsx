@@ -1,7 +1,7 @@
 import { IssueStatus } from "@enums"
 import { Span, Subtitle } from "@styled"
 import { StatusChip } from "@components/StatusChip"
-import { relativeDate } from "@helpers/relativeDate"
+import { relativeDate } from "@helpers"
 import { useUser } from "@hooks"
 import { Dots } from "@ui"
 

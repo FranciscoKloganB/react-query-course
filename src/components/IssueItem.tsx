@@ -3,7 +3,7 @@ import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
 import { Link } from "react-router-dom"
 import { isOpenIssue } from "@enums"
 import { Paragraph, Span, Small } from "@styled"
-import { relativeDate } from "@helpers/relativeDate"
+import { relativeDate } from "@helpers"
 import tw from "tailwind-styled-components"
 import { useUser } from "@hooks"
 
