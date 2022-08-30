@@ -1,4 +1,5 @@
-import { seconds } from "@/src/helpers"
+import { baseClient } from "@clients"
+import { seconds } from "@helpers"
 import { useQuery } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
 
@@ -8,9 +9,7 @@ export function useIssue(number: string) {
   function fetcher({ queryKey }: { queryKey: typeof keys }): Promise<Issue> {
     const [, , number] = queryKey
 
-    return fetch(`/api/issues/${number}`)
-      .then((res) => res.json())
-      .then((dto) => toDomainIssue(dto))
+    return baseClient(`/api/issues/${number}`).then((dto) => toDomainIssue(dto))
   }
 
   return useQuery(keys, fetcher, { staleTime: seconds(30) })

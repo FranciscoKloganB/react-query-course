@@ -1,4 +1,4 @@
-export async function baseClient(url: string, options: Record<string, unknown>) {
+export async function baseClient(url: string, options: Record<string, unknown> = {}) {
   const response = await fetch(url, options)
 
   if (response.status < 200 && response.status >= 400) {

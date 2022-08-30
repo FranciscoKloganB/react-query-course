@@ -1,4 +1,5 @@
-import { minutes } from "@/src/helpers"
+import { minutes } from "@helpers"
+import { baseClient } from "@clients"
 import { IssueStatus } from "@enums"
 import { useQuery } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
@@ -26,9 +27,9 @@ export function useIssues({ labels, status }: { labels: string[]; status?: Issue
       queryString += `&status=${status}`
     }
 
-    return fetch(`/api/issues?${queryString}`)
-      .then((res) => res.json())
-      .then((data) => data.map((dto: IssueDto) => toDomainIssue(dto)))
+    return baseClient(`/api/issues?${queryString}`).then((data) =>
+      data.map((dto: IssueDto) => toDomainIssue(dto))
+    )
   }
 
   return useQuery(keys, fetcher, { staleTime: minutes(1) })

@@ -1,3 +1,4 @@
+import { baseClient } from "@clients"
 import { useQuery } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
 
@@ -5,12 +6,10 @@ export function useIssuesSearch(searchValue: string) {
   const keys = ["issues", "search", searchValue]
 
   function fetcher(): Promise<{ count: number; items: Issue[] }> {
-    return fetch(`/api/search/issues?q=${searchValue}`)
-      .then((res) => res.json())
-      .then((data) => ({
-        count: data.count,
-        items: data.items.map((dto: IssueDto) => toDomainIssue(dto))
-      }))
+    return baseClient(`/api/search/issues?q=${searchValue}`).then((data) => ({
+      count: data.count,
+      items: data.items.map((dto: IssueDto) => toDomainIssue(dto))
+    }))
   }
 
   const query = useQuery(keys, fetcher, { enabled: !!searchValue })

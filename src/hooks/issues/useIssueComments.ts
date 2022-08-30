@@ -1,3 +1,4 @@
+import { baseClient } from "@clients"
 import { useQuery } from "@tanstack/react-query"
 
 export function useIssueComments(number: string) {
@@ -6,9 +7,7 @@ export function useIssueComments(number: string) {
   function fetcher({ queryKey }: { queryKey: typeof keys }): Promise<UserComment[]> {
     const [, , number] = queryKey
 
-    return fetch(`/api/issues/${number}/comments`)
-      .then((res) => res.json())
-      .then((data) => data)
+    return baseClient(`/api/issues/${number}/comments`)
   }
 
   return useQuery(keys, fetcher)

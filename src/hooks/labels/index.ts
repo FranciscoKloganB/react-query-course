@@ -1,11 +1,12 @@
-import { minutes } from "@/src/helpers"
+import { baseClient } from "@clients"
+import { minutes } from "@helpers"
 import { useQuery } from "@tanstack/react-query"
 
 export function useLabels() {
   const keys = ["labels"]
 
   function fetcher(): Promise<Label[]> {
-    return fetch("api/labels").then((res) => res.json())
+    return baseClient("api/labels")
   }
 
   return useQuery(keys, fetcher, { staleTime: minutes(15) })
