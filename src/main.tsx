@@ -1,6 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
+import { minutes } from "@helpers"
 import { worker } from "@uidotdev/react-query-api"
 
 import { BrowserRouter } from "react-router-dom"
@@ -12,7 +13,15 @@ import App from "./App"
 import "@styles/tailwind.css"
 import "@styles/rc-tooltip.css"
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 3,
+      refetchOnWindowFocus: false,
+      staleTime: minutes(1)
+    }
+  }
+})
 
 new Promise((res) => setTimeout(res, 100))
   .then(() =>

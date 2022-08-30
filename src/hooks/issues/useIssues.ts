@@ -1,4 +1,3 @@
-import { minutes } from "@helpers"
 import { baseClient } from "@clients"
 import { IssueStatus } from "@enums"
 import { useQuery } from "@tanstack/react-query"
@@ -32,5 +31,5 @@ export function useIssues({ labels, status }: { labels: string[]; status?: Issue
     )
   }
 
-  return useQuery(keys, fetcher, { staleTime: minutes(1) })
+  return useQuery(keys, fetcher)
 }

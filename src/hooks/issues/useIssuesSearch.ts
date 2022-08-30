@@ -1,3 +1,4 @@
+import { seconds } from "@/src/helpers"
 import { baseClient } from "@clients"
 import { useQuery } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
@@ -12,7 +13,7 @@ export function useIssuesSearch(searchValue: string) {
     }))
   }
 
-  const query = useQuery(keys, fetcher, { enabled: !!searchValue })
+  const query = useQuery(keys, fetcher, { enabled: !!searchValue, staleTime: seconds(15) })
 
   /**
    * `fetchStatus` informs us of the results of our query's requests whereas `status` tells about
