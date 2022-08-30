@@ -2,10 +2,6 @@ import Tooltip from "rc-tooltip"
 import tw from "tailwind-styled-components"
 import { LabelVariants, StatusOverlayVariants } from "@styled"
 
-export const AppContainer = tw.div`
-  container mx-auto px-4 xl:px-14 2xl:px-16 py-3 lg:pt-6
-`
-
 export const Border = tw.div`
   border rounded-lg p-2 border-slate-600
 `
