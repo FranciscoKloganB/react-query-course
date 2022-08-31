@@ -3,6 +3,12 @@ import { seconds } from "@helpers"
 import { useQuery } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
 
+import type { QueryClient } from "@tanstack/react-query"
+
+export function setIssue(client: QueryClient, issue: Issue) {
+  client.setQueryData(["issues", "number", issue.number], issue)
+}
+
 export function useIssue(number: string) {
   const keys = ["issues", "number", number]
 

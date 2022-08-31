@@ -1,19 +1,27 @@
-import { seconds } from "@/src/helpers"
+import { seconds } from "@helpers"
 import { baseClient } from "@clients"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
+import { setIssue } from "./useIssue"
 
 export function useIssuesSearch(searchValue: string) {
+  const queryClient = useQueryClient()
   const keys = ["issues", "search", searchValue]
 
   const query = useQuery(
     keys,
     ({ signal }) =>
       baseClient<SearchOf<IssueDto>>(`/api/search/issues?q=${searchValue}`, { signal }).then(
-        (data) => ({
-          count: data.count,
-          items: data.items.map((dto: IssueDto) => toDomainIssue(dto))
-        })
+        (data) => {
+          const searchResult = {
+            count: data.count,
+            items: data.items.map((dto: IssueDto) => toDomainIssue(dto))
+          }
+
+          searchResult.items.forEach((issue) => setIssue(queryClient, issue))
+
+          return searchResult
+        }
       ),
     { enabled: !!searchValue, staleTime: seconds(15) }
   )
