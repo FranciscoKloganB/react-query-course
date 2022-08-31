@@ -2,7 +2,7 @@ import IssuesList from "@components/IssuesList"
 import { Subtitle, Title, Tooltip, TooltipSpan } from "@styled"
 import { useMemo, useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
-import { Select as StatusSelect } from "@components/ui/Select"
+import { Select as StatusSelect } from "@ui"
 import { IssueStatus } from "@enums"
 
 function buildIssueProgressStatuses() {

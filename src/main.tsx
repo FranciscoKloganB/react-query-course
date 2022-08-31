@@ -9,6 +9,7 @@ import { AppProviders } from "@context"
 
 import "@styles/tailwind.css"
 import "@styles/rc-tooltip.css"
+import { ProgressBar } from "@ui"
 
 new Promise((res) => setTimeout(res, 100))
   .then(() =>
@@ -21,6 +22,7 @@ new Promise((res) => setTimeout(res, 100))
     ReactDOM.render(
       <React.StrictMode>
         <AppProviders>
+          <ProgressBar />
           <App />
         </AppProviders>
       </React.StrictMode>,

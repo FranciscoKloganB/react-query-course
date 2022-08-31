@@ -1,8 +1,8 @@
 import { useUser } from "@hooks"
-import { Dots, ProfilePicture } from "./ui"
-import { HorizontalDivider } from "./ui/HorizontalDivider"
+import { Dots, ProfilePicture } from "@ui"
+import { HorizontalDivider } from "@ui"
 import { Border, Paragraph, Small, Span } from "@styled"
-import { relativeDate } from "../helpers/relativeDate"
+import { relativeDate } from "@helpers"
 
 export function Comment({ comment, createdBy, createdDate }: UserComment) {
   const userQuery = useUser(createdBy)
