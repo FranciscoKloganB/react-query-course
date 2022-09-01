@@ -6,7 +6,7 @@ import { FaUserAstronaut } from "react-icons/fa"
 
 type ProfilePictureProps = {
   alt: string
-  src: string
+  src?: string
   size?: keyof typeof AvatarVariants
   status?: OnlineStatus
 }
@@ -29,7 +29,7 @@ export function ProfilePicturePlaceholder({ size = defaultSize }: ProfilePicture
 
 export function ProfilePicture({
   alt,
-  src,
+  src = "",
   size = defaultSize,
   status = OnlineStatus.INACTIVE
 }: ProfilePictureProps) {

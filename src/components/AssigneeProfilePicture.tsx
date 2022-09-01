@@ -1,4 +1,4 @@
-import { ProfilePicture, ProfilePicturePlaceholder } from "@ui"
+import { ProfilePicture } from "@ui"
 import { useUser } from "@hooks"
 
 export function AssigneeProfilePicture({ userId }: { userId: string }) {
@@ -8,14 +8,10 @@ export function AssigneeProfilePicture({ userId }: { userId: string }) {
 
   const userQuery = useUser(userId)
 
-  if (userQuery.isLoading || userQuery.isError) {
-    return <ProfilePicturePlaceholder />
-  }
-
   return (
     <ProfilePicture
-      alt={`user ${userQuery.data.id} avatar`}
-      src={userQuery.data.profilePictureUrl}
+      alt={`Assignee ${userQuery.data?.id} profile picture`}
+      src={userQuery.data?.profilePictureUrl}
     />
   )
 }
