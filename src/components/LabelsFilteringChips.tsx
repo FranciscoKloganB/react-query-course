@@ -1,7 +1,6 @@
 import clsx from "clsx"
 import { LabelChip } from "@components/LabelChip"
 import { useLabels } from "@hooks"
-import { Dots } from "@ui"
 
 type LabelsFilteringChipsProps = {
   selected: string[]
@@ -16,8 +15,10 @@ export default function LabelsFilteringChips({
 }: LabelsFilteringChipsProps) {
   const labels = useLabels()
 
-  if (labels.isLoading) {
-    return <Dots />
+  if (labels.isError) {
+    console.error("LabelsFilteringChips could not obtain labels from useLabels query.")
+
+    return null
   }
 
   return (

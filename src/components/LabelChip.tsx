@@ -10,30 +10,30 @@ export function LabelChip({
   className?: string
   onClick?: (s: string) => void
 }) {
-  const labels = useLabels()
+  const labelsQuery = useLabels()
 
-  if (labels.isLoading || labels.isError) {
-    return null
+  if (labelsQuery.isSuccess) {
+    const label = labelsQuery.data.find((queryLabel) => queryLabel.name === name)
+
+    if (!label) {
+      console.warn(`
+        LabelChip could not find label using name='${name}' in the labels obtained from useLabels.
+        Are you sure the provided name filter exists?'
+      `)
+
+      return null
+    }
+
+    const isNotInteractive = !onClick
+    const props = {
+      $as: isNotInteractive ? "span" : "button",
+      $color: label.color,
+      className: className,
+      onClick
+    }
+
+    return <Chip {...props}>{label.name}</Chip>
   }
 
-  const label = labels.data.find((queryLabel) => queryLabel.name === name)
-
-  if (!label) {
-    console.warn(`
-      LabelChip could not find label using name='${name}' in the labels obtained from useLabels.
-      Are you sure the provided name filter exists?'
-    `)
-
-    return null
-  }
-
-  const isNotInteractive = !onClick
-  const props = {
-    $as: isNotInteractive ? "span" : "button",
-    $color: label.color,
-    className: className,
-    onClick
-  }
-
-  return <Chip {...props}>{label.name}</Chip>
+  return null
 }
