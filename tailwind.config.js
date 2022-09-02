@@ -27,7 +27,8 @@ module.exports = {
         "5xl": "2.5rem"
       },
       colors: {
-        "navy-blue": "#202A44"
+        "navy-blue-400": "#323e5c",
+        "navy-blue-600": "#202A44"
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
