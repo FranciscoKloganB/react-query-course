@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const radix = require("tailwindcss-radix")
 const defaultTheme = require("tailwindcss/defaultTheme")
+const appKeyframes = require("./src/themes/keyframes")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -33,6 +34,9 @@ module.exports = {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
         display: ["DM Sans", ...defaultTheme.fontFamily.sans]
+      },
+      keyframes: {
+        ...appKeyframes
       },
       maxWidth: {
         "2xl": "40rem"

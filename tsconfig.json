@@ -39,7 +39,9 @@
       "@styled/*": ["./src/components/styled/*"],
       "@styles": ["./src/styles"],
       "@styles/*": ["./src/styles/*"],
-      "@types": ["./src/types"],
+      "@themes": ["./src/themes"],
+      "@themes/*": ["./themes/*"],
+      "@types": ["./types"],
       "@types/*": ["./types/*"],
       "@ui": ["./src/components/ui"],
       "@ui/*": ["./src/components/ui/*"]
