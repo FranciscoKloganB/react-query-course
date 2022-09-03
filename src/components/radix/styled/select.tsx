@@ -12,7 +12,7 @@ const StyledTrigger = tw(SelectPrimitive.SelectTrigger)`
   justify-start
   rounded-md
   h-9
-  gap-[5px]
+  gap-2
   font-sans
   text-base
   md:text-sm
@@ -96,8 +96,7 @@ const StyledItemIndicator = tw(SelectPrimitive.ItemIndicator)`
   absolute left-0 w-6 inline-flex items-center justify-center text-yellow-400
 `
 
-/** Styles the panel arrow up */
-const StyledScrollUpButton = tw(SelectPrimitive.ScrollUpButton)`
+const scrollStyles = `
   flex
   items-center
   justify-center
@@ -107,15 +106,14 @@ const StyledScrollUpButton = tw(SelectPrimitive.ScrollUpButton)`
   cursor-default
 `
 
+/** Styles the panel arrow up */
+const StyledScrollUpButton = tw(SelectPrimitive.ScrollUpButton)`
+ ${() => scrollStyles}
+`
+
 /** Styles the panel arrow down */
 const StyledScrollDownButton = tw(SelectPrimitive.ScrollDownButton)`
-  flex
-  items-center
-  justify-center
-  h-6
-  bg-transparent
-  text-yellow-400
-  cursor-default
+  ${() => scrollStyles}
 `
 
 // Exports

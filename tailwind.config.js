@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const radix = require("tailwindcss-radix")
 const defaultTheme = require("tailwindcss/defaultTheme")
-const appKeyframes = require("./src/themes/keyframes")
+const animationsTheme = require("./src/themes/animations")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -23,6 +23,9 @@ module.exports = {
       "9xl": ["8rem", { lineHeight: "1" }]
     },
     extend: {
+      animation: {
+        ...animationsTheme.animation
+      },
       borderRadius: {
         "4xl": "2rem",
         "5xl": "2.5rem"
@@ -36,10 +39,16 @@ module.exports = {
         display: ["DM Sans", ...defaultTheme.fontFamily.sans]
       },
       keyframes: {
-        ...appKeyframes
+        ...animationsTheme.keyFrames
       },
       maxWidth: {
         "2xl": "40rem"
+      },
+      transitionTimingFunction: {
+        ...animationsTheme.transitionTimingFunctions
+      },
+      willChange: {
+        ...animationsTheme.willChange
       }
     }
   },
