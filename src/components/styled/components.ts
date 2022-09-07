@@ -64,6 +64,23 @@ export const Paragraph = tw.p`
   font-sans text-base tracking-tight text-white
 `
 
+export const RoundButton = tw.button`
+  inline-flex
+  font-sans
+  rounded-[100%]
+  h-8
+  w-8
+  items-center
+  justify-center
+  text-yellow-400
+  bg-white
+  shadow-md
+  focus:ring-2
+  focus:ring-yellow-400
+  hover:ring-2
+  hover:ring-yellow-400
+`
+
 export const Small = tw.small`
   font-sans tracking-tight text-slate-400
 `
