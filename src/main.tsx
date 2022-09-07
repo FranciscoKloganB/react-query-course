@@ -10,7 +10,6 @@ import { AppProviders } from "@context"
 import "@styles/tailwind.css"
 import "@styles/rc-tooltip.css"
 import { ProgressBar } from "@ui"
-import { MobileNavigation } from "./components/nav/MobileNavigation"
 
 new Promise((res) => setTimeout(res, 100))
   .then(() =>
@@ -24,7 +23,6 @@ new Promise((res) => setTimeout(res, 100))
       <React.StrictMode>
         <AppProviders>
           <ProgressBar />
-          <MobileNavigation />
           <App />
         </AppProviders>
       </React.StrictMode>,

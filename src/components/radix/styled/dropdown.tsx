@@ -1,8 +1,3 @@
-import React from "react"
-import { BiCheck, BiChevronRight } from "react-icons/bi"
-import { GiHamburgerMenu } from "react-icons/gi"
-import { GoPrimitiveDot } from "react-icons/go"
-
 import tw from "tailwind-styled-components"
 
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"

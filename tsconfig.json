@@ -29,6 +29,8 @@
       "@helpers/*": ["./src/helpers/*"],
       "@hooks": ["./src/hooks"],
       "@hooks/*": ["./src/hooks/*"],
+      "@nav": ["./src/components/nav"],
+      "@nav/*": ["./src/components/nav/*"],
       "@pages": ["./src/pages"],
       "@pages/*": ["./src/pages/*"],
       "@rdx": ["./src/components/radix/styled"],
