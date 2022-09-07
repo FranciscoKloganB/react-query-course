@@ -25,13 +25,14 @@ import tw from "tailwind-styled-components"
  * "[data-disabled] &": { color: mauve.mauve8 }
  */
 const RightSlot = tw.div`
- ml-auto
- pl-5
- text-yellow-400
- radix-highlighted:text-white
- radix-disabled:text-slate-400
+  ml-auto
+  pl-5
+  text-yellow-400
+  radix-highlighted:text-white
+  radix-disabled:text-slate-400
 `
 
+/**  */
 const IconButton = tw.button`
  inline-flex
  font-sans

@@ -2,71 +2,33 @@ import tw from "tailwind-styled-components"
 
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 
-// const contentStyles = {
-//   minWidth: 220,
-//   backgroundColor: "white",
-//   borderRadius: 6,
-//   padding: 5,
-//   boxShadow:
-//     "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
-//   "@media (prefers-reduced-motion: no-preference)": {
-//     animationDuration: "400ms",
-//     animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-//     willChange: "transform, opacity",
-//     '&[data-state="open"]': {
-//       '&[data-side="top"]': { animationName: slideDownAndFade },
-//       '&[data-side="right"]': { animationName: slideLeftAndFade },
-//       '&[data-side="bottom"]': { animationName: slideUpAndFade },
-//       '&[data-side="left"]': { animationName: slideRightAndFade }
-//     }
-//   }
-// }
-// motion-safe:duration-500
-// motion-safe:ease-in-logarithimic
-const contentStyles = tw.div`
-  min-w-[220px]
-  bg-white
+const contentStyles = `
+  w-48
   rounded-md
+  shadow-md
+  bg-navy-blue-400
   p-2
   motion-safe:will-change-transform-opacity
-  motion-safe:radix-state-open:radix-side-top:animate-slideDownAndFade
-  motion-safe:radix-state-open:radix-side-right:animate-slideLeftAndFade
-  motion-safe:radix-state-open:radix-side-bottom:animate-slideUpAndFade
-  motion-safe:radix-state-open:radix-side-left:animate-slideRightAndFade
+  motion-safe:radix-state-open:radix-side-top:animate-slide-down-fade
+  motion-safe:radix-state-open:radix-side-bottom:animate-slide-up-fade
+  motion-safe:radix-state-open:radix-side-right:animate-slide-left-fade
+  motion-safe:radix-state-open:radix-side-left:animate-slide-right-fade
 `
 
+/** When the Select state is open, this is the parent element of all items selection panel. */
 const StyledContent = tw(DropdownMenuPrimitive.Content)`
   ${() => contentStyles}
 `
 
+/** When the Select state is open, this is the parent element of all items in subselection panels. */
 const StyledSubContent = tw(DropdownMenuPrimitive.SubContent)`
   ${() => contentStyles}
 `
 
+/** Paints the arrow that indicates to which Dropdown Trigger the StyledContent belongs to. */
 const StyledArrow = tw(DropdownMenuPrimitive.Arrow)`
-  fill-white
+fill-navy-blue-400
 `
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function Content({ children, ...props }: any) {
-  return (
-    <DropdownMenuPrimitive.Portal>
-      <StyledContent {...props}>
-        {children}
-        <StyledArrow />
-      </StyledContent>
-    </DropdownMenuPrimitive.Portal>
-  )
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function SubContent({ children, ...props }: any) {
-  return (
-    <DropdownMenuPrimitive.Portal>
-      <StyledSubContent {...props}>{children}</StyledSubContent>
-    </DropdownMenuPrimitive.Portal>
-  )
-}
 
 const itemStyles = tw.div`
   relative
@@ -92,16 +54,16 @@ const StyledItem = tw(DropdownMenuPrimitive.Item)`
 `
 
 const StyledCheckboxItem = tw(DropdownMenuPrimitive.CheckboxItem)`
-${() => itemStyles}
+  ${() => itemStyles}
 `
 
 const StyledRadioItem = tw(DropdownMenuPrimitive.RadioItem)`
-${() => itemStyles}
+  ${() => itemStyles}
 `
 
 const StyledSubTrigger = tw(DropdownMenuPrimitive.SubTrigger)`
-  radix-state-open:bg-pink-400
-  radix-state-open:text-red-600
+  radix-state-open:bg-yellow-400
+  radix-state-open:text-slate-900
   ${() => itemStyles}
 `
 
@@ -117,7 +79,27 @@ const StyledItemIndicator = tw(DropdownMenuPrimitive.ItemIndicator)`
   absolute left-0 w-6 inline-flex items-center justify-center text-yellow-400
 `
 
-// Exports
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function Content({ children, ...props }: any) {
+  return (
+    <DropdownMenuPrimitive.Portal>
+      <StyledContent {...props}>
+        {children}
+        <StyledArrow />
+      </StyledContent>
+    </DropdownMenuPrimitive.Portal>
+  )
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function SubContent({ children, ...props }: any) {
+  return (
+    <DropdownMenuPrimitive.Portal>
+      <StyledSubContent {...props}>{children}</StyledSubContent>
+    </DropdownMenuPrimitive.Portal>
+  )
+}
+
 export const DropdownMenu = DropdownMenuPrimitive.Root
 export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
 export const DropdownMenuContent = Content

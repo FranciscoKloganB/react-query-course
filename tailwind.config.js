@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const radix = require("tailwindcss-radix")
-const defaultTheme = require("tailwindcss/defaultTheme")
 const animationsTheme = require("./src/themes/animations")
+const defaultTheme = require("tailwindcss/defaultTheme")
+const forms = require("@tailwindcss/forms")
+const radix = require("tailwindcss-radix")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -30,6 +31,9 @@ module.exports = {
         "4xl": "2rem",
         "5xl": "2.5rem"
       },
+      boxShadow: {
+        slider: "0 0 0 5px rgba(0, 0, 0, 0.3)"
+      },
       colors: {
         "navy-blue-400": "#323e5c",
         "navy-blue-600": "#202A44"
@@ -52,5 +56,5 @@ module.exports = {
       }
     }
   },
-  plugins: [radix({ variantPrefix: "radix" })]
+  plugins: [forms(), radix({ variantPrefix: "radix" })]
 }

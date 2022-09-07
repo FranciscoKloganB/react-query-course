@@ -39,7 +39,7 @@ const StyledIcon = tw(SelectPrimitive.SelectIcon)`
 
 /** When the Select state is open, this is the parent element of all items selection panel. */
 const StyledContent = tw(SelectPrimitive.Content)`
-  overflow-hidden bg-navy-blue-600 rounded-md
+  overflow-hidden bg-navy-blue-400 rounded-md
 `
 
 /** Container for the items within the dropdown. */
