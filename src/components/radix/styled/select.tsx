@@ -69,7 +69,7 @@ const StyledLabel = tw(SelectPrimitive.Label)`
 
 /** Styles the seperators between groups Selectable Items. */
 const StyledSeparator = tw(SelectPrimitive.Separator)`
-  h-px bg-yellow-400 m-1
+  h-px bg-yellow-400 m-2
 `
 
 /**

@@ -66,7 +66,7 @@ const StyledLabel = tw(DropdownMenuPrimitive.Label)`
 `
 
 const StyledSeparator = tw(DropdownMenuPrimitive.Separator)`
-  h-px bg-yellow-400 m-1
+  h-px bg-yellow-400 m-2
 `
 
 /** Example usage

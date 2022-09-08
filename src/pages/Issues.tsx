@@ -2,7 +2,7 @@ import IssuesList from "@components/IssuesList"
 import { Subtitle, Title, Tooltip, TooltipSpan } from "@styled"
 import { useMemo, useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
-import { Select as StatusSelect } from "@ui"
+import { Select } from "@ui"
 import { IssueStatus } from "@enums"
 
 function buildIssueProgressStatuses() {
@@ -64,7 +64,7 @@ export default function Issues() {
             toggle={handleLabelToggle}
           />
           <Subtitle>Status</Subtitle>
-          <StatusSelect
+          <Select
             defaultValue={selectedStatus}
             onValueChange={handleStatusSelection}
             groups={groups}

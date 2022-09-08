@@ -69,7 +69,6 @@ export function IssueItem({
               </Paragraph>
             </div>
             <div>
-              {/* selected={["help"]} ?? */}
               <LabelsList className="mt-2" selected={labelIDs} />
             </div>
           </div>

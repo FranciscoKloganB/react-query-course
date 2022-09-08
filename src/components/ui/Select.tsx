@@ -26,7 +26,7 @@ type SelectGroup = {
   }>
 }
 
-function RenderGroup({ group }: { group: SelectGroup }) {
+function __RenderGroup__({ group }: { group: SelectGroup }) {
   return (
     <>
       <SelectGroup>
@@ -64,7 +64,7 @@ export function Select(props: SelectRootProps & { groups: SelectGroup[] }) {
           <SelectViewport>
             {props.groups.map((group, index) => (
               <div key={group.label}>
-                <RenderGroup group={group} />
+                <__RenderGroup__ group={group} />
                 {index !== lastOfGroups && <SelectSeparator />}
               </div>
             ))}
