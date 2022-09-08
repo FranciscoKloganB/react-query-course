@@ -29,11 +29,13 @@ const itemStyles = `
   pl-6
   relative
   select-none
-  hover:bg-yellow-400
   radix-disabled:pointer-events-none
   radix-disabled:text-slate-400
-  radix-highlighted:bg-yellow-400
-  radix-highlighted:text-slate-900
+  radix-highlighted:bg-navy-blue-600
+  radix-highlighted:text-white
+  focus-visible:ring-2
+  focus-visible:outline-none
+  focus-visible:ring-yellow-400
 `
 
 /** When the Select state is open, this is the parent element of all items selection panel. */
@@ -53,8 +55,8 @@ fill-navy-blue-400
 
 /** Guarantees that the item that triggers the opening of nested Dropdown remains colored */
 const StyledSubTrigger = tw(DropdownMenuPrimitive.SubTrigger)`
-  radix-state-open:bg-yellow-400
-  radix-state-open:text-slate-900
+  radix-state-open:bg-navy-blue-600
+  radix-state-open:text-white
   ${() => itemStyles}
 `
 
@@ -98,7 +100,13 @@ const StyledSeparator = tw(DropdownMenuPrimitive.Separator)`
  ```
  */
 const StyledItemIndicator = tw(DropdownMenuPrimitive.ItemIndicator)`
-  absolute left-0 w-6 inline-flex items-center justify-center text-yellow-400
+  absolute
+  left-0
+  w-6
+  inline-flex
+  items-center
+  justify-center
+  text-white
 `
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

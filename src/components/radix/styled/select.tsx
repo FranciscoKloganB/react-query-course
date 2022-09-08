@@ -19,16 +19,16 @@ const StyledTrigger = tw(SelectPrimitive.SelectTrigger)`
   leading-none
   bg-white
   border
-  focus:border-yellow-400
-  hover:border-yellow-400
-  focus:outline-none
-  hover:outline-none
-  focus:ring-2
-  focus:ring-yellow-400
+  focus-visible:ring-2
+  focus-visible:ring-yellow-400
+  focus-visible:outline-none
+  focus-visible:border-yellow-400
   hover:ring-2
+  hover:outline-none
   hover:ring-yellow-400
+  hover:border-yellow-400
   radix-placeholder:text-slate-600
-  radix-placeholder:focus:text-slate-400
+  radix-placeholder:focus-visible:text-slate-400
 `
 
 /** Styles the provided icon (currently applying no custom styles). */
