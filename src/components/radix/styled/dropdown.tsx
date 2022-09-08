@@ -89,6 +89,14 @@ const StyledSeparator = tw(DropdownMenuPrimitive.Separator)`
   h-px bg-yellow-400 m-1
 `
 
+/** Example usage
+ *
+ ```
+<DropdownItem icon={<Gi3DGlasses />} shortcut="⌘+T">
+  New Tab
+</DropdownItem>
+ ```
+ */
 const StyledItemIndicator = tw(DropdownMenuPrimitive.ItemIndicator)`
   absolute left-0 w-6 inline-flex items-center justify-center text-yellow-400
 `
@@ -114,13 +122,6 @@ function SubContent({ children, ...props }: any) {
   )
 }
 
-export const MenuItemRightSlot = tw.div`
-  ml-auto
-  pl-5
-  group-radix-highlighted:text-black
-  group-radix-disabled:text-slate-400
-`
-
 export const DropdownMenu = DropdownMenuPrimitive.Root
 export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
 export const DropdownMenuContent = Content
@@ -129,7 +130,7 @@ export const DropdownMenuItem = StyledItem
 
 /** Example usage:
  *
- * ```javascript
+```
 <DropdownMenuCheckboxItem
   checked={bookmarksChecked}
   onCheckedChange={setBookmarksChecked}
@@ -139,14 +140,14 @@ export const DropdownMenuItem = StyledItem
   </DropdownMenuItemIndicator>
   Show Bookmarks <RightSlot>⌘+B</RightSlot>
 </DropdownMenuCheckboxItem>
- * ```
+ ```
  */
 export const DropdownMenuCheckboxItem = StyledCheckboxItem
 
 /**
  * Example usage:
  *
- * ```javascript
+```
 <DropdownMenuRadioGroup value={person} onValueChange={setPerson}>
   <DropdownMenuRadioItem value="pedro">
     <DropdownMenuItemIndicator>
@@ -161,21 +162,21 @@ export const DropdownMenuCheckboxItem = StyledCheckboxItem
     Colm Tuite
   </DropdownMenuRadioItem>
 </DropdownMenuRadioGroup>
- * ```
+ ```
  */
 export const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
 
 /**
  * Example usage:
  *
- * ```javascript
-  <DropdownMenuRadioItem value="pedro">
-    <DropdownMenuItemIndicator>
-      <GoPrimitiveDot />
-    </DropdownMenuItemIndicator>
-    Pedro Duarte
-  </DropdownMenuRadioItem>
- * ```
+ ```
+<DropdownMenuRadioItem value="pedro">
+  <DropdownMenuItemIndicator>
+    <GoPrimitiveDot />
+  </DropdownMenuItemIndicator>
+  Pedro Duarte
+</DropdownMenuRadioItem>
+```
  */
 export const DropdownMenuRadioItem = StyledRadioItem
 export const DropdownMenuItemIndicator = StyledItemIndicator

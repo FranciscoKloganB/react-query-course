@@ -1,7 +1,4 @@
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSub,
   DropdownMenuSubTrigger,
@@ -11,14 +8,20 @@ import {
   DropdownMenuItemIndicator,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  MenuItemRightSlot
+  DropdownMenuRadioItem
 } from "@rdx/dropdown"
 import { useState } from "react"
 import { BiChevronRight, BiCheck } from "react-icons/bi"
-import { GiHamburgerMenu } from "react-icons/gi"
+import { Gi3DGlasses, GiHamburgerMenu } from "react-icons/gi"
 import { GoPrimitiveDot } from "react-icons/go"
 import { RoundButton } from "@styled"
+import { Dropdown, DropdownItem, DropdownRightElement } from "@ui"
+
+const hamburger = (
+  <RoundButton aria-label="Open mobile navigation menu">
+    <GiHamburgerMenu />
+  </RoundButton>
+)
 
 export function MobileNavigation() {
   const [bookmarksChecked, setBookmarksChecked] = useState(true)
@@ -27,33 +30,29 @@ export function MobileNavigation() {
 
   return (
     <div className="lg:hidden">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <RoundButton aria-label="Open mobile navigation menu">
-            <GiHamburgerMenu />
-          </RoundButton>
-        </DropdownMenuTrigger>
-
-        <DropdownMenuContent sideOffset={5}>
+      <Dropdown triggerButton={hamburger}>
+        <>
           <DropdownMenuItem>
-            New Tab <MenuItemRightSlot>⌘+T</MenuItemRightSlot>
+            <DropdownItem icon={<Gi3DGlasses />} shortcut="⌘+T">
+              New Tab
+            </DropdownItem>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            New Window <MenuItemRightSlot>⌘+N</MenuItemRightSlot>
+            New Window <DropdownRightElement>⌘+N</DropdownRightElement>
           </DropdownMenuItem>
           <DropdownMenuItem disabled>
-            New Private Window <MenuItemRightSlot>⇧+⌘+N</MenuItemRightSlot>
+            New Private Window <DropdownRightElement>⇧+⌘+N</DropdownRightElement>
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               More Tools
-              <MenuItemRightSlot>
+              <DropdownRightElement>
                 <BiChevronRight />
-              </MenuItemRightSlot>
+              </DropdownRightElement>
             </DropdownMenuSubTrigger>
             <DropdownMenuSubContent sideOffset={2} alignOffset={-5}>
               <DropdownMenuItem>
-                Save Page As… <MenuItemRightSlot>⌘+S</MenuItemRightSlot>
+                Save Page As… <DropdownRightElement>⌘+S</DropdownRightElement>
               </DropdownMenuItem>
               <DropdownMenuItem>Create Shortcut…</DropdownMenuItem>
               <DropdownMenuItem>Name Window…</DropdownMenuItem>
@@ -69,7 +68,7 @@ export function MobileNavigation() {
             <DropdownMenuItemIndicator>
               <BiCheck />
             </DropdownMenuItemIndicator>
-            Show Bookmarks <MenuItemRightSlot>⌘+B</MenuItemRightSlot>
+            Show Bookmarks <DropdownRightElement>⌘+B</DropdownRightElement>
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem checked={urlsChecked} onCheckedChange={setUrlsChecked}>
             <DropdownMenuItemIndicator>
@@ -93,8 +92,8 @@ export function MobileNavigation() {
               Colm Tuite
             </DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
+        </>
+      </Dropdown>
     </div>
   )
 }

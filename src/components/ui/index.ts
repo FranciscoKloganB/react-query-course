@@ -1,4 +1,5 @@
 export * from "./Dots"
+export * from "./Dropdown"
 export * from "./FullSpinner"
 export * from "./HorizontalDivider"
 export * from "./ProfilePicture"

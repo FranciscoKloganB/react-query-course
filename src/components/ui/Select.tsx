@@ -44,6 +44,7 @@ function RenderGroup({ group }: { group: SelectGroup }) {
   )
 }
 
+// FIXME: Select needs better props to define Select Values etc...
 export function Select(props: SelectRootProps & { groups: SelectGroup[] }) {
   const lastOfGroups = props.groups.length - 1
 
