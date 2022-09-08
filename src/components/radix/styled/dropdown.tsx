@@ -1,6 +1,7 @@
 import tw from "tailwind-styled-components"
 
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
+import { itemStyles } from "./constants"
 
 const contentStyles = `
   min-w-fit
@@ -13,29 +14,6 @@ const contentStyles = `
   motion-safe:radix-state-open:radix-side-bottom:animate-slide-up-fade
   motion-safe:radix-state-open:radix-side-right:animate-slide-left-fade
   motion-safe:radix-state-open:radix-side-left:animate-slide-right-fade
-`
-
-const itemStyles = `
-  font-sans
-  leading-none
-  text-xs
-  md:text-sm
-  text-white
-  rounded-md
-  flex
-  items-center
-  h-6
-  pr-8
-  pl-6
-  relative
-  select-none
-  radix-disabled:pointer-events-none
-  radix-disabled:text-slate-400
-  radix-highlighted:bg-navy-blue-600
-  radix-highlighted:text-white
-  focus-visible:ring-2
-  focus-visible:outline-none
-  focus-visible:ring-yellow-400
 `
 
 /** When the Select state is open, this is the parent element of all items selection panel. */

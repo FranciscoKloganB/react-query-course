@@ -1,6 +1,7 @@
 import * as SelectPrimitive from "@radix-ui/react-select"
 import tw from "tailwind-styled-components"
 import React from "react"
+import { itemStyles } from "./constants"
 
 /** Styles the trigger (button) that opens the Radix Select component. */
 const StyledTrigger = tw(SelectPrimitive.SelectTrigger)`
@@ -58,24 +59,7 @@ function Content({ children, ...props }: { children: React.ReactNode; props?: un
 
 /** Renders a selectable item within the selection panel when Select state is open. */
 const StyledItem = tw(SelectPrimitive.Item)`
-  font-sans
-  leading-none
-  text-xs
-  md:text-sm
-  text-white
-  rounded-md
-  flex
-  items-center
-  h-6
-  pr-8
-  pl-6
-  relative
-  select-none
-  hover:bg-yellow-400
-  radix-disabled:pointer-events-none
-  radix-disabled:text-slate-400
-  radix-highlighted:bg-yellow-400
-  radix-highlighted:text-slate-900
+  ${() => itemStyles}
 `
 
 /** Styles the labels of a group of Selectable Items. */

@@ -1,0 +1,22 @@
+export const itemStyles = `
+  font-sans
+  leading-none
+  text-xs
+  md:text-sm
+  text-white
+  rounded-md
+  flex
+  items-center
+  h-6
+  pr-8
+  pl-6
+  relative
+  select-none
+  radix-disabled:pointer-events-none
+  radix-disabled:text-slate-400
+  radix-highlighted:bg-navy-blue-600
+  radix-highlighted:text-white
+  focus-visible:ring-2
+  focus-visible:outline-none
+  focus-visible:ring-yellow-400
+`
