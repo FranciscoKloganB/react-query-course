@@ -1,7 +1,8 @@
 import * as SelectPrimitive from "@radix-ui/react-select"
 import tw from "tailwind-styled-components"
 import React from "react"
-import { itemStyles } from "./constants"
+
+import { itemStyles, selectableFieldStyles } from "@common/styled/constants"
 
 /** Styles the trigger (button) that opens the Radix Select component. */
 const StyledTrigger = tw(SelectPrimitive.SelectTrigger)`
@@ -14,22 +15,12 @@ const StyledTrigger = tw(SelectPrimitive.SelectTrigger)`
   rounded-md
   h-9
   gap-2
-  font-sans
-  text-base
-  md:text-sm
-  leading-none
-  bg-white
   border
-  focus-visible:ring-2
-  focus-visible:ring-yellow-400
-  focus-visible:outline-none
-  focus-visible:border-yellow-400
-  hover:ring-2
-  hover:outline-none
-  hover:ring-yellow-400
-  hover:border-yellow-400
-  radix-placeholder:text-slate-600
-  radix-placeholder:focus-visible:text-slate-400
+  ${() => selectableFieldStyles}
+`
+
+const StyledValue = tw(SelectPrimitive.Value)`
+  ${() => selectableFieldStyles}
 `
 
 /** Styles the provided icon (currently applying no custom styles). */
@@ -103,7 +94,7 @@ const StyledScrollDownButton = tw(SelectPrimitive.ScrollDownButton)`
 // Exports
 export const SelectRoot = SelectPrimitive.Root
 export const SelectTrigger = StyledTrigger
-export const SelectValue = SelectPrimitive.Value
+export const SelectValue = StyledValue
 export const SelectIcon = StyledIcon
 export const SelectContent = Content
 export const SelectViewport = StyledViewport

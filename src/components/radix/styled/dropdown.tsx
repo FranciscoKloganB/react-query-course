@@ -1,7 +1,7 @@
 import tw from "tailwind-styled-components"
 
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { itemStyles } from "./constants"
+import { itemStyles } from "../../../common/styled/constants"
 
 const contentStyles = `
   min-w-fit
@@ -14,6 +14,13 @@ const contentStyles = `
   motion-safe:radix-state-open:radix-side-bottom:animate-slide-up-fade
   motion-safe:radix-state-open:radix-side-right:animate-slide-left-fade
   motion-safe:radix-state-open:radix-side-left:animate-slide-right-fade
+`
+
+/** Styles the trigger (dropdown itself) that opens the Radix Dropdown component. */
+const StyledTrigger = tw(DropdownMenuPrimitive.Trigger)`
+  font-sans
+  text-sm
+  leading-none
 `
 
 /** When the Select state is open, this is the parent element of all items selection panel. */
@@ -109,7 +116,7 @@ function SubContent({ children, ...props }: any) {
 }
 
 export const DropdownMenu = DropdownMenuPrimitive.Root
-export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+export const DropdownMenuTrigger = StyledTrigger
 export const DropdownMenuContent = Content
 
 export const DropdownMenuItem = StyledItem

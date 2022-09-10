@@ -20,3 +20,17 @@ export const itemStyles = `
   focus-visible:outline-none
   focus-visible:ring-yellow-400
 `
+
+export const selectableFieldStyles = `
+  bg-white
+  font-sans
+  text-sm
+  leading-none
+  placeholder:text-black
+  focus-visible:ring-2
+  focus-visible:outline-none
+  focus-visible:ring-yellow-400
+  focus-visible:border-yellow-400
+  focus-visible:text-slate-600
+  focus-visible:placeholder:text-slate-400
+`

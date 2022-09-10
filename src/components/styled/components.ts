@@ -5,6 +5,7 @@ import type {
   StatusOverlayVariantsColors,
   StatusOverlayVariantsSizes
 } from "@styled"
+import { selectableFieldStyles } from "@common/styled/constants"
 
 export const Border = tw.div`
   border rounded-lg p-2 border-slate-600
@@ -16,17 +17,20 @@ export const Button = tw.div`
   px-4
   py-1
   hover:border-yellow-400
-  focus:border
-  font-sans
-  text-sm
-  text-slate-900
+  focus-visible:border
   rounded-md
   bg-white
-  hover:bg-yellow-400
-  focus:outline-none
-  focus:ring-2
-  focus:ring-yellow-400
-  focus:border-yellow-400
+  font-sans
+  text-sm
+  leading-none
+  text-slate-900
+  focus-visible:ring-2
+  focus-visible:outline-none
+  focus-visible:ring-yellow-400
+  focus-visible:border-yellow-400
+  focus-visible:text-slate-900
+  focus-visible:placeholder:text-slate-400
+  placeholder:text-slate-600
 `
 
 export const Chip = tw.button`
@@ -77,8 +81,8 @@ export const RoundButton = tw.button`
   text-yellow-400
   bg-white
   shadow-md
-  focus:ring-2
-  focus:ring-yellow-400
+  focus-visible:ring-2
+  focus-visible:ring-yellow-400
   hover:ring-2
   hover:ring-yellow-400
 `
@@ -88,24 +92,13 @@ export const Small = tw.small`
 `
 
 export const Search = tw.input`
-  leading-normal
   block
   w-full
   h-9
   pl-10
   pr-3
-  font-sans
-  text-sm
   rounded-md
-  bg-white
-  border
-  focus:outline-none
-  focus:ring-2
-  focus:ring-yellow-400
-  focus:border-yellow-400
-  focus:text-slate-900
-  placeholder:text-slate-600
-  focus:placeholder:text-slate-400
+  ${() => selectableFieldStyles}
 `
 
 export const SearchContainer = tw.div`
