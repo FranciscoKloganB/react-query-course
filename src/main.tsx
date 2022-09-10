@@ -6,10 +6,9 @@ import App from "@app"
 import { worker } from "@uidotdev/react-query-api"
 
 import { AppProviders } from "@context"
+import { ProgressBar } from "@ui"
 
 import "@styles/tailwind.css"
-import "@styles/rc-tooltip.css"
-import { ProgressBar } from "@ui"
 
 new Promise((res) => setTimeout(res, 100))
   .then(() =>

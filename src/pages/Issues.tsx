@@ -1,8 +1,8 @@
 import IssuesList from "@components/IssuesList"
-import { Subtitle, Title, Tooltip, TooltipSpan } from "@styled"
+import { Subtitle, Title } from "@styled"
 import { useMemo, useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
-import { Select } from "@ui"
+import { Select, Tooltip } from "@ui"
 import { IssueStatus } from "@enums"
 
 function buildIssueProgressStatuses() {
@@ -49,13 +49,7 @@ export default function Issues() {
     <div>
       <main className="grid lg:grid-cols-[75%_25%]">
         <aside className="lg:order-last lg:ml-6 xl:ml-12">
-          <Tooltip
-            placement="topLeft"
-            trigger={["hover"]}
-            overlay={
-              <TooltipSpan>Click the label chips to toggle filter by their name</TooltipSpan>
-            }
-          >
+          <Tooltip message="Click the label chips to toggle filter by their name">
             <Subtitle className="py-0">Labels</Subtitle>
           </Tooltip>
           <LabelsFilteringChips

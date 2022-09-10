@@ -1,4 +1,3 @@
-import Tooltip from "rc-tooltip"
 import tw from "tailwind-styled-components"
 import { LabelVariants, StatusOverlayVariants } from "@styled"
 
@@ -144,11 +143,3 @@ export const Title = tw.h2`
   sm:text-3xl
   tracking-tight
 `
-
-export const TooltipSpan = tw.span`
-  text-xs
-  font-sans
-  text-gray-900
-`
-
-export { Tooltip }
