@@ -4,16 +4,15 @@ import { useQuery } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
 
 import type { QueryClient } from "@tanstack/react-query"
+import { QKF } from "@/src/common/query-key.factory"
 
 export function setIssue(client: QueryClient, issue: Issue) {
-  client.setQueryData(["issues", "number", issue.number], issue)
+  client.setQueryData(QKF.issueDetail(issue.number), issue)
 }
 
 export function useIssue(number: string) {
-  const keys = ["issues", "number", number]
-
   return useQuery(
-    keys,
+    QKF.issueDetail(number),
     ({ signal }) =>
       baseClient<IssueDto>(`/api/issues/${number}`, { signal }).then((dto) => toDomainIssue(dto)),
     { staleTime: seconds(30) }

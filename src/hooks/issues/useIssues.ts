@@ -1,3 +1,4 @@
+import { QKF } from "@/src/common/query-key.factory"
 import { baseClient } from "@clients"
 import { IssueStatus } from "@enums"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
@@ -6,9 +7,8 @@ import { setIssue } from "./useIssue"
 
 export function useIssues({ labels, status }: { labels: string[]; status?: IssueStatus }) {
   const queryClient = useQueryClient()
-  const keys = ["issues", { labels, status }]
 
-  return useQuery(keys, ({ signal }) => {
+  return useQuery(QKF.issuesFiltered(labels, status), ({ signal }) => {
     let queryString = labels.map((label) => `labels[]=${label}`).join("&")
 
     if (status) {

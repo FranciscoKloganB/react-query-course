@@ -3,13 +3,13 @@ import { baseClient } from "@clients"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
 import { setIssue } from "./useIssue"
+import { QKF } from "@/src/common/query-key.factory"
 
 export function useIssuesSearch(searchValue: string) {
   const queryClient = useQueryClient()
-  const keys = ["issues", "search", searchValue]
 
   const query = useQuery(
-    keys,
+    QKF.issuesSearched(searchValue),
     ({ signal }) =>
       baseClient<SearchOf<IssueDto>>(`/api/search/issues?q=${searchValue}`, { signal }).then(
         (data) => {
