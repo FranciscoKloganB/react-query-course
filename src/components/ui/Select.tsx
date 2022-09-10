@@ -26,6 +26,12 @@ type SelectGroup = {
   }>
 }
 
+type SelectProps = {
+  ariaLabel: string
+  groups: SelectGroup[]
+  placeholder: string
+} & SelectRootProps
+
 function __RenderGroup__({ group }: { group: SelectGroup }) {
   return (
     <>
@@ -44,18 +50,17 @@ function __RenderGroup__({ group }: { group: SelectGroup }) {
   )
 }
 
-// FIXME: Select needs better props to define Select Values etc...
-export function Select(props: SelectRootProps & { groups: SelectGroup[] }) {
+export function Select(props: SelectProps) {
   const lastOfGroups = props.groups.length - 1
 
   return (
     <div className="flex">
       <SelectRoot defaultValue={props.defaultValue} onValueChange={props.onValueChange}>
-        <SelectTrigger aria-label="Issue Label Filters">
+        <SelectTrigger aria-label={props.ariaLabel}>
           <SelectIcon>
             <BiChevronDown className="text-xl" />
           </SelectIcon>
-          <SelectValue placeholder="select a fruit" />
+          <SelectValue placeholder={props.placeholder} />
         </SelectTrigger>
         <SelectContent>
           <SelectScrollUpButton>

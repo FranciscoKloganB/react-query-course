@@ -29,7 +29,7 @@ export function Search({ children, state, setState, delay = 500 }: SearchProps) 
             onChange={(e: ISearchEvent) => debouncedSetState(e.target.value)}
             id="search"
             name="search"
-            placeholder="search issues"
+            placeholder="Search issues"
             type="search"
           />
         </div>

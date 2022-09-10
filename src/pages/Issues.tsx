@@ -62,6 +62,8 @@ export default function Issues() {
             defaultValue={selectedStatus}
             onValueChange={handleStatusSelection}
             groups={groups}
+            ariaLabel="Issue label filters"
+            placeholder="Filter issues"
           />
         </aside>
         <section className="pt-4 lg:pt-0">
