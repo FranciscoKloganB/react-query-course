@@ -1,6 +1,6 @@
 import type { OnlineStatus } from "@enums"
 import type { IssueStatus } from "@enums"
-import type { LabelVariants } from "@styled"
+import type { LabelVariantsColors } from "@styled"
 
 import type { ValuesOf } from "./app-types"
 
@@ -25,7 +25,7 @@ declare global {
 
   type Label = {
     id: string
-    color: keyof typeof LabelVariants["colors"]
+    color: LabelVariantsColors
     name: string
   }
 

@@ -1,13 +1,15 @@
-import { OnlineStatus } from "@enums"
-import { AvatarVariants, Span } from "@styled"
 import clsx from "clsx"
+import { avatarVariants, Span } from "@styled"
+import { OnlineStatus } from "@enums"
 import { StatusOverlay } from "@styled"
 import { FaUserAstronaut } from "react-icons/fa"
+
+import type { AvatarVariants } from "@styled"
 
 type ProfilePictureProps = {
   alt: string
   src?: string
-  size?: keyof typeof AvatarVariants
+  size?: AvatarVariants
   status?: OnlineStatus
 }
 
@@ -18,7 +20,7 @@ type ProfilePicturePlaceholderProps = {
 const defaultSize = "sm"
 
 export function ProfilePicturePlaceholder({ size = defaultSize }: ProfilePicturePlaceholderProps) {
-  const classes = clsx(AvatarVariants[size], "rounded-full bg-slate-400")
+  const classes = clsx(avatarVariants[size], "rounded-full bg-slate-400")
 
   return (
     <Span>
@@ -33,7 +35,7 @@ export function ProfilePicture({
   size = defaultSize,
   status = OnlineStatus.INACTIVE
 }: ProfilePictureProps) {
-  const classes = clsx(AvatarVariants[size], "rounded-full", !src && "bg-slate-400")
+  const classes = clsx(avatarVariants[size], "rounded-full", !src && "bg-slate-400")
 
   return (
     <span className="relative inline-block">

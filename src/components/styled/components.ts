@@ -1,5 +1,10 @@
 import tw from "tailwind-styled-components"
-import { LabelVariants, StatusOverlayVariants } from "@styled"
+import { labelVariants, statusOverlayVariants } from "@styled"
+import type {
+  LabelVariantsColors,
+  StatusOverlayVariantsColors,
+  StatusOverlayVariantsSizes
+} from "@styled"
 
 export const Border = tw.div`
   border rounded-lg p-2 border-slate-600
@@ -37,8 +42,8 @@ export const Chip = tw.button`
   rounded-[999px]
   bg-opacity-25
   whitespace-nowrap
-  ${(p: { $color: keyof typeof LabelVariants["colors"] }) =>
-    LabelVariants.colors[p.$color] ?? LabelVariants.colors.default}
+  ${(p: { $color: LabelVariantsColors }) =>
+    labelVariants.colors[p.$color] ?? labelVariants.colors.default}
 `
 
 export const Heading = tw.h1`
@@ -53,10 +58,8 @@ export const StatusOverlay = tw.span`
   rounded-full
   ring-2
   ring-white
-  ${(p: {
-    $size: keyof typeof StatusOverlayVariants["sizes"]
-    $status: keyof typeof StatusOverlayVariants["colors"]
-  }) => `${StatusOverlayVariants.colors[p.$status]} ${StatusOverlayVariants.sizes[p.$size]}`}
+  ${(p: { $size: StatusOverlayVariantsSizes; $status: StatusOverlayVariantsColors }) =>
+    `${statusOverlayVariants.colors[p.$status]} ${statusOverlayVariants.sizes[p.$size]}`}
 `
 
 export const Paragraph = tw.p`
