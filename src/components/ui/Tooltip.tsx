@@ -17,7 +17,7 @@ export function Tooltip({ children, message }: TooltipProps) {
     <TooltipProvider>
       <TooltipRoot>
         <TooltipTrigger asChild>
-          <div className="max-w-fit">{children}</div>
+          <div className="max-w-fit md:mx-0">{children}</div>
         </TooltipTrigger>
         <TooltipContent sideOffset={4}>
           <TooltipArrow />

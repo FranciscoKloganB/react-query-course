@@ -50,7 +50,7 @@ export default function Issues() {
       <main className="grid lg:grid-cols-[75%_25%]">
         <aside className="lg:order-last lg:ml-6 xl:ml-12">
           <Tooltip message="Click the label chips to toggle filter by their name">
-            <Subtitle className="py-0">Labels</Subtitle>
+            <Subtitle>Labels</Subtitle>
           </Tooltip>
           <LabelsFilteringChips
             className="mt-2 justify-center gap-x-2 gap-y-3 md:justify-start"

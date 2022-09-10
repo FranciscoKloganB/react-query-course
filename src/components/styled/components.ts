@@ -123,7 +123,6 @@ export const Subtitle = tw.h3`
   font-semibold
   text-white py-4
   text-xl
-  text-center
   md:text-left
   tracking-tight
 `
@@ -134,7 +133,6 @@ export const Title = tw.h2`
   font-bold
   text-white
   text-2xl
-  text-center
   md:text-left
   sm:text-3xl
   tracking-tight
