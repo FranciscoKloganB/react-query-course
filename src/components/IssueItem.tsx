@@ -77,7 +77,7 @@ export function IssueItem({
             <div>
               <Paragraph className="text-base">
                 <Small>
-                  #{number} set to <u>{noCase(status)}</u> {relativeDate(createdDate)} by{" "}
+                  #{number} set to <u>{noCase(status ?? "")}</u> {relativeDate(createdDate)} by{" "}
                   {creatorName}
                 </Small>
               </Paragraph>
