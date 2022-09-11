@@ -2,7 +2,12 @@ import * as SelectPrimitive from "@radix-ui/react-select"
 import tw from "tailwind-styled-components"
 import React from "react"
 
-import { itemStyles, selectableFieldStyles } from "@common/styled/constants"
+import {
+  inputLikeFieldStyles,
+  itemIndicatorStyles,
+  itemStyles,
+  seperatorStyles
+} from "@common/styled/constants"
 
 /** Styles the trigger (button) that opens the Radix Select component. */
 const StyledTrigger = tw(SelectPrimitive.SelectTrigger)`
@@ -16,11 +21,11 @@ const StyledTrigger = tw(SelectPrimitive.SelectTrigger)`
   h-9
   gap-2
   border
-  ${() => selectableFieldStyles}
+  ${() => inputLikeFieldStyles}
 `
 
 const StyledValue = tw(SelectPrimitive.Value)`
-  ${() => selectableFieldStyles}
+  ${() => inputLikeFieldStyles}
 `
 
 /** Styles the provided icon (currently applying no custom styles). */
@@ -60,15 +65,12 @@ const StyledLabel = tw(SelectPrimitive.Label)`
 
 /** Styles the seperators between groups Selectable Items. */
 const StyledSeparator = tw(SelectPrimitive.Separator)`
-  h-px bg-yellow-400 m-2
+  ${() => seperatorStyles}
 `
 
-/**
- * When Select state is open, it styles the icon that indicates the option that was previously
- * selected.
- */
+/** When Select is open styles the indicating the option that was previously selected. */
 const StyledItemIndicator = tw(SelectPrimitive.ItemIndicator)`
-  absolute left-0 w-6 inline-flex items-center justify-center text-yellow-400
+  ${() => itemIndicatorStyles}
 `
 
 const scrollStyles = `

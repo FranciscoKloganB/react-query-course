@@ -1,7 +1,7 @@
 import tw from "tailwind-styled-components"
 
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { itemStyles } from "../../../common/styled/constants"
+import { itemIndicatorStyles, itemStyles, seperatorStyles } from "@common/styled/constants"
 
 const contentStyles = `
   min-w-fit
@@ -73,25 +73,11 @@ const StyledLabel = tw(DropdownMenuPrimitive.Label)`
 `
 
 const StyledSeparator = tw(DropdownMenuPrimitive.Separator)`
-  h-px bg-yellow-400 m-2
+  ${() => seperatorStyles}
 `
 
-/** Example usage
- *
- ```
-<DropdownItem icon={<Gi3DGlasses />} shortcut="⌘+T">
-  New Tab
-</DropdownItem>
- ```
- */
 const StyledItemIndicator = tw(DropdownMenuPrimitive.ItemIndicator)`
-  absolute
-  left-0
-  w-6
-  inline-flex
-  items-center
-  justify-center
-  text-white
+  ${() => itemIndicatorStyles}
 `
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

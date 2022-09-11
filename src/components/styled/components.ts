@@ -5,7 +5,7 @@ import type {
   StatusOverlayVariantsColors,
   StatusOverlayVariantsSizes
 } from "@styled"
-import { selectableFieldStyles } from "@common/styled/constants"
+import { inputLikeFieldStyles } from "@common/styled/constants"
 
 export const Border = tw.div`
   border rounded-lg p-2 border-slate-600
@@ -98,7 +98,7 @@ export const Search = tw.input`
   pl-10
   pr-3
   rounded-md
-  ${() => selectableFieldStyles}
+  ${() => inputLikeFieldStyles}
 `
 
 export const SearchContainer = tw.div`
