@@ -6,7 +6,7 @@
   "editor.quickSuggestions": {
     "strings": true // forces VS Code to trigger completions when editing "string"
   },
-  "editor.rulers": [100],
+  "editor.rulers": [80],
   "prettier.enable": true,
   "prettier.configPath": ".prettierrc.js",
   "tailwindCSS.experimental.classRegex": [
