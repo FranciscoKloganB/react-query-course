@@ -11,13 +11,19 @@ function setIssue(client: QueryClient, issue: Issue) {
 }
 
 function fetchIssueDetail(number: string | number, signal?: AbortSignal) {
-  return baseClient<IssueDto>(`/api/issues/${number}`, { signal }).then((dto) => toDomainIssue(dto))
+  return baseClient<IssueDto>(`/api/issues/${number}`, { signal }).then((dto) =>
+    toDomainIssue(dto)
+  )
 }
 
 function useIssueDetail(number: string | number) {
-  return useQuery(QKF.issueDetail(number), ({ signal }) => fetchIssueDetail(number, signal), {
-    staleTime: seconds(30)
-  })
+  return useQuery(
+    QKF.issueDetail(number),
+    ({ signal }) => fetchIssueDetail(number, signal),
+    {
+      staleTime: seconds(30)
+    }
+  )
 }
 
 export { fetchIssueDetail, setIssue, useIssueDetail }

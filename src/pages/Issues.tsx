@@ -39,7 +39,9 @@ export default function Issues() {
     const newStatus = IssueStatus[enumKey as keyof typeof IssueStatus]
 
     if (newStatus) {
-      setSelectedStatus(isIssueStatusFilterReset(newStatus) ? undefined : newStatus)
+      setSelectedStatus(
+        isIssueStatusFilterReset(newStatus) ? undefined : newStatus
+      )
     } else {
       console.error(
         "Issues page could not filter issues by status because of invalid selection",
@@ -72,7 +74,10 @@ export default function Issues() {
         </aside>
         <section className="pt-4 lg:pt-0">
           <Title>Issues</Title>
-          <IssuesList filterByLabels={selectedLabels} filterByStatus={selectedStatus} />
+          <IssuesList
+            filterByLabels={selectedLabels}
+            filterByStatus={selectedStatus}
+          />
         </section>
       </main>
     </div>

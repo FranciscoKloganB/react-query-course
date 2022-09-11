@@ -16,7 +16,9 @@ export default function LabelsFilteringChips({
   const labels = useLabels()
 
   if (labels.isError) {
-    console.error("LabelsFilteringChips could not obtain labels from useLabels query.")
+    console.error(
+      "LabelsFilteringChips could not obtain labels from useLabels query."
+    )
 
     return null
   }
@@ -28,7 +30,8 @@ export default function LabelsFilteringChips({
           <li key={label.id}>
             <LabelChip
               className={clsx(
-                selected.includes(label.name) && "border-yellow-600 brightness-200",
+                selected.includes(label.name) &&
+                  "border-yellow-600 brightness-200",
                 "hover:border-yellow-600 hover:brightness-125"
               )}
               name={label.name}

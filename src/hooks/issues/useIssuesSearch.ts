@@ -7,19 +7,23 @@ import { QKF } from "@common/query-key.factory"
 
 import type { QueryClient } from "@tanstack/react-query"
 
-function fetchIssuesSearch(search: string, client: QueryClient, signal?: AbortSignal) {
-  return baseClient<SearchOf<IssueDto>>(`/api/search/issues?q=${search}`, { signal }).then(
-    (data) => {
-      const searchResult = {
-        count: data.count,
-        items: data.items.map((dto: IssueDto) => toDomainIssue(dto))
-      }
-
-      searchResult.items.forEach((issue) => setIssue(client, issue))
-
-      return searchResult
+function fetchIssuesSearch(
+  search: string,
+  client: QueryClient,
+  signal?: AbortSignal
+) {
+  return baseClient<SearchOf<IssueDto>>(`/api/search/issues?q=${search}`, {
+    signal
+  }).then((data) => {
+    const searchResult = {
+      count: data.count,
+      items: data.items.map((dto: IssueDto) => toDomainIssue(dto))
     }
-  )
+
+    searchResult.items.forEach((issue) => setIssue(client, issue))
+
+    return searchResult
+  })
 }
 
 function useIssuesSearch(search: string) {
@@ -46,7 +50,8 @@ function useIssuesSearch(search: string) {
   // Not currently fetching and we do not have `data`, sure sign the query is disabled
   const isDisabled = query.fetchStatus === "idle" && query.status === "loading"
   // Query is attempting to obtain new `data`
-  const isLoading = query.fetchStatus === "fetching" && query.status === "loading"
+  const isLoading =
+    query.fetchStatus === "fetching" && query.status === "loading"
   // Query is not currently working but has data to display (typescript incorrectly warns data might be undefined)
   const isComplete = query.fetchStatus === "idle" && query.status === "success"
 

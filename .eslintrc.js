@@ -20,7 +20,13 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: "module"
   },
-  plugins: ["no-only-tests", "unused-imports", "react", "react-hooks", "@typescript-eslint"],
+  plugins: [
+    "no-only-tests",
+    "unused-imports",
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
   rules: {
     curly: "error",
     quotes: [

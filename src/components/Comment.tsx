@@ -12,9 +12,15 @@ const profilePictureSize = "lg"
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const placeholder = (
   <>
-    <RectShape className="w-100 animate-pulse rounded bg-slate-600" style={{ height: 24 }} />
+    <RectShape
+      className="w-100 animate-pulse rounded bg-slate-600"
+      style={{ height: 24 }}
+    />
     <HorizontalDivider />
-    <RectShape className="w-100 animate-pulse rounded bg-slate-600" style={{ height: 24 }} />
+    <RectShape
+      className="w-100 animate-pulse rounded bg-slate-600"
+      style={{ height: 24 }}
+    />
   </>
 )
 
@@ -35,12 +41,19 @@ export function Comment({ comment, createdBy, createdDate }: UserComment) {
           <Border className="grow">
             {userQuery.isError ? (
               <Paragraph>
-                <i className="text-sm text-red-200">Could not load user comment</i>
+                <i className="text-sm text-red-200">
+                  Could not load user comment
+                </i>
               </Paragraph>
             ) : (
-              <ReactPlaceholder customPlaceholder={placeholder} ready={userQuery.isSuccess}>
+              <ReactPlaceholder
+                customPlaceholder={placeholder}
+                ready={userQuery.isSuccess}
+              >
                 <>
-                  <Small>{`${userQuery.data?.name} commented ${relativeDate(createdDate)}`}</Small>
+                  <Small>{`${userQuery.data?.name} commented ${relativeDate(
+                    createdDate
+                  )}`}</Small>
                   <HorizontalDivider />
                   <Span>{comment}</Span>
                 </>

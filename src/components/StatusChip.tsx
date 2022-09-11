@@ -25,7 +25,9 @@ export function StatusChip({ status }: { status: IssueStatus }) {
 
   return (
     <div className={classes}>
-      <span className="my-auto text-lg">{isOpen ? <GoIssueOpened /> : <GoIssueClosed />}</span>{" "}
+      <span className="my-auto text-lg">
+        {isOpen ? <GoIssueOpened /> : <GoIssueClosed />}
+      </span>{" "}
       {status}
     </div>
   )

@@ -62,8 +62,13 @@ export const StatusOverlay = tw.span`
   rounded-full
   ring-2
   ring-white
-  ${(p: { $size: StatusOverlayVariantsSizes; $status: StatusOverlayVariantsColors }) =>
-    `${statusOverlayVariants.colors[p.$status]} ${statusOverlayVariants.sizes[p.$size]}`}
+  ${(p: {
+    $size: StatusOverlayVariantsSizes
+    $status: StatusOverlayVariantsColors
+  }) =>
+    `${statusOverlayVariants.colors[p.$status]} ${
+      statusOverlayVariants.sizes[p.$size]
+    }`}
 `
 
 export const Paragraph = tw.p`

@@ -1,7 +1,11 @@
 import tw from "tailwind-styled-components"
 
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { itemIndicatorStyles, itemStyles, seperatorStyles } from "@common/styled/constants"
+import {
+  itemIndicatorStyles,
+  itemStyles,
+  seperatorStyles
+} from "@common/styled/constants"
 
 const contentStyles = `
   min-w-fit

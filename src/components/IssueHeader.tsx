@@ -25,7 +25,11 @@ export function IssueHeader({
 }: IssueHeaderProps) {
   const userQuery = useUser(createdBy)
 
-  const creatorName = userQuery?.isLoading ? <Dots /> : <strong>{userQuery.data?.name}</strong>
+  const creatorName = userQuery?.isLoading ? (
+    <Dots />
+  ) : (
+    <strong>{userQuery.data?.name}</strong>
+  )
 
   return (
     <header>
@@ -35,8 +39,8 @@ export function IssueHeader({
       <div className="flex items-center gap-2">
         <StatusChip status={status} />
         <Span>
-          {creatorName} has set the issue to <u>{noCase(status)}</u> {relativeDate(createdDate)} —{" "}
-          {comments.length} comments
+          {creatorName} has set the issue to <u>{noCase(status)}</u>{" "}
+          {relativeDate(createdDate)} — {comments.length} comments
         </Span>
       </div>
     </header>

@@ -19,7 +19,9 @@ type ProfilePicturePlaceholderProps = {
 
 const defaultSize = "sm"
 
-export function ProfilePicturePlaceholder({ size = defaultSize }: ProfilePicturePlaceholderProps) {
+export function ProfilePicturePlaceholder({
+  size = defaultSize
+}: ProfilePicturePlaceholderProps) {
   const classes = clsx(avatarVariants[size], "rounded-full bg-slate-400")
 
   return (
@@ -35,7 +37,11 @@ export function ProfilePicture({
   size = defaultSize,
   status = OnlineStatus.INACTIVE
 }: ProfilePictureProps) {
-  const classes = clsx(avatarVariants[size], "rounded-full", !src && "bg-slate-400")
+  const classes = clsx(
+    avatarVariants[size],
+    "rounded-full",
+    !src && "bg-slate-400"
+  )
 
   return (
     <span className="relative inline-block">

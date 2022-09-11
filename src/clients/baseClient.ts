@@ -19,5 +19,7 @@ export async function baseClient<T = unknown>(
     return result as T
   }
 
-  throw new Error(`Request to '${url}' failed with error. Got status: ${response.status}`)
+  throw new Error(
+    `Request to '${url}' failed with error. Got status: ${response.status}`
+  )
 }

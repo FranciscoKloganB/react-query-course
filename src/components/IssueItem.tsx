@@ -46,7 +46,11 @@ export function IssueItem({
 
   const issueDetailHref = `/issues/${number}`
 
-  const creatorName = createdBy?.isLoading ? <Dots /> : <strong>{createdBy.data?.name}</strong>
+  const creatorName = createdBy?.isLoading ? (
+    <Dots />
+  ) : (
+    <strong>{createdBy.data?.name}</strong>
+  )
 
   function prefetchIssueDetails() {
     queryClient.prefetchQuery(QKF.issueDetail(number), ({ signal }) =>
@@ -58,7 +62,10 @@ export function IssueItem({
   }
 
   return (
-    <li onMouseEnter={() => prefetchIssueDetails()} onFocus={() => prefetchIssueDetails()}>
+    <li
+      onMouseEnter={() => prefetchIssueDetails()}
+      onFocus={() => prefetchIssueDetails()}
+    >
       <div className="grid grid-cols-12">
         <EdgeColumn>
           <span>
@@ -77,8 +84,8 @@ export function IssueItem({
             <div>
               <Paragraph className="text-base">
                 <Small>
-                  #{number} set to <u>{noCase(status ?? "")}</u> {relativeDate(createdDate)} by{" "}
-                  {creatorName}
+                  #{number} set to <u>{noCase(status ?? "")}</u>{" "}
+                  {relativeDate(createdDate)} by {creatorName}
                 </Small>
               </Paragraph>
             </div>
@@ -101,7 +108,9 @@ export function IssueItem({
               <Span>
                 <GoComment className="mt-1" />
               </Span>
-              <Span className="hidden text-sm md:inline-block">{commentsCount}</Span>
+              <Span className="hidden text-sm md:inline-block">
+                {commentsCount}
+              </Span>
             </div>
           </EdgeColumn>
         )}

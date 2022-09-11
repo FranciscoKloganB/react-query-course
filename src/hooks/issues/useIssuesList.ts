@@ -7,18 +7,30 @@ import { setIssue } from "./useIssueDetail"
 
 import type { QueryClient } from "@tanstack/react-query"
 
-function fetchIssuesList(queryString: string, queryClient: QueryClient, signal?: AbortSignal) {
-  return baseClient<IssueDto[]>(`/api/issues?${queryString}`, { signal }).then((data) => {
-    const issues = data.map((dto) => toDomainIssue(dto))
+function fetchIssuesList(
+  queryString: string,
+  queryClient: QueryClient,
+  signal?: AbortSignal
+) {
+  return baseClient<IssueDto[]>(`/api/issues?${queryString}`, { signal }).then(
+    (data) => {
+      const issues = data.map((dto) => toDomainIssue(dto))
 
-    /** Prefills issue details header section with real data */
-    issues.forEach((issue) => setIssue(queryClient, issue))
+      /** Prefills issue details header section with real data */
+      issues.forEach((issue) => setIssue(queryClient, issue))
 
-    return issues
-  })
+      return issues
+    }
+  )
 }
 
-function useIssuesList({ labels, status }: { labels: string[]; status?: IssueStatus }) {
+function useIssuesList({
+  labels,
+  status
+}: {
+  labels: string[]
+  status?: IssueStatus
+}) {
   const queryClient = useQueryClient()
 
   return useQuery(QKF.issuesFiltered(labels, status), ({ signal }) => {

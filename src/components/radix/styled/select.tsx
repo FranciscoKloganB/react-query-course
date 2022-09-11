@@ -45,7 +45,13 @@ const StyledViewport = tw(SelectPrimitive.Viewport)`
 `
 
 /** Renders the provided children as Select content when the Select has state open. */
-function Content({ children, ...props }: { children: React.ReactNode; props?: unknown }) {
+function Content({
+  children,
+  ...props
+}: {
+  children: React.ReactNode
+  props?: unknown
+}) {
   return (
     <SelectPrimitive.Portal>
       <StyledContent {...props}>{children}</StyledContent>

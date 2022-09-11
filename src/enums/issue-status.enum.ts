@@ -18,7 +18,11 @@ export function isIssueStatusFilterReset(status: IssueStatus) {
 }
 
 export function isOpenIssue(status: IssueStatus) {
-  return [IssueStatus.BACKLOG, IssueStatus.TODO, IssueStatus.IN_PROGRESS].includes(status)
+  return [
+    IssueStatus.BACKLOG,
+    IssueStatus.TODO,
+    IssueStatus.IN_PROGRESS
+  ].includes(status)
 }
 
 export function isClosedIssue(status: IssueStatus) {

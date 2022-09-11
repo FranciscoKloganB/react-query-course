@@ -7,7 +7,9 @@ function fetchIssueComments(number: string | number, signal?: AbortSignal) {
 }
 
 function useIssueComments(number: string | number) {
-  return useQuery(QKF.issueComments(number), ({ signal }) => fetchIssueComments(number, signal))
+  return useQuery(QKF.issueComments(number), ({ signal }) =>
+    fetchIssueComments(number, signal)
+  )
 }
 
 export { fetchIssueComments, useIssueComments }

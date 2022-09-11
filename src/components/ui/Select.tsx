@@ -69,7 +69,10 @@ export function Select(props: SelectProps) {
           {props.defaultValue ? (
             <SelectValue placeholder={props.placeholder} />
           ) : (
-            <SelectValue aria-label={`Select ${props.value}`} placeholder={props.placeholder}>
+            <SelectValue
+              aria-label={`Select ${props.value}`}
+              placeholder={props.placeholder}
+            >
               {IssueStatus[props.value as keyof typeof IssueStatus]}
             </SelectValue>
           )}

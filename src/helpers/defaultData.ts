@@ -20,12 +20,14 @@ export const defaultUsers = [
   {
     id: "u_1",
     name: "Tyler",
-    profilePictureUrl: "https://res.cloudinary.com/uidotdev/image/twitter_name/tylermcginnis"
+    profilePictureUrl:
+      "https://res.cloudinary.com/uidotdev/image/twitter_name/tylermcginnis"
   },
   {
     id: "u_2",
     name: "Bono",
-    profilePictureUrl: "https://res.cloudinary.com/uidotdev/image/twitter_name/u2"
+    profilePictureUrl:
+      "https://res.cloudinary.com/uidotdev/image/twitter_name/u2"
   }
 ]
 

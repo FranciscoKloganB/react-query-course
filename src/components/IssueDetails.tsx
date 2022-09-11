@@ -34,9 +34,13 @@ export function IssueDetails() {
 
     return (
       <div>
-        <Subtitle>Sorry. We could not load the details for this issue.</Subtitle>
+        <Subtitle>
+          Sorry. We could not load the details for this issue.
+        </Subtitle>
         <Paragraph>Please try again later.</Paragraph>
-        <Paragraph>You will be redirected to the main page in 5 seconds.</Paragraph>
+        <Paragraph>
+          You will be redirected to the main page in 5 seconds.
+        </Paragraph>
       </div>
     )
   }

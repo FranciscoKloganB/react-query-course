@@ -1,5 +1,9 @@
 import React from "react"
-import { Search as SearchStyled, SearchContainer, SearchIconContainer } from "@styled"
+import {
+  Search as SearchStyled,
+  SearchContainer,
+  SearchIconContainer
+} from "@styled"
 import { useDebouncedCallback } from "use-debounce"
 
 interface ISearchEvent {
@@ -13,8 +17,16 @@ type SearchProps = {
   delay?: number
 }
 
-export function Search({ children, state, setState, delay = 500 }: SearchProps) {
-  const debouncedSetState = useDebouncedCallback((value) => setState(value), delay)
+export function Search({
+  children,
+  state,
+  setState,
+  delay = 500
+}: SearchProps) {
+  const debouncedSetState = useDebouncedCallback(
+    (value) => setState(value),
+    delay
+  )
 
   return (
     <SearchContainer>

@@ -13,13 +13,12 @@ export function LabelChip({
   const labelsQuery = useLabels()
 
   if (labelsQuery.isSuccess) {
-    const label = labelsQuery.data.find((queryLabel) => queryLabel.name === name)
+    const label = labelsQuery.data.find((label) => label.name === name)
 
     if (!label) {
-      console.warn(`
-        LabelChip could not find label using name='${name}' in the labels obtained from useLabels.
-        Are you sure the provided name filter exists?'
-      `)
+      console.warn(
+        "LabelChip could not find label using name='${name}' in the labels obtained from useLabels. Are you sure the provided name filter exists?"
+      )
 
       return null
     }

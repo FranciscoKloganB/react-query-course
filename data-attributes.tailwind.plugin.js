@@ -14,7 +14,9 @@
 function dataStateVariant(state, { addVariant, escape }) {
   addVariant(`data-state-${state}`, ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.${escape(`data-state-${state}${separator}${className}`)}[data-state='${state}']`
+      return `.${escape(
+        `data-state-${state}${separator}${className}`
+      )}[data-state='${state}']`
     })
   })
 
