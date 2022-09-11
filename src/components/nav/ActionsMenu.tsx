@@ -12,7 +12,6 @@ import { Link } from "react-router-dom"
 import {
   GoHome,
   GoPencil,
-  GoSearch,
   GoSettings,
   GoSignOut,
   GoThreeBars,
@@ -46,11 +45,6 @@ const pageRoutes: MenuActions = [
     name: "Create New Issue",
     path: "/issues/create",
     icon: <GoPencil />
-  },
-  {
-    name: "Search Issues",
-    path: "/search",
-    icon: <GoSearch />
   },
   {
     name: "See All Issues",
