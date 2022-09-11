@@ -50,17 +50,28 @@ function __RenderGroup__({ group }: { group: SelectGroup }) {
   )
 }
 
+/** To take control of the rendering logic use `value` prop instead of `defautlValue` prop */
 export function Select(props: SelectProps) {
   const lastOfGroups = props.groups.length - 1
 
   return (
     <div className="flex">
-      <SelectRoot defaultValue={props.defaultValue} onValueChange={props.onValueChange}>
+      <SelectRoot
+        defaultValue={props.defaultValue}
+        onValueChange={props.onValueChange}
+        value={props.value}
+      >
         <SelectTrigger aria-label={props.ariaLabel}>
           <SelectIcon>
             <BiChevronDown className="text-xl" />
           </SelectIcon>
-          <SelectValue placeholder={props.placeholder} />
+          {props.defaultValue ? (
+            <SelectValue placeholder={props.placeholder} />
+          ) : (
+            <SelectValue aria-label={`Select ${props.value}`} placeholder={props.placeholder}>
+              {props.value}
+            </SelectValue>
+          )}
         </SelectTrigger>
         <SelectContent>
           <SelectScrollUpButton>

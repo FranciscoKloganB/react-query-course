@@ -32,15 +32,15 @@ export default function Issues() {
   }
 
   function handleStatusSelection(enumKey: string) {
-    const status = IssueStatus[enumKey as keyof typeof IssueStatus]
+    const newStatus = IssueStatus[enumKey as keyof typeof IssueStatus]
 
-    if (status) {
-      setSelectedStatus(status)
+    if (newStatus) {
+      setSelectedStatus((currentStatus) => (currentStatus !== newStatus ? newStatus : undefined))
     } else {
       console.error(
         "Issues page could not filter issues by status because of invalid selection",
         enumKey,
-        status
+        newStatus
       )
     }
   }
@@ -59,11 +59,11 @@ export default function Issues() {
           />
           <Subtitle>Status</Subtitle>
           <Select
-            defaultValue={selectedStatus}
-            onValueChange={handleStatusSelection}
-            groups={groups}
             ariaLabel="Issue label filters"
             placeholder="Filter issues"
+            groups={groups}
+            defaultValue={selectedStatus}
+            onValueChange={handleStatusSelection}
           />
         </aside>
         <section className="pt-4 lg:pt-0">
