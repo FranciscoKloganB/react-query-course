@@ -1,7 +1,7 @@
 import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
 
 import { Link } from "react-router-dom"
-import { isOpenIssue } from "@enums"
+import { isOpenIssue, IssueStatus } from "@enums"
 import { Paragraph, Span, Small } from "@styled"
 import { relativeDate } from "@helpers"
 import tw from "tailwind-styled-components"
@@ -12,6 +12,7 @@ import LabelsList from "@components/LabelsList"
 import { Dots } from "@ui"
 import { useQueryClient } from "@tanstack/react-query"
 import { QKF } from "@common/query-key.factory"
+import { noCase } from "change-case"
 
 type IssueItemProps = {
   id: string
@@ -21,7 +22,7 @@ type IssueItemProps = {
   createdDate: string
   labelIDs: string[]
   number: number
-  status: string
+  status: IssueStatus
   title: string
 }
 
@@ -40,12 +41,12 @@ export function IssueItem({
   status,
   title
 }: IssueItemProps) {
+  const queryClient = useQueryClient()
+  const createdBy = useUser(createdById)
+
   const issueDetailHref = `/issues/${number}`
 
-  const createdBy = useUser(createdById)
   const creatorName = createdBy?.isLoading ? <Dots /> : <strong>{createdBy.data?.name}</strong>
-
-  const queryClient = useQueryClient()
 
   function prefetchIssueDetails() {
     queryClient.prefetchQuery(QKF.issueDetail(number), ({ signal }) =>
@@ -76,7 +77,8 @@ export function IssueItem({
             <div>
               <Paragraph className="text-base">
                 <Small>
-                  #{number} set to <u>{status}</u> {relativeDate(createdDate)} by {creatorName}
+                  #{number} set to <u>{noCase(status)}</u> {relativeDate(createdDate)} by{" "}
+                  {creatorName}
                 </Small>
               </Paragraph>
             </div>

@@ -3,16 +3,20 @@ import { Subtitle, Title } from "@styled"
 import { useMemo, useState } from "react"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
 import { Select, Tooltip } from "@ui"
-import { IssueStatus } from "@enums"
+import { isIssueStatusFilterReset, IssueStatus } from "@enums"
+
+import { sentenceCase } from "change-case"
 
 function buildIssueProgressStatuses() {
   return [
     {
       label: "issue status",
-      items: Object.keys(IssueStatus).map((key: string) => ({
-        display: IssueStatus[key as keyof typeof IssueStatus] as string,
-        value: key
-      }))
+      items: [
+        ...Object.keys(IssueStatus).map((key) => ({
+          display: sentenceCase(IssueStatus[key as keyof typeof IssueStatus]),
+          value: key
+        }))
+      ]
     }
   ]
 }
@@ -35,7 +39,7 @@ export default function Issues() {
     const newStatus = IssueStatus[enumKey as keyof typeof IssueStatus]
 
     if (newStatus) {
-      setSelectedStatus((currentStatus) => (currentStatus !== newStatus ? newStatus : undefined))
+      setSelectedStatus(isIssueStatusFilterReset(newStatus) ? undefined : newStatus)
     } else {
       console.error(
         "Issues page could not filter issues by status because of invalid selection",

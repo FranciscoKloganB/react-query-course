@@ -4,6 +4,7 @@ import { StatusChip } from "@components/StatusChip"
 import { relativeDate } from "@helpers"
 import { useUser } from "@hooks"
 import { Dots } from "@ui"
+import { noCase } from "change-case"
 
 type IssueHeaderProps = {
   comments: string[]
@@ -34,7 +35,7 @@ export function IssueHeader({
       <div className="flex items-center gap-2">
         <StatusChip status={status} />
         <Span>
-          {creatorName} has set the issue to <u>{status}</u> {relativeDate(createdDate)} —{" "}
+          {creatorName} has set the issue to <u>{noCase(status)}</u> {relativeDate(createdDate)} —{" "}
           {comments.length} comments
         </Span>
       </div>

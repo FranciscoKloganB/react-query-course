@@ -17,6 +17,7 @@ import {
 } from "@rdx/select"
 
 import type { SelectRootProps } from "@rdx/select"
+import { IssueStatus } from "@enums"
 
 type SelectGroup = {
   label: string
@@ -69,7 +70,7 @@ export function Select(props: SelectProps) {
             <SelectValue placeholder={props.placeholder} />
           ) : (
             <SelectValue aria-label={`Select ${props.value}`} placeholder={props.placeholder}>
-              {props.value}
+              {IssueStatus[props.value as keyof typeof IssueStatus]}
             </SelectValue>
           )}
         </SelectTrigger>

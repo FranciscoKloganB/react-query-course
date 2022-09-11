@@ -1,4 +1,10 @@
 export enum IssueStatus {
+  /**
+   * FIXME:
+   *  Since `@radix/select` controlled value prop is bugged and we can't reset state
+   *  in uncontrolled mode, we needed to add `__CLEAR_FILTER__`.
+   */
+  __CLEAR_FILTER__ = "show all statuses",
   BACKLOG = "backlog",
   CANCELLED = "cancelled",
   CLOSED = "closed",
@@ -7,10 +13,12 @@ export enum IssueStatus {
   TODO = "todo"
 }
 
-export function isOpenIssue(status: string | IssueStatus) {
-  return [IssueStatus.BACKLOG, IssueStatus.TODO, IssueStatus.IN_PROGRESS].includes(
-    status as IssueStatus
-  )
+export function isIssueStatusFilterReset(status: IssueStatus) {
+  return IssueStatus.__CLEAR_FILTER__ === status
+}
+
+export function isOpenIssue(status: IssueStatus) {
+  return [IssueStatus.BACKLOG, IssueStatus.TODO, IssueStatus.IN_PROGRESS].includes(status)
 }
 
 export function isClosedIssue(status: IssueStatus) {
