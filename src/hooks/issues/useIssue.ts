@@ -7,7 +7,7 @@ import type { QueryClient } from "@tanstack/react-query"
 import { QKF } from "@/src/common/query-key.factory"
 
 export function setIssue(client: QueryClient, issue: Issue) {
-  client.setQueryData(QKF.issueDetail(issue.number), issue)
+  client.setQueryData(QKF.issueDetail(issue.number.toString()), issue)
 }
 
 export function useIssue(number: string) {
@@ -18,6 +18,3 @@ export function useIssue(number: string) {
     { staleTime: seconds(30) }
   )
 }
-
-const ctrl = new AbortController()
-const signal = ctrl.signal
