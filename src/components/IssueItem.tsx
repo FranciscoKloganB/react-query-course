@@ -5,11 +5,13 @@ import { isOpenIssue } from "@enums"
 import { Paragraph, Span, Small } from "@styled"
 import { relativeDate } from "@helpers"
 import tw from "tailwind-styled-components"
-import { useUser } from "@hooks"
+import { fetchIssueComments, fetchIssueDetail, useUser } from "@hooks"
 
 import { AssigneeProfilePicture } from "@components/AssigneeProfilePicture"
 import LabelsList from "@components/LabelsList"
 import { Dots } from "@ui"
+import { useQueryClient } from "@tanstack/react-query"
+import { QKF } from "@common/query-key.factory"
 
 type IssueItemProps = {
   id: string
@@ -41,11 +43,21 @@ export function IssueItem({
   const issueDetailHref = `/issues/${number}`
 
   const createdBy = useUser(createdById)
-
   const creatorName = createdBy?.isLoading ? <Dots /> : <strong>{createdBy.data?.name}</strong>
 
+  const queryClient = useQueryClient()
+
+  function prefetchIssueDetails() {
+    queryClient.prefetchQuery(QKF.issueDetail(number), ({ signal }) =>
+      fetchIssueDetail(number, signal)
+    )
+    queryClient.prefetchQuery(QKF.issueComments(number), ({ signal }) =>
+      fetchIssueComments(number, signal)
+    )
+  }
+
   return (
-    <li>
+    <li onMouseEnter={() => prefetchIssueDetails()} onFocus={() => prefetchIssueDetails()}>
       <div className="grid grid-cols-12">
         <EdgeColumn>
           <span>

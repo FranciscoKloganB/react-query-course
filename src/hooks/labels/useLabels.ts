@@ -15,4 +15,4 @@ function useLabels() {
   })
 }
 
-export { fetchLabels, useQuery }
+export { fetchLabels, useLabels }

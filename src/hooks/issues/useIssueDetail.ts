@@ -14,7 +14,7 @@ function fetchIssueDetail(number: string | number, signal?: AbortSignal) {
   return baseClient<IssueDto>(`/api/issues/${number}`, { signal }).then((dto) => toDomainIssue(dto))
 }
 
-function useIssueDetail(number: string) {
+function useIssueDetail(number: string | number) {
   return useQuery(QKF.issueDetail(number), ({ signal }) => fetchIssueDetail(number, signal), {
     staleTime: seconds(30)
   })
