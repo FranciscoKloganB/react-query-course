@@ -18,6 +18,7 @@ export function useIssues({ labels, status }: { labels: string[]; status?: Issue
     return baseClient<IssueDto[]>(`/api/issues?${queryString}`, { signal }).then((data) => {
       const issues = data.map((dto) => toDomainIssue(dto))
 
+      /** Prefills issue details header section with real data */
       issues.forEach((issue) => setIssue(queryClient, issue))
 
       return issues
