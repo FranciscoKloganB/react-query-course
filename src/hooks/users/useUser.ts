@@ -1,14 +1,18 @@
 import { baseClient } from "@clients"
 import { useQuery } from "@tanstack/react-query"
 import { minutes } from "@helpers"
-import { QKF } from "@/src/common/query-key.factory"
+import { QKF } from "@common/query-key.factory"
 
-export function useUser(userId: string) {
+function fetchUser(id: string, signal?: AbortSignal) {
+  return baseClient<User>(`/api/users/${id}`, { signal })
+}
+
+function useUser(userId: string) {
   return useQuery(
     QKF.userDetails(userId),
     ({ signal }) => {
       if (userId) {
-        return baseClient<User>(`/api/users/${userId}`, { signal })
+        return fetchUser(userId, signal)
       }
 
       throw new Error("Can not fetch user with ID null")
@@ -16,3 +20,5 @@ export function useUser(userId: string) {
     { staleTime: minutes(5) }
   )
 }
+
+export { fetchUser, useUser }

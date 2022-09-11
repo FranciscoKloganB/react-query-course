@@ -2,28 +2,33 @@ import { seconds } from "@helpers"
 import { baseClient } from "@clients"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { toDomainIssue } from "./toDomainIssue"
-import { setIssue } from "./useIssue"
-import { QKF } from "@/src/common/query-key.factory"
+import { setIssue } from "./useIssueDetail"
+import { QKF } from "@common/query-key.factory"
 
-export function useIssuesSearch(searchValue: string) {
+import type { QueryClient } from "@tanstack/react-query"
+
+function fetchIssuesSearch(search: string, client: QueryClient, signal?: AbortSignal) {
+  return baseClient<SearchOf<IssueDto>>(`/api/search/issues?q=${search}`, { signal }).then(
+    (data) => {
+      const searchResult = {
+        count: data.count,
+        items: data.items.map((dto: IssueDto) => toDomainIssue(dto))
+      }
+
+      searchResult.items.forEach((issue) => setIssue(client, issue))
+
+      return searchResult
+    }
+  )
+}
+
+function useIssuesSearch(search: string) {
   const queryClient = useQueryClient()
 
   const query = useQuery(
-    QKF.issuesSearched(searchValue),
-    ({ signal }) =>
-      baseClient<SearchOf<IssueDto>>(`/api/search/issues?q=${searchValue}`, { signal }).then(
-        (data) => {
-          const searchResult = {
-            count: data.count,
-            items: data.items.map((dto: IssueDto) => toDomainIssue(dto))
-          }
-
-          searchResult.items.forEach((issue) => setIssue(queryClient, issue))
-
-          return searchResult
-        }
-      ),
-    { enabled: !!searchValue, staleTime: seconds(15) }
+    QKF.issuesSearched(search),
+    ({ signal }) => fetchIssuesSearch(search, queryClient, signal),
+    { enabled: !!search, staleTime: seconds(15) }
   )
 
   /**
@@ -47,3 +52,5 @@ export function useIssuesSearch(searchValue: string) {
 
   return { ...query, isIdle, isDisabled, isLoading, isComplete }
 }
+
+export { fetchIssuesSearch, useIssuesSearch }

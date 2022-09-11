@@ -1,4 +1,4 @@
-export * from "./useIssue"
 export * from "./useIssueComments"
-export * from "./useIssues"
+export * from "./useIssueDetail"
+export * from "./useIssuesList"
 export * from "./useIssuesSearch"
