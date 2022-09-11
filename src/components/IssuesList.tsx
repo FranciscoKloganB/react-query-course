@@ -40,6 +40,21 @@ export default function IssuesList({ filterByLabels, filterByStatus }: IssuesLis
   const issuesQuery = useIssues({ labels: filterByLabels, status: filterByStatus })
   const searchQuery = useIssuesSearch(search)
 
+  let searchResult: Issue[] = []
+  if (searchQuery.isSuccess) {
+    searchResult = [...searchQuery.data.items]
+
+    if (filterByStatus) {
+      searchResult = searchResult.filter((issue) => issue.status === filterByStatus)
+    }
+
+    if (filterByLabels.length) {
+      searchResult = searchResult.filter((issue) =>
+        issue.labelIDs.some((label) => filterByLabels.includes(label))
+      )
+    }
+  }
+
   return (
     <div className="mt-3 space-y-3">
       <Search state={search} setState={setSearch}>
@@ -56,8 +71,8 @@ export default function IssuesList({ filterByLabels, filterByStatus }: IssuesLis
         <FullSpinner />
       ) : searchQuery.isSuccess ? (
         <>
-          <Paragraph>{searchQuery.data.count} results</Paragraph>
-          <__RenderList__ issues={searchQuery.data.items} />
+          <Paragraph>{searchResult.length} results</Paragraph>
+          <__RenderList__ issues={searchResult} />
         </>
       ) : (
         <Paragraph>Unable to load issues...</Paragraph>
