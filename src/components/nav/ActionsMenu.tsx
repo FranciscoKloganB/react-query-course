@@ -9,70 +9,17 @@ import {
 import { RoundButton } from "@styled"
 import { Dropdown, LeftElement, RightElement } from "@ui"
 import { Link } from "react-router-dom"
-import {
-  GoHome,
-  GoPencil,
-  GoSettings,
-  GoSignOut,
-  GoThreeBars,
-  GoUnfold,
-  GoPerson
-} from "react-icons/go"
-import { MdOutlineEditNotifications } from "react-icons/md"
+import { GoSettings, GoThreeBars } from "react-icons/go"
 import { BiChevronRight } from "react-icons/bi"
+import { actionableRoutes } from "@common/routes/navigation"
 
-type MenuActions = Array<{
-  name: string
-  path: string
-  disabled?: boolean
-  icon?: React.ReactNode
-  shortcut?: string
-}>
+import type { MenuActions } from "@common/routes/types"
 
 const hamburger = (
   <RoundButton aria-label="Open actions menu">
     <GoThreeBars />
   </RoundButton>
 )
-
-const pageRoutes: MenuActions = [
-  {
-    name: "Home",
-    path: "/",
-    icon: <GoHome />
-  },
-  {
-    name: "Create New Issue",
-    path: "/issues/create",
-    icon: <GoPencil />
-  },
-  {
-    name: "See All Issues",
-    path: "/",
-    icon: <GoUnfold />
-  }
-]
-
-const authRoutes: MenuActions = [
-  {
-    name: "Signout",
-    path: "/signout",
-    icon: <GoSignOut />
-  }
-]
-
-const userProfileRoutes: MenuActions = [
-  {
-    name: "Notifications",
-    path: "/me/notifications",
-    icon: <MdOutlineEditNotifications />
-  },
-  {
-    name: "Preferences",
-    path: "/me/preferences",
-    icon: <GoPerson />
-  }
-]
 
 function RenderActions({ actions }: { actions: MenuActions }) {
   return (
@@ -93,7 +40,7 @@ export function ActionsMenu() {
     <Dropdown triggerButton={hamburger}>
       <>
         <DropdownMenuLabel>Pages</DropdownMenuLabel>
-        <RenderActions actions={pageRoutes} />
+        <RenderActions actions={actionableRoutes.pages} />
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
             <LeftElement>
@@ -105,12 +52,12 @@ export function ActionsMenu() {
             </RightElement>
           </DropdownMenuSubTrigger>
           <DropdownMenuSubContent sideOffset={2} alignOffset={-5}>
-            <RenderActions actions={userProfileRoutes} />
+            <RenderActions actions={actionableRoutes.profile} />
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuLabel>Session</DropdownMenuLabel>
-        <RenderActions actions={authRoutes} />
+        <RenderActions actions={actionableRoutes.auth} />
       </>
     </Dropdown>
   )

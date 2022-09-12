@@ -1,14 +1,12 @@
 import { Routes, Route } from "react-router-dom"
-import AddIssue from "@pages/AddIssue"
-import Issue from "@pages/Issue"
-import Issues from "@pages/Issues"
+import routes from "@common/routes"
 
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Issues />} />
-      <Route path="/issues/create" element={<AddIssue />} />
-      <Route path="/issues/:number" element={<Issue />} />
+      {routes.map(({ component, name, path }) => (
+        <Route key={name} path={path} element={component()} />
+      ))}
     </Routes>
   )
 }
