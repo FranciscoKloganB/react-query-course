@@ -1,3 +1,4 @@
+export * from "./Breadcrumbs"
 export * from "./Dots"
 export * from "./Dropdown"
 export * from "./FullSpinner"

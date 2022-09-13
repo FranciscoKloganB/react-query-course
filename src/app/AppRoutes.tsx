@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom"
-import routes from "@common/routes"
+import appRoutes from "@common/routes"
 
 export function AppRoutes() {
   return (
     <Routes>
-      {routes.map(({ component, name, path }) => (
-        <Route key={name} path={path} element={component()} />
+      {appRoutes.map(({ element, path }, key) => (
+        <Route key={key} path={path} element={element} />
       ))}
     </Routes>
   )

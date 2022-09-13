@@ -11,7 +11,7 @@ import { Dropdown, LeftElement, RightElement } from "@ui"
 import { Link } from "react-router-dom"
 import { GoSettings, GoThreeBars } from "react-icons/go"
 import { BiChevronRight } from "react-icons/bi"
-import { actionableRoutes } from "@common/routes/navigation"
+import { actionableRoutes } from "@common/routes"
 
 import type { MenuActions } from "@common/routes/types"
 
@@ -24,10 +24,10 @@ const hamburger = (
 function RenderActions({ actions }: { actions: MenuActions }) {
   return (
     <>
-      {actions.map(({ disabled, icon, name, path, shortcut }) => (
-        <DropdownMenuItem key={name} disabled={!!disabled}>
+      {actions.map(({ action, disabled, icon, path, shortcut }) => (
+        <DropdownMenuItem key={action} disabled={!!disabled}>
           {icon && <LeftElement>{icon}</LeftElement>}
-          <Link to={path}>{name}</Link>
+          <Link to={path}>{action}</Link>
           {shortcut && <RightElement>{shortcut}</RightElement>}
         </DropdownMenuItem>
       ))}
