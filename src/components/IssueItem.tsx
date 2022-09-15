@@ -1,6 +1,6 @@
 import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
 
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { isOpenIssue, IssueStatus } from "@enums"
 import { Paragraph, Span, Small } from "@styled"
 import { relativeDate } from "@helpers"
@@ -42,15 +42,15 @@ export function IssueItem({
   title
 }: IssueItemProps) {
   const queryClient = useQueryClient()
+
   const createdBy = useUser(createdById)
-
-  const issueDetailHref = `/issues/${number}`
-
   const creatorName = createdBy?.isLoading ? (
     <Dots />
   ) : (
     <strong>{createdBy.data?.name}</strong>
   )
+
+  const detailHref = `/issues/${number}`
 
   function prefetchIssueDetails() {
     queryClient.prefetchQuery(QKF.issueDetail(number), ({ signal }) =>
@@ -78,9 +78,9 @@ export function IssueItem({
         </EdgeColumn>
         <div className="col-span-8 lg:col-span-7">
           <div>
-            <Link to={issueDetailHref}>
+            <NavLink to={detailHref}>
               <Span className="hover:text-yellow-400">{title}</Span>
-            </Link>
+            </NavLink>
             <div>
               <Paragraph className="text-base">
                 <Small>

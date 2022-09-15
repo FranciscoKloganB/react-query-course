@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { Title, Subtitle } from "@styled"
 
 export default function NotFound() {
@@ -7,11 +7,11 @@ export default function NotFound() {
       <div>
         <Title className="">Oops. There is nothing here!</Title>
       </div>
-      <Link to="/issues">
+      <NavLink to="/issues">
         <Subtitle className="inline-flex underline hover:text-yellow-400">
           See all Issues
         </Subtitle>
-      </Link>
+      </NavLink>
     </main>
   )
 }

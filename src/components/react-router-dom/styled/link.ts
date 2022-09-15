@@ -1,7 +1,7 @@
-import { Link as RouterLink } from "react-router-dom"
+import { NavLink as RouterLink } from "react-router-dom"
 import tw from "tailwind-styled-components"
 
-export const Link = tw(RouterLink)`
+export const NavLink = tw(RouterLink)`
   text-white
   font-sans
   text-sm

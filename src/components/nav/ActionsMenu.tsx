@@ -8,7 +8,7 @@ import {
 } from "@rdx/dropdown"
 import { RoundButton } from "@styled"
 import { Dropdown, LeftElement, RightElement } from "@ui"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { GoSettings, GoThreeBars } from "react-icons/go"
 import { BiChevronRight } from "react-icons/bi"
 import { actionableRoutes } from "@common/routes"
@@ -27,7 +27,7 @@ function RenderActions({ actions }: { actions: MenuActions }) {
       {actions.map(({ action, disabled, icon, path, shortcut }) => (
         <DropdownMenuItem key={action} disabled={!!disabled}>
           {icon && <LeftElement>{icon}</LeftElement>}
-          <Link to={path}>{action}</Link>
+          <NavLink to={path}>{action}</NavLink>
           {shortcut && <RightElement>{shortcut}</RightElement>}
         </DropdownMenuItem>
       ))}
