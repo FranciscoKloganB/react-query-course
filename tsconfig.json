@@ -17,6 +17,8 @@
       "@/*": ["./*"],
       "@app": ["./src/app"],
       "@app/*": ["./src/app/*"],
+      "@auth": ["./src/auth"],
+      "@auth/*": ["./src/auth/*"],
       "@clients": ["./src/clients"],
       "@clients/*": ["./src/clients/*"],
       "@common": ["./src/common"],

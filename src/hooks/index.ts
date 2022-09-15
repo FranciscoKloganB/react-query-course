@@ -1,3 +1,6 @@
 export * from "./issues"
 export * from "./labels"
 export * from "./users"
+export * from "./useAsync"
+export * from "./useAuth"
+export * from "./useClient"
