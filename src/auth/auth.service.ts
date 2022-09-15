@@ -2,6 +2,7 @@
 
 import type { AuthResponse, Credentials, IRegisterData } from "./types"
 
+const authURL = import.meta.env.VITE_AUTH_URL
 const localStorageKey = "__auth_provider_token__"
 
 const defaultAuthState = {
@@ -13,6 +14,10 @@ const defaultAuthState = {
 }
 
 async function getAuth(): Promise<AuthResponse> {
+  // FIXME: Remove these two lines
+  const previous = await import("../../mocks/login.json")
+  handleUserResponse(previous)
+
   const restoredAuthResponse = window.localStorage.getItem(localStorageKey)
 
   const json = restoredAuthResponse
@@ -24,6 +29,7 @@ async function getAuth(): Promise<AuthResponse> {
 
 function handleUserResponse(response: AuthResponse) {
   window.localStorage.setItem(localStorageKey, JSON.stringify(response))
+  console.log("AuthService persisted mock data to local storage")
 
   return response
 }
@@ -41,26 +47,22 @@ async function logout() {
   window.localStorage.removeItem(localStorageKey)
 }
 
-// Auth provider wouldn't use our baseClient, they'd have their own that's why we're not just re-using it
-const authURL = process.env.REACT_APP_AUTH_URL
-
-async function client(endpoint: string, data: Record<string, unknown>) {
-  const config = {
+async function client(_endpoint: string, data: Record<string, unknown>) {
+  const _config = {
     method: "POST",
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" }
   }
 
-  return window
-    .fetch(`${authURL}/${endpoint}`, config)
-    .then(async (response) => {
-      const data = await response.json()
-      if (response.ok) {
-        return data
-      } else {
-        return Promise.reject(data)
-      }
-    })
+  // FIXME: Replace the lines below with a fetch call
+  console.log("AuthService.client: mocking response from login/register")
+  const authResponse = await import("../../mocks/login.json")
+  console.log("AuthService.client result:", authResponse)
+
+  return {
+    ...authResponse,
+    expiresAt: +authResponse?.expiresAt
+  }
 }
 
 const AuthService = {

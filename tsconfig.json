@@ -15,6 +15,10 @@
     "paths": {
       "@": ["."],
       "@/*": ["./*"],
+      "@mocks": ["./mocks"],
+      "@mocks/*": ["./mocks/*"],
+      "@types": ["./types"],
+      "@types/*": ["./types/*"],
       "@app": ["./src/app"],
       "@app/*": ["./src/app/*"],
       "@auth": ["./src/auth"],
@@ -46,9 +50,7 @@
       "@styles": ["./src/styles"],
       "@styles/*": ["./src/styles/*"],
       "@themes": ["./src/themes"],
-      "@themes/*": ["./themes/*"],
-      "@types": ["./types"],
-      "@types/*": ["./types/*"],
+      "@themes/*": ["./src/themes/*"],
       "@ui": ["./src/components/ui"],
       "@ui/*": ["./src/components/ui/*"]
     },
