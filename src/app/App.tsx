@@ -2,26 +2,19 @@ import { AuthenticatedApp } from "@app/AuthenticatedApp"
 import { UnauthenticatedApp } from "@app/UnauthenticatedApp"
 import { Heading } from "@styled"
 import { ActionsMenu } from "@nav"
+import { useAuth } from "@hooks"
 import { Breadcrumbs } from "@ui"
-
-const useAuth = () => {
-  const user = "john doe"
-  const isAuthenticated = !!user
-  return {
-    user,
-    isAuthenticated,
-    logout: () => true
-  }
-}
+import { useCrumbs } from "@hooks"
 
 function App() {
   const { isAuthenticated } = useAuth()
+  const crumbsContext = useCrumbs()
 
   return (
     <div className="max-w-screen min-h-screen bg-slate-900">
       <div className="flex justify-end p-4 md:justify-between">
         <div className="hidden justify-start md:inline-block">
-          <Breadcrumbs />
+          <Breadcrumbs crumbs={crumbsContext.crumbs} />
         </div>
         <div>
           <ActionsMenu />

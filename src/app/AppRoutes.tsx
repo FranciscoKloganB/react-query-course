@@ -9,8 +9,9 @@ import useBreadcrumbs, {
   createRoutesFromChildren,
   Route
 } from "use-react-router-breadcrumbs"
+import { useCrumbs } from "@hooks"
 
-const buildRoutes = () => (
+const Routes = () => (
   <>
     <Route path="/" element={<Navigate replace to="issues" />}></Route>
     <Route breadcrumb="Issues List" element={<Issues />} path="/issues" />
@@ -29,8 +30,15 @@ const buildRoutes = () => (
 )
 
 export function AppRoutes() {
-  const routeObjects = createRoutesFromChildren(buildRoutes())
-  const breadCrumbs = useBreadcrumbs(routeObjects)
+  const crumbsContext = useCrumbs()
 
-  return useRoutes(routeObjects)
+  const routes = Routes()
+  const routeObjects = createRoutesFromChildren(routes)
+
+  const breadCrumbs = useBreadcrumbs(routeObjects)
+  crumbsContext.setCrumbs(breadCrumbs)
+
+  const GeneratedRoutes = useRoutes(routeObjects)
+
+  return GeneratedRoutes
 }

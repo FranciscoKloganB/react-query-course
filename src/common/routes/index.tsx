@@ -3,12 +3,7 @@ import Issue from "@pages/Issue"
 import Issues from "@pages/Issues"
 import { GoFile, GoPencil, GoPerson, GoSignOut, GoUnfold } from "react-icons/go"
 import { MdOutlineEditNotifications } from "react-icons/md"
-
-function DynamicIssueDetailBreadcrumb({ match }: any) {
-  const { params } = match
-
-  return <span>Issue #{params.number}</span>
-}
+import { DynamicIssueDetailBreadcrumb } from "@common/routes/breadcrumbs"
 
 const routesMap = {
   issuesList: {

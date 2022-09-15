@@ -1,27 +1,24 @@
-import appRoutes from "@common/routes"
-import useBreadcrumbs from "use-react-router-breadcrumbs"
-
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { GoHome } from "react-icons/go"
 
-export function Breadcrumbs() {
-  const breadcrumbs = useBreadcrumbs(appRoutes)
+import type { BreadcrumbData } from "use-react-router-breadcrumbs"
 
+export function Breadcrumbs({ crumbs }: { crumbs: BreadcrumbData<string>[] }) {
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-4">
         <li>
           <div>
-            <Link to="/" className="text-slate-400 hover:text-yellow-400">
+            <NavLink to="/" className="text-slate-400 hover:text-yellow-400">
               <GoHome
                 className="h-3.5 w-3.5 flex-shrink-0"
                 aria-hidden="true"
               />
               <span className="sr-only">Home</span>
-            </Link>
+            </NavLink>
           </div>
         </li>
-        {breadcrumbs.map((route) => (
+        {crumbs.map((route) => (
           <li key={route.key}>
             <div className="flex items-center">
               <svg
@@ -33,12 +30,12 @@ export function Breadcrumbs() {
               >
                 <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
               </svg>
-              <Link
+              <NavLink
                 to={route.location}
                 className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
               >
                 {route.breadcrumb}
-              </Link>
+              </NavLink>
             </div>
           </li>
         ))}
