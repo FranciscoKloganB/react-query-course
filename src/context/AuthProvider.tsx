@@ -55,19 +55,12 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       AuthService.register(form).then((user) => setData(user)),
     [setData]
   )
+
   const logout = React.useCallback(() => {
     AuthService.logout()
     queryCache.clear()
     setData(AuthService.defaultAuthState)
   }, [setData])
-
-  if (isLoading || isIdle) {
-    return <FullSpinner />
-  }
-
-  if (isError) {
-    return <FullPageErrorFallback error={error} />
-  }
 
   const { expiresAt, token, user } = data ?? AuthService.defaultAuthState
   const isAuthenticated = !!user && !!token && expiresAt < Date.now()
@@ -84,6 +77,14 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     }),
     [expiresAt, isAuthenticated, token, user, login, logout, register]
   )
+
+  if (isLoading || isIdle) {
+    return <FullSpinner />
+  }
+
+  if (isError) {
+    return <FullPageErrorFallback error={error} />
+  }
 
   if (isSuccess) {
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
