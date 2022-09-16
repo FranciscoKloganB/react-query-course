@@ -14,7 +14,7 @@ import { useEffect } from "react"
 
 const Routes = () => (
   <>
-    <Route path="/" element={<Navigate replace to="issues" />}></Route>
+    <Route path="/" element={<Navigate replace to="issues" />} />
     <Route breadcrumb="Issues List" element={<Issues />} path="/issues" />
     <Route
       breadcrumb={DynamicIssueDetailBreadcrumb}
@@ -38,7 +38,13 @@ export function AppRoutes() {
   const breadCrumbs = useBreadcrumbs(routeObjects)
 
   useEffect(() => {
-    crumbsContext.setCrumbs(breadCrumbs)
+    /**
+     * We slice the routes since our root path is rendered manually and /
+     * always redirects to /issues.
+     *
+     * We also have a bug when we use Homebread crumb directly in the Route of path "/"
+     */
+    crumbsContext.setCrumbs(breadCrumbs.slice(1))
   }, [])
 
   const GeneratedRoutes = useRoutes(routeObjects)
