@@ -10,6 +10,7 @@ import useBreadcrumbs, {
   Route
 } from "use-react-router-breadcrumbs"
 import { useCrumbs } from "@hooks"
+import { useEffect } from "react"
 
 const Routes = () => (
   <>
@@ -30,13 +31,15 @@ const Routes = () => (
 )
 
 export function AppRoutes() {
-  const crumbsContext = useCrumbs()
-
   const routes = Routes()
   const routeObjects = createRoutesFromChildren(routes)
 
+  const crumbsContext = useCrumbs()
   const breadCrumbs = useBreadcrumbs(routeObjects)
-  crumbsContext.setCrumbs(breadCrumbs)
+
+  useEffect(() => {
+    crumbsContext.setCrumbs(breadCrumbs)
+  }, [])
 
   const GeneratedRoutes = useRoutes(routeObjects)
 

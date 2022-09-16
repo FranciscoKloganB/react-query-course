@@ -4,6 +4,10 @@ import { GoHome } from "react-icons/go"
 import type { BreadcrumbData } from "use-react-router-breadcrumbs"
 
 export function Breadcrumbs({ crumbs }: { crumbs: BreadcrumbData<string>[] }) {
+  if (crumbs.length === 0) {
+    return null
+  }
+
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-4">
