@@ -1,10 +1,13 @@
 /* eslint-disable react/jsx-no-undef */
-import { Navigate, useRoutes } from "react-router-dom"
+import { useRoutes } from "react-router-dom"
 import AddIssue from "@pages/AddIssue"
 import Issue from "@pages/Issue"
 import Issues from "@pages/Issues"
 import NotFound from "@pages/NotFound"
-import { DynamicIssueDetailBreadcrumb } from "@common/routes/breadcrumbs"
+import {
+  DynamicIssueDetailBreadcrumb,
+  HomeBreadcrumb
+} from "@common/routes/breadcrumbs"
 import useBreadcrumbs, {
   createRoutesFromChildren,
   Route
@@ -14,18 +17,13 @@ import { useEffect } from "react"
 
 const Routes = () => (
   <>
-    <Route path="/" element={<Navigate replace to="issues" />} />
-    <Route breadcrumb="Issues List" element={<Issues />} path="/issues" />
+    <Route breadcrumb={HomeBreadcrumb} element={<Issues />} path="/" />
     <Route
       breadcrumb={DynamicIssueDetailBreadcrumb}
       element={<Issue />}
-      path="/issues/:number"
+      path="/:number"
     />
-    <Route
-      breadcrumb={"Create Issue"}
-      element={<AddIssue />}
-      path="/issues/create"
-    />
+    <Route breadcrumb={"Create Issue"} element={<AddIssue />} path="/create" />
     <Route breadcrumb="Error" path="*" element={<NotFound />} />
   </>
 )
@@ -44,7 +42,7 @@ export function AppRoutes() {
      *
      * We also have a bug when we use Homebread crumb directly in the Route of path "/"
      */
-    crumbsContext.setCrumbs(breadCrumbs.slice(1))
+    crumbsContext.setCrumbs([...breadCrumbs])
   }, [])
 
   const GeneratedRoutes = useRoutes(routeObjects)

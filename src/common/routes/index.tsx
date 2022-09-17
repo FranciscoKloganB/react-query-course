@@ -18,14 +18,14 @@ const routesMap = {
     breadcrumb: "Create Issue",
     element: <AddIssue />,
     icon: <GoPencil />,
-    path: "/issues/create"
+    path: "/create"
   },
   issuesDetail: {
     action: "See Issue Detail",
     breadcrumb: DynamicIssueDetailBreadcrumb,
     element: <Issue />,
     icon: <GoFile />,
-    path: "/issues/:number"
+    path: "/:number"
   },
   authSignout: {
     action: "Signout",

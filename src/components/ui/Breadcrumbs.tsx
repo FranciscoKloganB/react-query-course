@@ -1,50 +1,39 @@
 import { NavLink } from "react-router-dom"
-import { GoHome } from "react-icons/go"
-
+import { TbArrowWaveRightDown } from "react-icons/tb"
 import type { BreadcrumbData } from "use-react-router-breadcrumbs"
 
 export function Breadcrumbs({ crumbs }: { crumbs: BreadcrumbData<string>[] }) {
-  if (crumbs.length === 0) {
+  // Hides breadcrumbs on all parent routes
+  if (crumbs.length < 2) {
     return null
   }
+
+  const lastElement = crumbs.length - 1
 
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-4">
-        <li>
-          <div>
-            <NavLink to="/" className="text-slate-400 hover:text-yellow-400">
-              <GoHome
-                className="h-3.5 w-3.5 flex-shrink-0"
-                aria-hidden="true"
-              />
-              <span className="sr-only">Home</span>
-            </NavLink>
-          </div>
-        </li>
-        {crumbs.map((route, index) =>
-          index > 0 ? (
-            <li key={route.key}>
-              <div className="flex items-center">
-                <svg
-                  className="h-5 w-5 flex-shrink-0 text-gray-300"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  aria-hidden="true"
-                >
-                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
-                </svg>
+        {crumbs.map((route, index) => (
+          <li key={route.match.pathname}>
+            <div className="flex items-center space-x-4">
+              {index > 0 && (
+                <TbArrowWaveRightDown className="text-yellow-400" />
+              )}
+              {index === lastElement ? (
+                <span className="border-b-2 border-b-yellow-400 text-sm text-slate-300">
+                  {route.breadcrumb}
+                </span>
+              ) : (
                 <NavLink
-                  to={route.location}
-                  className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                  to={route.match.pathname}
+                  className="ml-4 text-sm font-medium text-slate-300 hover:text-yellow-400"
                 >
                   {route.breadcrumb}
                 </NavLink>
-              </div>
-            </li>
-          ) : null
-        )}
+              )}
+            </div>
+          </li>
+        ))}
       </ol>
     </nav>
   )

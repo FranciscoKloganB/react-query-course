@@ -5,9 +5,9 @@ export const DynamicIssueDetailBreadcrumb = (p: BreadcrumbComponentProps) => (
   <span>Issue #{p.match.params.number}</span>
 )
 
-export const HomeBreadcrumb = (
-  <>
+export const HomeBreadcrumb = () => (
+  <div>
     <GoHome className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
     <span className="sr-only">Home</span>
-  </>
+  </div>
 )
