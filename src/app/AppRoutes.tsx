@@ -8,10 +8,7 @@ import {
   DynamicIssueDetailBreadcrumb,
   HomeBreadcrumb
 } from "@common/routes/breadcrumbs"
-import useBreadcrumbs, {
-  createRoutesFromChildren,
-  Route
-} from "use-react-router-breadcrumbs"
+import { createRoutesFromChildren, Route } from "use-react-router-breadcrumbs"
 import { useCrumbs } from "@hooks"
 import { useEffect } from "react"
 
@@ -33,16 +30,9 @@ export function AppRoutes() {
   const routeObjects = createRoutesFromChildren(routes)
 
   const crumbsContext = useCrumbs()
-  const breadCrumbs = useBreadcrumbs(routeObjects)
 
   useEffect(() => {
-    /**
-     * We slice the routes since our root path is rendered manually and /
-     * always redirects to /issues.
-     *
-     * We also have a bug when we use Homebread crumb directly in the Route of path "/"
-     */
-    crumbsContext.setCrumbs([...breadCrumbs])
+    crumbsContext.setCrumbs(routeObjects)
   }, [])
 
   const GeneratedRoutes = useRoutes(routeObjects)

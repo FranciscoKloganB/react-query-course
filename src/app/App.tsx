@@ -4,17 +4,15 @@ import { Heading } from "@styled"
 import { ActionsMenu } from "@nav"
 import { useAuth } from "@hooks"
 import { Breadcrumbs } from "@ui"
-import { useCrumbs } from "@hooks"
 
 function App() {
   const { isAuthenticated } = useAuth()
-  const crumbsContext = useCrumbs()
 
   return (
     <div className="max-w-screen min-h-screen bg-slate-900">
       <div className="flex justify-end p-4 md:justify-between">
         <div className="hidden justify-start md:inline-block">
-          <Breadcrumbs crumbs={crumbsContext.crumbs} />
+          <Breadcrumbs />
         </div>
         <div>
           <ActionsMenu />

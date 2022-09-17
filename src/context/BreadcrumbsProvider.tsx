@@ -1,32 +1,58 @@
-import React, { createContext, useCallback } from "react"
+import { createContext, useCallback, useMemo } from "react"
 
 import { useState } from "react"
-import type { BreadcrumbData } from "use-react-router-breadcrumbs"
+
+import type { BreadcrumbsRoute } from "use-react-router-breadcrumbs"
 
 type BreadcrumbsContextState = {
-  crumbs: BreadcrumbData<string>[]
+  crumbs: BreadcrumbsRoute<string>[]
   hasCrumbs: boolean
-  setCrumbs: (newCrumbs: BreadcrumbData<string>[]) => void
+  setCrumbs: (newCrumbs: BreadcrumbsRoute<string>[]) => void
+  getRoutesToCrumb: (active: string) => BreadcrumbsRoute<string>[]
 }
 
-const BreadcrumbsContext = createContext<BreadcrumbsContextState>({
+const defaultCtx = {
   crumbs: [],
   hasCrumbs: false,
-  setCrumbs: () => null
-})
+  setCrumbs: () => null,
+  getRoutesToCrumb: () => []
+}
 
+const BreadcrumbsContext = createContext<BreadcrumbsContextState>(defaultCtx)
 BreadcrumbsContext.displayName = "BreadcrumbsContext"
 
-function BreadcrumbsProvider({ children }: { children: React.ReactNode }) {
-  const [crumbs, _setCrumbs] = useState<BreadcrumbData<string>[]>([])
+function getWithAncestors(
+  path: string,
+  crumbs: BreadcrumbsRoute<string>[]
+): BreadcrumbsRoute<string>[] {
+  const visitedNodes: BreadcrumbsRoute<string>[] = []
 
-  const setCrumbs = useCallback(
-    (newCrumbs: BreadcrumbData<string>[]) => _setCrumbs(newCrumbs),
-    [_setCrumbs]
+  crumbs.every((routeObject) => {
+    visitedNodes.push(routeObject)
+
+    if (routeObject.path === path) {
+      return false
+    }
+  })
+
+  return visitedNodes
+}
+
+function BreadcrumbsProvider({ children }: { children: React.ReactNode }) {
+  const [crumbs, setCrumbs] = useState<BreadcrumbsRoute<string>[]>([])
+
+  const getRoutesToCrumb = useCallback(
+    (path: string) => getWithAncestors(path, [...crumbs]),
+    []
   )
 
-  const value = React.useMemo(
-    () => ({ crumbs, hasCrumbs: !!crumbs.length, setCrumbs }),
+  const value = useMemo(
+    () => ({
+      hasCrumbs: !!crumbs.length,
+      crumbs,
+      setCrumbs,
+      getRoutesToCrumb
+    }),
     [crumbs, setCrumbs]
   )
 
