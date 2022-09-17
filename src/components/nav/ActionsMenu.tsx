@@ -13,7 +13,7 @@ import { GoSettings, GoThreeBars } from "react-icons/go"
 import { BiChevronRight } from "react-icons/bi"
 import { actionableRoutes } from "@common/routes/menu-actions"
 
-import type { MenuActions } from "@common/routes/types"
+import type { MenuAction } from "@common/routes/types"
 
 const hamburger = (
   <RoundButton aria-label="Open actions menu">
@@ -21,7 +21,7 @@ const hamburger = (
   </RoundButton>
 )
 
-function RenderActions({ actions }: { actions: MenuActions }) {
+function RenderActions({ actions }: { actions: MenuAction[] }) {
   return (
     <>
       {actions.map(({ action, disabled, icon, path, shortcut }) => (

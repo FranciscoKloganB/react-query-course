@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import { useRoutes } from "react-router-dom"
 
 import { useBreadcrumbRoutesContext } from "@hooks"
