@@ -9,7 +9,7 @@ import {
   HomeBreadcrumb
 } from "@common/routes/breadcrumbs"
 import { createRoutesFromChildren, Route } from "use-react-router-breadcrumbs"
-import { useCrumbs } from "@hooks"
+import { useBreadcrumbRoutesContext } from "@hooks"
 import { useEffect } from "react"
 
 const Routes = () => (
@@ -29,10 +29,10 @@ export function AppRoutes() {
   const routes = Routes()
   const routeObjects = createRoutesFromChildren(routes)
 
-  const crumbsContext = useCrumbs()
+  const crumbsContext = useBreadcrumbRoutesContext()
 
   useEffect(() => {
-    crumbsContext.setCrumbs(routeObjects)
+    crumbsContext.setObjects([...routeObjects])
   }, [])
 
   const GeneratedRoutes = useRoutes(routeObjects)

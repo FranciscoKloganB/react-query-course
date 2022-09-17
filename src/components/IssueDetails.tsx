@@ -5,6 +5,7 @@ import { HorizontalDivider, FullSpinner } from "@ui"
 import { Comment } from "@components/Comment"
 import { useRef } from "react"
 import { Paragraph, Subtitle } from "@styled"
+import { seconds } from "@helpers"
 
 export function IssueDetails() {
   const { number = "" } = useParams()
@@ -29,7 +30,7 @@ export function IssueDetails() {
         if (location.pathname === originalPathRef.current) {
           navigate("/", { replace: true })
         }
-      }, 5000)
+      }, seconds(10))
     }
 
     return (
@@ -39,7 +40,7 @@ export function IssueDetails() {
         </Subtitle>
         <Paragraph>Please try again later.</Paragraph>
         <Paragraph>
-          You will be redirected to the main page in 5 seconds.
+          You will be redirected to the main page in 10 seconds.
         </Paragraph>
       </div>
     )

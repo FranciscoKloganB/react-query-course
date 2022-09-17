@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { BrowserRouter } from "react-router-dom"
 import { minutes } from "@helpers"
 import { AuthProvider } from "./AuthProvider"
-import { BreadcrumbsProvider } from "./BreadcrumbsProvider"
+import { BreadcrumbRoutesProvider } from "./BreadcrumbRoutesProvider"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,7 +20,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AuthProvider>
-          <BreadcrumbsProvider>{children}</BreadcrumbsProvider>
+          <BreadcrumbRoutesProvider>{children}</BreadcrumbRoutesProvider>
         </AuthProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />

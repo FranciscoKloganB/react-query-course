@@ -7,7 +7,7 @@ export default function NotFound() {
       <div>
         <Title className="">Oops. There is nothing here!</Title>
       </div>
-      <NavLink to="/issues">
+      <NavLink to="/">
         <Subtitle className="inline-flex underline hover:text-yellow-400">
           See all Issues
         </Subtitle>

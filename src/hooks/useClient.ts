@@ -1,9 +1,9 @@
 import { useCallback } from "react"
 import { AuthService } from "@auth"
-import { useAuth } from "./useAuth"
+import { useAuthContext } from "./useAuthContext"
 
 export function useClient() {
-  const { token } = useAuth()
+  const { token } = useAuthContext()
 
   return useCallback(
     (endpoint: string, config: Record<string, unknown>) =>

@@ -2,11 +2,11 @@ import { AuthenticatedApp } from "@app/AuthenticatedApp"
 import { UnauthenticatedApp } from "@app/UnauthenticatedApp"
 import { Heading } from "@styled"
 import { ActionsMenu } from "@nav"
-import { useAuth } from "@hooks"
+import { useAuthContext } from "@hooks"
 import { Breadcrumbs } from "@ui"
 
 function App() {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated } = useAuthContext()
 
   return (
     <div className="max-w-screen min-h-screen bg-slate-900">

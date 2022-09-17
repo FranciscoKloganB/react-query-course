@@ -1,16 +1,15 @@
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { TbArrowWaveRightDown } from "react-icons/tb"
 import useBreadcrumbs from "use-react-router-breadcrumbs"
-import { useCrumbs } from "@hooks"
+import { useBreadcrumbRoutesContext } from "@/src/hooks"
 
 export function Breadcrumbs() {
-  const { pathname } = useLocation()
-  const crumbsContext = useCrumbs()
+  const routesCtx = useBreadcrumbRoutesContext()
+  const crumbs = useBreadcrumbs(routesCtx.objects)
 
-  const crumbs = useBreadcrumbs(crumbsContext.getRoutesToCrumb(pathname))
   const lastElement = crumbs.length - 1
 
-  // Hides breadcrumbs on all root routes
+  // Hide breadcrumbs when we do not have a route or when are at a "root" route
   if (crumbs.length < 2) {
     return null
   }
