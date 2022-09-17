@@ -50,7 +50,7 @@ export function IssueItem({
     <strong>{createdBy.data?.name}</strong>
   )
 
-  const detailHref = `/${number}`
+  const detailHref = `issues/${number}`
 
   function prefetchIssueDetails() {
     queryClient.prefetchQuery(QKF.issueDetail(number), ({ signal }) =>

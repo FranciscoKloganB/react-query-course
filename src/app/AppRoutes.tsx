@@ -12,18 +12,29 @@ import { createRoutesFromChildren, Route } from "use-react-router-breadcrumbs"
 import { useBreadcrumbRoutesContext } from "@hooks"
 import { useEffect } from "react"
 
+import type { BreadcrumbsRoute } from "use-react-router-breadcrumbs"
+import { DefaultLayout } from "../layouts/DefaultLayout"
+
 const Routes = () => (
   <>
-    <Route breadcrumb={HomeBreadcrumb} element={<Issues />} path="/" />
-    <Route
-      breadcrumb={DynamicIssueDetailBreadcrumb}
-      element={<Issue />}
-      path="/:number"
-    />
-    <Route breadcrumb={"Create Issue"} element={<AddIssue />} path="/create" />
-    <Route breadcrumb={null} path="*" element={<NotFound />} />
+    <Route breadcrumb={HomeBreadcrumb} path="/" element={<DefaultLayout />}>
+      <Route breadcrumb="Issues List" element={<Issues />} index />
+      <Route
+        breadcrumb={DynamicIssueDetailBreadcrumb}
+        element={<Issue />}
+        path="issues/:number"
+      />
+      <Route
+        breadcrumb={"Create Issue"}
+        element={<AddIssue />}
+        path="issues/create"
+      />
+      <Route breadcrumb={null} path="*" element={<NotFound />} />
+    </Route>
   </>
 )
+
+const routes: BreadcrumbsRoute<string>[] = []
 
 export function AppRoutes() {
   const routes = Routes()

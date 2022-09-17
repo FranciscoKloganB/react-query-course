@@ -1,16 +1,10 @@
 import { useScroll } from "@hooks"
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 
 export function DefaultLayout() {
-  const scrollRef = useScroll({
-    behavior: "smooth",
-    block: "start",
-    inline: "nearest"
-  })
+  const location = useLocation()
 
-  return (
-    <div ref={scrollRef}>
-      <Outlet />
-    </div>
-  )
+  useScroll({ behavior: "smooth" }, [location.key, location.pathname])
+
+  return <Outlet />
 }

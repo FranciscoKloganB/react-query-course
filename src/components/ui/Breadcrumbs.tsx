@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
-import { TbArrowWaveRightDown } from "react-icons/tb"
 import useBreadcrumbs from "use-react-router-breadcrumbs"
 import { useBreadcrumbRoutesContext } from "@/src/hooks"
+import { BiChevronRight } from "react-icons/bi"
 
 export function Breadcrumbs() {
   const routesCtx = useBreadcrumbRoutesContext()
@@ -20,9 +20,7 @@ export function Breadcrumbs() {
         {crumbs.map(({ breadcrumb, match }, index) => (
           <li key={match.pathname}>
             <div className="flex items-center space-x-4">
-              {index > 0 && (
-                <TbArrowWaveRightDown className="text-yellow-400" />
-              )}
+              {index > 0 && <BiChevronRight className="text-yellow-400" />}
               {index === lastElement ? (
                 <span className="border-b-2 border-b-yellow-400 text-sm text-slate-300">
                   {breadcrumb}
