@@ -8,12 +8,12 @@ import {
   DynamicIssueDetailBreadcrumb,
   HomeBreadcrumb
 } from "@common/routes/breadcrumbs"
-import { createRoutesFromChildren, Route } from "use-react-router-breadcrumbs"
+import { Route } from "use-react-router-breadcrumbs"
 import { useBreadcrumbRoutesContext } from "@hooks"
 import { useEffect } from "react"
 
-import type { BreadcrumbsRoute } from "use-react-router-breadcrumbs"
 import { DefaultLayout } from "../layouts/DefaultLayout"
+import { routes } from "@common/routes"
 
 const Routes = () => (
   <>
@@ -34,19 +34,14 @@ const Routes = () => (
   </>
 )
 
-const routes: BreadcrumbsRoute<string>[] = []
-
 export function AppRoutes() {
-  const routes = Routes()
-  const routeObjects = createRoutesFromChildren(routes)
-
   const crumbsContext = useBreadcrumbRoutesContext()
 
   useEffect(() => {
-    crumbsContext.setObjects([...routeObjects])
+    crumbsContext.setObjects(routes)
   }, [])
 
-  const GeneratedRoutes = useRoutes(routeObjects)
+  const GeneratedRoutes = useRoutes(routes)
 
   return GeneratedRoutes
 }

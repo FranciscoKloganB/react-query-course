@@ -37,6 +37,8 @@
       "@helpers/*": ["./src/helpers/*"],
       "@hooks": ["./src/hooks"],
       "@hooks/*": ["./src/hooks/*"],
+      "@layouts": ["./src/layouts"],
+      "@layouts/*": ["./src/layouts/*"],
       "@nav": ["./src/components/nav"],
       "@nav/*": ["./src/components/nav/*"],
       "@pages": ["./src/pages"],
