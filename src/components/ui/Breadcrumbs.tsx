@@ -20,7 +20,9 @@ export function Breadcrumbs() {
         {crumbs.map(({ breadcrumb, match }, index) => (
           <li key={match.pathname}>
             <div className="flex items-center space-x-4">
-              {index > 0 && <BiChevronRight className="text-yellow-400" />}
+              {index > 0 && (
+                <BiChevronRight className="h-5 w-5 text-yellow-400" />
+              )}
               {index === lastElement ? (
                 <span className="border-b-2 border-b-yellow-400 text-sm text-slate-300">
                   {breadcrumb}
@@ -28,7 +30,7 @@ export function Breadcrumbs() {
               ) : (
                 <NavLink
                   to={match.pathname}
-                  className="ml-4 text-sm font-medium text-slate-300 hover:text-yellow-400"
+                  className="ml-4 text-sm font-medium text-slate-500 hover:text-yellow-400"
                 >
                   {breadcrumb}
                 </NavLink>
