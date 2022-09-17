@@ -24,7 +24,7 @@ const Routes = () => (
       path="/:number"
     />
     <Route breadcrumb={"Create Issue"} element={<AddIssue />} path="/create" />
-    <Route breadcrumb="Error" path="*" element={<NotFound />} />
+    <Route breadcrumb={null} path="*" element={<NotFound />} />
   </>
 )
 
