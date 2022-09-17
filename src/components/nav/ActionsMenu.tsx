@@ -11,7 +11,7 @@ import { Dropdown, LeftElement, RightElement } from "@ui"
 import { NavLink } from "react-router-dom"
 import { GoSettings, GoThreeBars } from "react-icons/go"
 import { BiChevronRight } from "react-icons/bi"
-import { actionableRoutes } from "@common/routes"
+import { actionableRoutes } from "@common/routes/menu-actions"
 
 import type { MenuActions } from "@common/routes/types"
 
