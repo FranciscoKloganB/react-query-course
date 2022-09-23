@@ -11,7 +11,7 @@ import { Dropdown, LeftElement, RightElement } from "@ui"
 import { NavLink } from "react-router-dom"
 import { GoSettings, GoThreeBars } from "react-icons/go"
 import { BiChevronRight } from "react-icons/bi"
-import { actionableRoutes } from "@common/routes/menu-actions"
+import { menuActions } from "@common/routes/menu-actions"
 
 import type { MenuAction } from "@common/routes/types"
 
@@ -40,7 +40,7 @@ export function ActionsMenu() {
     <Dropdown triggerButton={hamburger}>
       <>
         <DropdownMenuLabel>Pages</DropdownMenuLabel>
-        <RenderActions actions={actionableRoutes.pages} />
+        <RenderActions actions={menuActions.pages} />
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
             <LeftElement>
@@ -52,12 +52,12 @@ export function ActionsMenu() {
             </RightElement>
           </DropdownMenuSubTrigger>
           <DropdownMenuSubContent sideOffset={2} alignOffset={-5}>
-            <RenderActions actions={actionableRoutes.profile} />
+            <RenderActions actions={menuActions.profile} />
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuLabel>Session</DropdownMenuLabel>
-        <RenderActions actions={actionableRoutes.auth} />
+        <RenderActions actions={menuActions.auth} />
       </>
     </Dropdown>
   )
