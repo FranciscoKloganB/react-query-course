@@ -54,10 +54,7 @@ async function client(_endpoint: string, data: Record<string, unknown>) {
     headers: { "Content-Type": "application/json" }
   }
 
-  // FIXME: Replace the lines below with a fetch call
-  console.log("AuthService.client: mocking response from login/register")
   const authResponse = await import("../../mocks/login.json")
-  console.log("AuthService.client result:", authResponse)
 
   return {
     ...authResponse,

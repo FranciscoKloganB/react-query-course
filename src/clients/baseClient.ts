@@ -1,25 +1,52 @@
-type JSONResponse<S, E = { message: string } & Record<string, unknown>> = {
+type JSONResponse<
+  S = unknown,
+  E = { message: string } & Record<string, unknown>
+> = {
   data?: S
   error?: E
 }
 
-export async function baseClient<T = unknown>(
+type ClientConfig = Partial<
+  RequestInit & {
+    data: number | string | Record<string, unknown>
+    headers: Record<string, unknown>
+    token: string
+  }
+>
+
+export async function baseClient<S = unknown, E = unknown | string>(
   url: string,
-  options: Record<string, unknown> = {}
-): Promise<T> {
-  const response = await fetch(url, options)
+  { data, token, headers, ...options }: ClientConfig = {}
+): Promise<S> {
+  const fetchConfig: RequestInit = {
+    body: data ? JSON.stringify(data) : undefined,
+    headers: {
+      Authorization: (token ? `Bearer ${token}` : undefined) as string,
+      "Content-Type": (data ? "application/json" : undefined) as string,
+      ...headers
+    },
+    method: data ? "POST" : "GET",
+    ...options
+  }
 
-  if (response.status >= 200 && response.status < 400) {
-    const result: JSONResponse<T> = await response.json()
+  const response = await fetch(url, fetchConfig)
 
+  const result: JSONResponse<S, E> = await response.json()
+  const status = response.status
+
+  if (status >= 200 && status < 400) {
+    return result as S
+  }
+
+  if (status >= 400 && status < 500) {
     if (result.error) {
-      throw new Error(result.error.message)
+      throw result.error
+    } else {
+      throw { message: result }
     }
-
-    return result as T
   }
 
   throw new Error(
-    `Request to '${url}' failed with error. Got status: ${response.status}`
+    `Request to '${url}' failed with an unexpected error. Got status: ${status}`
   )
 }
