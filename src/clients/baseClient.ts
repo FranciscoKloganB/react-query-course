@@ -8,7 +8,7 @@ type JSONResponse<
 
 type ClientConfig = Partial<
   RequestInit & {
-    data: number | string | Record<string, unknown>
+    data: unknown
     headers: Record<string, unknown>
     token: string
   }

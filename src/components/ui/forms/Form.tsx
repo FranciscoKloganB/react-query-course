@@ -15,6 +15,7 @@ type FormProps = {
   schema: Joi.Schema<any>
   submitButtonContent: React.ReactNode
   config?: Record<string, any>
+  disable?: boolean
 }
 
 export function Form({
@@ -22,7 +23,8 @@ export function Form({
   onSubmitCallback,
   schema,
   submitButtonContent,
-  config = {}
+  config = {},
+  disable = false
 }: FormProps) {
   const methods = useForm({
     mode: "onChange",
@@ -46,7 +48,7 @@ export function Form({
       >
         {React.Children.map(children, (child) => createElement(child, methods))}
         <div className="flex justify-end pt-3">
-          <Button $variant="primary" disabled={hasErrors}>
+          <Button $variant="primary" disabled={disable || hasErrors}>
             {submitButtonContent}
           </Button>
         </div>

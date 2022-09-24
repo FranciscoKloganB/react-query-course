@@ -7,6 +7,8 @@
     "coverage": "vitest run --coverage",
     "eslint": "eslint src",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,sass,scss,md,json}' --config ./.prettierrc.js",
+    "joits": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' ts-node joitots.ts",
+    "postjoits": "run-s 'format'",
     "lint": "run-s 'lint:*'",
     "lint:fix": "eslint src --fix",
     "lint:ts": "tsc --project tsconfig.json",
@@ -38,6 +40,7 @@
     "react-icons": "^4.4.0",
     "react-placeholder": "^4.1.0",
     "react-router-dom": "^6.4.0",
+    "ts-node": "^10.9.1",
     "use-debounce": "^8.0.4",
     "use-react-router-breadcrumbs": "^4.0.0",
     "usehooks-ts": "^2.6.0"
