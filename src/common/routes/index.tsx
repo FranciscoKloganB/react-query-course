@@ -1,6 +1,6 @@
 import { BreadcrumbsRoute } from "use-react-router-breadcrumbs"
 
-import { DefaultLayout } from "@layouts"
+import { BaseOutlet } from "@layouts"
 import AddIssue from "@pages/AddIssue"
 import Issue from "@pages/Issue"
 import Issues from "@pages/Issues"
@@ -11,7 +11,7 @@ import { DynamicIssueDetailBreadcrumb, HomeBreadcrumb } from "./breadcrumbs"
 export const routes: BreadcrumbsRoute<string>[] = [
   {
     breadcrumb: HomeBreadcrumb,
-    element: <DefaultLayout />,
+    element: <BaseOutlet />,
     path: "/",
     children: [
       {
