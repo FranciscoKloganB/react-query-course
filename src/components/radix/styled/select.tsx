@@ -17,7 +17,6 @@ const StyledTrigger = tw(SelectPrimitive.SelectTrigger)`
   inline-flex
   items-center
   justify-start
-  rounded-md
   h-9
   gap-2
   border

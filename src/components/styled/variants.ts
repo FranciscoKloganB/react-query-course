@@ -12,47 +12,49 @@ const buttonVariants = {
   danger: `
     text-red-700
     bg-red-100
-    hover:bg-red-200
-    hover:border-red-400
-    focus-visible:ring-red-500
-    focus-visible:border-red-400
-    focus-visible:text-slate-900
+    disabled:bg-red-100
+    enabled:hover:bg-red-200
+    enabled:hover:border-red-400
+    enabled:focus-visible:ring-red-500
+    enabled:focus-visible:border-red-400
+    enabled:focus-visible:text-slate-900
   `,
   neutral: `
     text-slate-700
     bg-slate-100
-    hover:bg-slate-200
-    hover:border-slate-400
-    focus-visible:ring-slate-500
-    focus-visible:border-slate-400
-    focus-visible:text-slate-900
+    enabled:hover:bg-slate-200
+    enabled:hover:border-slate-400
+    enabled:focus-visible:ring-slate-500
+    enabled:focus-visible:border-slate-400
+    enabled:focus-visible:text-slate-900
   `,
   primary: `
     text-navy-blue-700
+    disabled:bg-red-100
     bg-navy-blue-100
-    hover:bg-navy-blue-200
-    hover:border-navy-blue-400
-    focus-visible:ring-navy-blue-500
-    focus-visible:border-navy-blue-400
-    focus-visible:text-slate-900
+    enabled:hover:bg-navy-blue-200
+    enabled:hover:border-navy-blue-400
+    enabled:focus-visible:ring-navy-blue-500
+    enabled:focus-visible:border-navy-blue-400
+    enabled:focus-visible:text-slate-900
   `,
   secondary: `
     text-green-700
     bg-green-100
-    hover:bg-green-200
-    hover:border-green-400
-    focus-visible:ring-green-500
-    focus-visible:border-green-400
-    focus-visible:text-slate-900
+    enabled:hover:bg-green-200
+    enabled:hover:border-green-400
+    enabled:focus-visible:ring-green-500
+    enabled:focus-visible:border-green-400
+    enabled:focus-visible:text-slate-900
   `,
   warning: `
     text-yellow-700
     bg-yellow-100
-    hover:bg-yellow-200
-    hover:border-yellow-400
-    focus-visible:ring-yellow-500
-    focus-visible:border-yellow-400
-    focus-visible:text-slate-900
+    enabled:hover:bg-yellow-200
+    enabled:hover:border-yellow-400
+    enabled:focus-visible:ring-yellow-500
+    enabled:focus-visible:border-yellow-400
+    enabled:focus-visible:text-slate-900
   `
 } as const
 

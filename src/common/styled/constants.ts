@@ -4,6 +4,7 @@ export const inputLikeFieldStyles = `
   font-sans
   text-sm
   leading-none
+  rounded-md
   placeholder:text-black
   focus-visible:ring-2
   focus-visible:outline-none

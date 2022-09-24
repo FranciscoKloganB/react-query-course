@@ -13,8 +13,7 @@ export const Border = tw.div`
   border rounded-lg p-2 border-slate-600
 `
 
-// TODO: Improve this button, it is very ugly - not very intuitive to hover as yellow
-export const Button = tw.div`
+export const Button = tw.button`
   max-w-fit
   px-4
   py-1
@@ -50,18 +49,22 @@ export const Heading = tw.h1`
 `
 
 export const InputContainer = tw.div`
-  flex flex-wrap py-0 px-5 gap-4 items-center
+  flex flex-wrap space-x-4 items-center
 `
 
 export const Input = tw.input`
-  inline-flex
   items-center
   justify-center
-  border-r-4
   py-0
   px-3
   h-8
-  ${() => inputLikeFieldStyles}
+  block
+  font-sans
+  sm:text-sm
+  border-gray-300
+  shadow-sm
+  ${({ $error }: { $error: boolean }) =>
+    `${inputLikeFieldStyles} ${$error ? "bg-red-300" : ""}`}
 `
 
 export const StatusOverlay = tw.span`
@@ -112,7 +115,6 @@ export const Search = tw.input`
   h-9
   pl-10
   pr-3
-  rounded-md
   ${() => inputLikeFieldStyles}
 `
 
@@ -140,6 +142,13 @@ export const Subtitle = tw.h3`
   text-xl
   md:text-left
   tracking-tight
+`
+
+export const TextArea = tw.textarea`
+  block
+  w-full
+  min-h-[192px]
+  ${() => inputLikeFieldStyles}
 `
 
 export const Title = tw.h2`
