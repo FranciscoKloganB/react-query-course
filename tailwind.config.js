@@ -35,8 +35,15 @@ module.exports = {
         slider: "0 0 0 5px rgba(0, 0, 0, 0.3)"
       },
       colors: {
+        "navy-blue-100": "#55699c",
+        "navy-blue-200": "#4e608f",
+        "navy-blue-300": "#404f75",
         "navy-blue-400": "#323e5c",
-        "navy-blue-600": "#202A44"
+        "navy-blue-500": "#2b354f",
+        "navy-blue-600": "#242d43",
+        "navy-blue-700": "#1d2436",
+        "navy-blue-800": "#161c29",
+        "navy-blue-900": "#0f131c"
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
