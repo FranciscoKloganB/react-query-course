@@ -1,6 +1,7 @@
 import clsx from "clsx"
-import { IssueStatus, isOpenIssue } from "@enums"
 import { GoIssueClosed, GoIssueOpened } from "react-icons/go"
+
+import { IssueStatus, isOpenIssue } from "@enums"
 
 const spanClassnames = `
   flex

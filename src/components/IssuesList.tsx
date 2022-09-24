@@ -1,10 +1,11 @@
-import { useIssues, useIssuesSearch } from "@hooks"
-import { IssueItem } from "@components/IssueItem"
-import { Border, Paragraph } from "@styled"
-import { IssueStatus } from "@enums"
-import { FullSpinner, Search } from "@ui"
 import { useState } from "react"
 import { BiSearchAlt } from "react-icons/bi"
+
+import { IssueItem } from "@components/IssueItem"
+import { IssueStatus } from "@enums"
+import { useIssues, useIssuesSearch } from "@hooks"
+import { Border, Paragraph } from "@styled"
+import { FullSpinner, Search } from "@ui"
 
 type IssuesListProps = {
   filterByLabels: string[]

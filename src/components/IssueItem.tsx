@@ -1,18 +1,17 @@
+import { useQueryClient } from "@tanstack/react-query"
+import { noCase } from "change-case"
 import { GoComment, GoIssueClosed, GoIssueOpened } from "react-icons/go"
-
 import { NavLink } from "react-router-dom"
-import { isOpenIssue, IssueStatus } from "@enums"
-import { Paragraph, Span, Small } from "@styled"
-import { relativeDate } from "@helpers"
 import tw from "tailwind-styled-components"
-import { fetchIssueComments, fetchIssueDetail, useUser } from "@hooks"
 
+import { QKF } from "@common/query-key.factory"
 import { AssigneeProfilePicture } from "@components/AssigneeProfilePicture"
 import LabelsList from "@components/LabelsList"
+import { IssueStatus, isOpenIssue } from "@enums"
+import { relativeDate } from "@helpers"
+import { fetchIssueComments, fetchIssueDetail, useUser } from "@hooks"
+import { Paragraph, Small, Span } from "@styled"
 import { Dots } from "@ui"
-import { useQueryClient } from "@tanstack/react-query"
-import { QKF } from "@common/query-key.factory"
-import { noCase } from "change-case"
 
 type IssueItemProps = {
   id: string

@@ -1,5 +1,6 @@
 import { GoPencil, GoPerson, GoSignOut, GoUnfold } from "react-icons/go"
 import { MdOutlineEditNotifications } from "react-icons/md"
+
 import { MenuAction } from "./types"
 
 const menuActions: Record<string, MenuAction[]> = {

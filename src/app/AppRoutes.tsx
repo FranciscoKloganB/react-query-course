@@ -1,9 +1,8 @@
+import { useEffect } from "react"
 import { useRoutes } from "react-router-dom"
 
-import { useBreadcrumbRoutesContext } from "@hooks"
-import { useEffect } from "react"
-
 import { routes } from "@common/routes"
+import { useBreadcrumbRoutesContext } from "@hooks"
 
 export function AppRoutes() {
   const crumbsContext = useBreadcrumbRoutesContext()

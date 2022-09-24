@@ -1,10 +1,11 @@
-import { baseClient } from "@clients"
-import { seconds } from "@helpers"
 import { useQuery } from "@tanstack/react-query"
-import { toDomainIssue } from "./toDomainIssue"
-
 import type { QueryClient } from "@tanstack/react-query"
+
+import { baseClient } from "@clients"
 import { QKF } from "@common/query-key.factory"
+import { seconds } from "@helpers"
+
+import { toDomainIssue } from "./toDomainIssue"
 
 function setIssue(client: QueryClient, issue: Issue) {
   client.setQueryData(QKF.issueDetail(issue.number), issue)

@@ -1,5 +1,7 @@
 import { useCallback } from "react"
+
 import { AuthService } from "@auth"
+
 import { useAuthContext } from "./useAuthContext"
 
 export function useClient() {

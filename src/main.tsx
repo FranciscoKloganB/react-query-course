@@ -2,11 +2,9 @@ import React from "react"
 import ReactDOM from "react-dom"
 
 import App from "@app"
-
-import { worker } from "@uidotdev/react-query-api"
-
 import { AppProviders } from "@context"
 import { ProgressBar } from "@ui"
+import { worker } from "@uidotdev/react-query-api"
 
 import "@styles/tailwind.css"
 

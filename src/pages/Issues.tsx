@@ -1,11 +1,11 @@
-import IssuesList from "@components/IssuesList"
-import { Subtitle, Title } from "@styled"
-import { useMemo, useState } from "react"
-import LabelsFilteringChips from "@components/LabelsFilteringChips"
-import { Select, Tooltip } from "@ui"
-import { isIssueStatusFilterReset, IssueStatus } from "@enums"
-
 import { sentenceCase } from "change-case"
+import { useMemo, useState } from "react"
+
+import IssuesList from "@components/IssuesList"
+import LabelsFilteringChips from "@components/LabelsFilteringChips"
+import { IssueStatus, isIssueStatusFilterReset } from "@enums"
+import { Subtitle, Title } from "@styled"
+import { Select, Tooltip } from "@ui"
 
 function buildIssueProgressStatuses() {
   return [

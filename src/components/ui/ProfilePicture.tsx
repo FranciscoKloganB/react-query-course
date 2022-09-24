@@ -1,9 +1,9 @@
 import clsx from "clsx"
-import { avatarVariants, Span } from "@styled"
-import { OnlineStatus } from "@enums"
-import { StatusOverlay } from "@styled"
 import { FaUserAstronaut } from "react-icons/fa"
 
+import { OnlineStatus } from "@enums"
+import { Span, avatarVariants } from "@styled"
+import { StatusOverlay } from "@styled"
 import type { AvatarVariants } from "@styled"
 
 type ProfilePictureProps = {

@@ -1,6 +1,6 @@
 import * as SelectPrimitive from "@radix-ui/react-select"
-import tw from "tailwind-styled-components"
 import React from "react"
+import tw from "tailwind-styled-components"
 
 import {
   inputLikeFieldStyles,

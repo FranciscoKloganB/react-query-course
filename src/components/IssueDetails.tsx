@@ -1,11 +1,12 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom"
-import { useIssueDetail, useIssueComments } from "@hooks"
-import { IssueHeader } from "@components/IssueHeader"
-import { HorizontalDivider, FullSpinner } from "@ui"
-import { Comment } from "@components/Comment"
 import { useRef } from "react"
-import { Paragraph, Subtitle } from "@styled"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
+
+import { Comment } from "@components/Comment"
+import { IssueHeader } from "@components/IssueHeader"
 import { seconds } from "@helpers"
+import { useIssueComments, useIssueDetail } from "@hooks"
+import { Paragraph, Subtitle } from "@styled"
+import { FullSpinner, HorizontalDivider } from "@ui"
 
 export function IssueDetails() {
   const { number = "" } = useParams()

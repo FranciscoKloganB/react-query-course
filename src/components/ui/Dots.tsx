@@ -1,4 +1,5 @@
 import { BsThreeDots } from "react-icons/bs"
+
 import { Span } from "@styled"
 
 export function Dots() {

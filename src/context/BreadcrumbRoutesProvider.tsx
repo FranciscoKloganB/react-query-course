@@ -1,7 +1,5 @@
 import { createContext, useMemo } from "react"
-
 import { useState } from "react"
-
 import type { BreadcrumbsRoute } from "use-react-router-breadcrumbs"
 
 type BreadcrumbRoutesContextState = {

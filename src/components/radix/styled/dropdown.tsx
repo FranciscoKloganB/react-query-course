@@ -1,6 +1,6 @@
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import tw from "tailwind-styled-components"
 
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import {
   itemIndicatorStyles,
   itemStyles,

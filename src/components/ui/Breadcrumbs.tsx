@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom"
-import useBreadcrumbs from "use-react-router-breadcrumbs"
 import { useBreadcrumbRoutesContext } from "@/src/hooks"
 import { BiChevronRight } from "react-icons/bi"
+import { NavLink } from "react-router-dom"
+import useBreadcrumbs from "use-react-router-breadcrumbs"
 
 export function Breadcrumbs() {
   const routesCtx = useBreadcrumbRoutesContext()

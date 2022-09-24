@@ -1,6 +1,7 @@
 import { BiCheck, BiChevronDown, BiChevronUp } from "react-icons/bi"
+
+import { IssueStatus } from "@enums"
 import {
-  SelectRoot,
   SelectContent,
   SelectGroup,
   SelectIcon,
@@ -8,6 +9,7 @@ import {
   SelectItemIndicator,
   SelectItemText,
   SelectLabel,
+  SelectRoot,
   SelectScrollDownButton,
   SelectScrollUpButton,
   SelectSeparator,
@@ -15,9 +17,7 @@ import {
   SelectValue,
   SelectViewport
 } from "@rdx/select"
-
 import type { SelectRootProps } from "@rdx/select"
-import { IssueStatus } from "@enums"
 
 type SelectGroup = {
   label: string

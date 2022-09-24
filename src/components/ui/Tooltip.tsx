@@ -1,10 +1,10 @@
 import {
-  TooltipRoot,
-  TooltipProvider,
-  TooltipTrigger,
-  TooltipContent,
   TooltipArrow,
-  TooltipContentContainer
+  TooltipContent,
+  TooltipContentContainer,
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger
 } from "@rdx/tooltip"
 
 type TooltipProps = {

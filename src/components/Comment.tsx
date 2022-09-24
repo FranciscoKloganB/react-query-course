@@ -1,11 +1,11 @@
-import { useUser } from "@hooks"
-import { ProfilePicture } from "@ui"
-import { HorizontalDivider } from "@ui"
-import { Border, Paragraph, Small, Span } from "@styled"
-import { relativeDate } from "@helpers"
-
 import ReactPlaceholder from "react-placeholder"
 import { RectShape } from "react-placeholder/lib/placeholders"
+
+import { relativeDate } from "@helpers"
+import { useUser } from "@hooks"
+import { Border, Paragraph, Small, Span } from "@styled"
+import { ProfilePicture } from "@ui"
+import { HorizontalDivider } from "@ui"
 
 const profilePictureSize = "lg"
 

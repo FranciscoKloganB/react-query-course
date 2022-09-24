@@ -1,11 +1,12 @@
 import tw from "tailwind-styled-components"
+
+import { inputLikeFieldStyles } from "@common/styled/constants"
 import { labelVariants, statusOverlayVariants } from "@styled"
 import type {
   LabelVariantsColors,
   StatusOverlayVariantsColors,
   StatusOverlayVariantsSizes
 } from "@styled"
-import { inputLikeFieldStyles } from "@common/styled/constants"
 
 export const Border = tw.div`
   border rounded-lg p-2 border-slate-600

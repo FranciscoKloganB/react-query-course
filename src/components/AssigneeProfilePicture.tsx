@@ -1,5 +1,5 @@
-import { ProfilePicture } from "@ui"
 import { useUser } from "@hooks"
+import { ProfilePicture } from "@ui"
 
 export function AssigneeProfilePicture({ userId }: { userId: string }) {
   if (!userId) {

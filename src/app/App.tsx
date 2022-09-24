@@ -1,8 +1,8 @@
 import { AuthenticatedApp } from "@app/AuthenticatedApp"
 import { UnauthenticatedApp } from "@app/UnauthenticatedApp"
-import { Heading } from "@styled"
-import { ActionsMenu } from "@nav"
 import { useAuthContext } from "@hooks"
+import { ActionsMenu } from "@nav"
+import { Heading } from "@styled"
 import { Breadcrumbs } from "@ui"
 
 function App() {

@@ -1,13 +1,10 @@
-import { AuthService } from "@auth"
-
+import { QueryCache } from "@tanstack/react-query"
 import React, { createContext } from "react"
 
-import { FullPageErrorFallback, FullSpinner } from "@ui"
-import { useAsync } from "@hooks"
-
+import { AuthService } from "@auth"
 import type { AuthResponse, Credentials, IRegisterData } from "@auth/types"
-
-import { QueryCache } from "@tanstack/react-query"
+import { useAsync } from "@hooks"
+import { FullPageErrorFallback, FullSpinner } from "@ui"
 
 const queryCache = new QueryCache({
   onError: (error) => {

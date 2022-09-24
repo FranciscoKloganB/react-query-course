@@ -1,11 +1,12 @@
+import React from "react"
+import { GiHamburgerMenu } from "react-icons/gi"
+
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent
+  DropdownMenuContent,
+  DropdownMenuTrigger
 } from "@rdx/dropdown"
-import { GiHamburgerMenu } from "react-icons/gi"
 import { RoundButton } from "@styled"
-import React from "react"
 
 type DropdownProps = {
   children: React.ReactNode

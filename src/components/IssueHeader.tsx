@@ -1,10 +1,11 @@
-import { IssueStatus } from "@enums"
-import { Span, Subtitle } from "@styled"
+import { noCase } from "change-case"
+
 import { StatusChip } from "@components/StatusChip"
+import { IssueStatus } from "@enums"
 import { relativeDate } from "@helpers"
 import { useUser } from "@hooks"
+import { Span, Subtitle } from "@styled"
 import { Dots } from "@ui"
-import { noCase } from "change-case"
 
 type IssueHeaderProps = {
   comments: string[]

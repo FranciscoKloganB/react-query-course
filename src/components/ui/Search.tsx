@@ -1,10 +1,11 @@
 import React from "react"
-import {
-  Search as SearchStyled,
-  SearchContainer,
-  SearchIconContainer
-} from "@styled"
 import { useDebouncedCallback } from "use-debounce"
+
+import {
+  SearchContainer,
+  SearchIconContainer,
+  Search as SearchStyled
+} from "@styled"
 
 interface ISearchEvent {
   target: { value: string }

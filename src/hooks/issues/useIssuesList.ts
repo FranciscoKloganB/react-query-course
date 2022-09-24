@@ -1,11 +1,12 @@
-import { QKF } from "@common/query-key.factory"
-import { baseClient } from "@clients"
-import { IssueStatus } from "@enums"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
+import type { QueryClient } from "@tanstack/react-query"
+
+import { baseClient } from "@clients"
+import { QKF } from "@common/query-key.factory"
+import { IssueStatus } from "@enums"
+
 import { toDomainIssue } from "./toDomainIssue"
 import { setIssue } from "./useIssueDetail"
-
-import type { QueryClient } from "@tanstack/react-query"
 
 function fetchIssuesList(
   queryString: string,

@@ -1,11 +1,12 @@
-import { seconds } from "@helpers"
-import { baseClient } from "@clients"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
+import type { QueryClient } from "@tanstack/react-query"
+
+import { baseClient } from "@clients"
+import { QKF } from "@common/query-key.factory"
+import { seconds } from "@helpers"
+
 import { toDomainIssue } from "./toDomainIssue"
 import { setIssue } from "./useIssueDetail"
-import { QKF } from "@common/query-key.factory"
-
-import type { QueryClient } from "@tanstack/react-query"
 
 function fetchIssuesSearch(
   search: string,

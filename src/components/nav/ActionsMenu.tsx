@@ -1,19 +1,19 @@
+import { BiChevronRight } from "react-icons/bi"
+import { GoSettings, GoThreeBars } from "react-icons/go"
+import { NavLink } from "react-router-dom"
+
+import { menuActions } from "@common/routes/menu-actions"
+import type { MenuAction } from "@common/routes/types"
 import {
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSub,
   DropdownMenuSeparator,
+  DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger
 } from "@rdx/dropdown"
 import { RoundButton } from "@styled"
 import { Dropdown, LeftElement, RightElement } from "@ui"
-import { NavLink } from "react-router-dom"
-import { GoSettings, GoThreeBars } from "react-icons/go"
-import { BiChevronRight } from "react-icons/bi"
-import { menuActions } from "@common/routes/menu-actions"
-
-import type { MenuAction } from "@common/routes/types"
 
 const hamburger = (
   <RoundButton aria-label="Open actions menu">

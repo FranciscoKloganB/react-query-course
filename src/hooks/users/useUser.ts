@@ -1,7 +1,8 @@
-import { baseClient } from "@clients"
 import { useQuery } from "@tanstack/react-query"
-import { minutes } from "@helpers"
+
+import { baseClient } from "@clients"
 import { QKF } from "@common/query-key.factory"
+import { minutes } from "@helpers"
 
 function fetchUser(id: string, signal?: AbortSignal) {
   return baseClient<User>(`/api/users/${id}`, { signal })

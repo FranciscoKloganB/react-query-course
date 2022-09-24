@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom"
-import { Title, Subtitle } from "@styled"
+
+import { Subtitle, Title } from "@styled"
 
 export default function NotFound() {
   return (
