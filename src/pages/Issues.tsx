@@ -1,9 +1,10 @@
 import { sentenceCase } from "change-case"
-import { useMemo, useState } from "react"
+import { Fragment, useMemo, useState } from "react"
 
 import IssuesList from "@components/IssuesList"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
 import { IssueStatus, isIssueStatusFilterReset } from "@enums"
+import { BaseLayout } from "@layouts"
 import { Subtitle, Title } from "@styled"
 import { Select, Tooltip } from "@ui"
 
@@ -52,32 +53,36 @@ export default function Issues() {
   }
 
   return (
-    <main className="grid lg:grid-cols-[75%_25%]">
-      <aside className="lg:order-last lg:ml-6 xl:ml-12">
-        <Tooltip message="Click the label chips to toggle filter by their name">
-          <Subtitle>Labels</Subtitle>
-        </Tooltip>
-        <LabelsFilteringChips
-          className="mt-2 justify-center gap-x-2 gap-y-3 md:justify-start"
-          selected={selectedLabels}
-          toggle={handleLabelToggle}
-        />
-        <Subtitle>Status</Subtitle>
-        <Select
-          ariaLabel="Issue label filters"
-          placeholder="Filter issues"
-          groups={groups}
-          defaultValue={selectedStatus}
-          onValueChange={handleStatusSelection}
-        />
-      </aside>
-      <section className="pt-4 lg:pt-0">
-        <Title>Issues</Title>
-        <IssuesList
-          filterByLabels={selectedLabels}
-          filterByStatus={selectedStatus}
-        />
-      </section>
-    </main>
+    <BaseLayout
+      aside={
+        <Fragment>
+          <Tooltip message="Click the label chips to toggle filter by their name">
+            <Subtitle>Labels</Subtitle>
+          </Tooltip>
+          <LabelsFilteringChips
+            className="mt-2 justify-center gap-x-2 gap-y-3 md:justify-start"
+            selected={selectedLabels}
+            toggle={handleLabelToggle}
+          />
+          <Subtitle>Status</Subtitle>
+          <Select
+            ariaLabel="Issue label filters"
+            placeholder="Filter issues"
+            groups={groups}
+            defaultValue={selectedStatus}
+            onValueChange={handleStatusSelection}
+          />
+        </Fragment>
+      }
+      content={
+        <Fragment>
+          <Title>Issues</Title>
+          <IssuesList
+            filterByLabels={selectedLabels}
+            filterByStatus={selectedStatus}
+          />
+        </Fragment>
+      }
+    />
   )
 }

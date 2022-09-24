@@ -1,14 +1,18 @@
+import { Fragment } from "react"
+
 import { IssueDetails } from "@components/IssueDetails"
+import { BaseLayout } from "@layouts"
 import { Title } from "@styled"
 
 export default function Issue() {
   return (
-    <main className="grid lg:grid-cols-[75%_25%]">
-      <aside className="lg:order-last lg:ml-6 xl:ml-12"></aside>
-      <section className="pt-4 lg:pt-0">
-        <Title>Issue detail</Title>
-        <IssueDetails />
-      </section>
-    </main>
+    <BaseLayout
+      content={
+        <Fragment>
+          <Title>Issue detail</Title>
+          <IssueDetails />
+        </Fragment>
+      }
+    />
   )
 }

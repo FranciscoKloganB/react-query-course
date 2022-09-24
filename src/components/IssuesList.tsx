@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { Fragment, useState } from "react"
 import { BiSearchAlt } from "react-icons/bi"
 
 import { IssueItem } from "@components/IssueItem"
@@ -72,17 +72,17 @@ export default function IssuesList({
       {issuesQuery.isLoading ? (
         <FullSpinner />
       ) : searchQuery.isDisabled && issuesQuery.isSuccess ? (
-        <>
+        <Fragment>
           <Paragraph>{issuesQuery.data.length} results</Paragraph>
           <__RenderList__ issues={issuesQuery.data} />
-        </>
+        </Fragment>
       ) : searchQuery.isLoading ? (
         <FullSpinner />
       ) : searchQuery.isSuccess ? (
-        <>
+        <Fragment>
           <Paragraph>{searchResult.length} results</Paragraph>
           <__RenderList__ issues={searchResult} />
-        </>
+        </Fragment>
       ) : (
         <Paragraph>Unable to load issues...</Paragraph>
       )}

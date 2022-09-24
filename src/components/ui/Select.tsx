@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 import { BiCheck, BiChevronDown, BiChevronUp } from "react-icons/bi"
 
 import { IssueStatus } from "@enums"
@@ -35,7 +36,7 @@ type SelectProps = {
 
 function __RenderGroup__({ group }: { group: SelectGroup }) {
   return (
-    <>
+    <Fragment>
       <SelectGroup>
         <SelectLabel>{group.label}</SelectLabel>
         {group.items.map((item) => (
@@ -47,7 +48,7 @@ function __RenderGroup__({ group }: { group: SelectGroup }) {
           </SelectItem>
         ))}
       </SelectGroup>
-    </>
+    </Fragment>
   )
 }
 

@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 import ReactPlaceholder from "react-placeholder"
 import { RectShape } from "react-placeholder/lib/placeholders"
 
@@ -11,7 +12,7 @@ const profilePictureSize = "lg"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const placeholder = (
-  <>
+  <Fragment>
     <RectShape
       className="w-100 animate-pulse rounded bg-slate-600"
       style={{ height: 24 }}
@@ -21,7 +22,7 @@ const placeholder = (
       className="w-100 animate-pulse rounded bg-slate-600"
       style={{ height: 24 }}
     />
-  </>
+  </Fragment>
 )
 
 export function Comment({ comment, createdBy, createdDate }: UserComment) {
@@ -50,13 +51,13 @@ export function Comment({ comment, createdBy, createdDate }: UserComment) {
                 customPlaceholder={placeholder}
                 ready={userQuery.isSuccess}
               >
-                <>
+                <Fragment>
                   <Small>{`${userQuery.data?.name} commented ${relativeDate(
                     createdDate
                   )}`}</Small>
                   <HorizontalDivider />
                   <Span>{comment}</Span>
-                </>
+                </Fragment>
               </ReactPlaceholder>
             )}
           </Border>

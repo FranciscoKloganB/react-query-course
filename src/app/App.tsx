@@ -1,3 +1,5 @@
+import { Fragment } from "react"
+
 import { AuthenticatedApp } from "@app/AuthenticatedApp"
 import { UnauthenticatedApp } from "@app/UnauthenticatedApp"
 import { useAuthContext } from "@hooks"
@@ -10,7 +12,7 @@ function App() {
   const { isAuthenticated } = useAuthContext()
 
   return (
-    <>
+    <Fragment>
       <ProgressBar />
       <div className="max-w-screen min-h-screen bg-slate-900">
         <div className="flex justify-end p-4 md:justify-between">
@@ -26,7 +28,7 @@ function App() {
           {isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />}
         </div>
       </div>
-    </>
+    </Fragment>
   )
 }
 

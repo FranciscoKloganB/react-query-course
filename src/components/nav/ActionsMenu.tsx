@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 import { BiChevronRight } from "react-icons/bi"
 import { GoSettings, GoThreeBars } from "react-icons/go"
 import { NavLink } from "react-router-dom"
@@ -23,7 +24,7 @@ const hamburger = (
 
 function RenderActions({ actions }: { actions: MenuAction[] }) {
   return (
-    <>
+    <Fragment>
       {actions.map(({ action, disabled, icon, path, shortcut }) => (
         <DropdownMenuItem key={action} disabled={!!disabled}>
           {icon && <LeftElement>{icon}</LeftElement>}
@@ -31,14 +32,14 @@ function RenderActions({ actions }: { actions: MenuAction[] }) {
           {shortcut && <RightElement>{shortcut}</RightElement>}
         </DropdownMenuItem>
       ))}
-    </>
+    </Fragment>
   )
 }
 
 export function ActionsMenu() {
   return (
     <Dropdown triggerButton={hamburger}>
-      <>
+      <Fragment>
         <DropdownMenuLabel>Pages</DropdownMenuLabel>
         <RenderActions actions={menuActions.pages} />
         <DropdownMenuSub>
@@ -58,7 +59,7 @@ export function ActionsMenu() {
         <DropdownMenuSeparator />
         <DropdownMenuLabel>Session</DropdownMenuLabel>
         <RenderActions actions={menuActions.auth} />
-      </>
+      </Fragment>
     </Dropdown>
   )
 }
