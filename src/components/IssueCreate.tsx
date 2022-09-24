@@ -1,4 +1,4 @@
-import joi from "joi"
+import { CreateIssueSchema } from "@schemas/CreateIssueSchema"
 
 import { Form, Input, TextArea } from "@ui/forms"
 
@@ -6,11 +6,6 @@ const defaultValues = {
   title: "",
   comment: undefined
 }
-
-const testSchema = joi.object({
-  title: joi.string().required().min(1).max(72),
-  comment: joi.string().optional().min(0).max(512)
-})
 
 export function IssueCreate() {
   function onSubmit(data: unknown) {
@@ -21,7 +16,7 @@ export function IssueCreate() {
     <Form
       config={{ ...defaultValues }}
       onSubmitCallback={onSubmit}
-      schema={testSchema}
+      schema={CreateIssueSchema}
       submitButtonContent="Submit new issue"
     >
       <Input name="title" label="Title" placeholder="As a user I want..." />
