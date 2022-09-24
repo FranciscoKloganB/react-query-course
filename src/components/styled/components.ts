@@ -1,8 +1,9 @@
 import tw from "tailwind-styled-components"
 
 import { inputLikeFieldStyles } from "@common/styled/constants"
-import { labelVariants, statusOverlayVariants } from "@styled"
+import { buttonVariants, labelVariants, statusOverlayVariants } from "@styled"
 import type {
+  ButtonVariants,
   LabelVariantsColors,
   StatusOverlayVariantsColors,
   StatusOverlayVariantsSizes
@@ -17,21 +18,14 @@ export const Button = tw.div`
   max-w-fit
   px-4
   py-1
-  hover:border-yellow-400
   focus-visible:border
   rounded-md
-  bg-white
   font-sans
   text-sm
   leading-none
-  text-slate-900
   focus-visible:ring-2
   focus-visible:outline-none
-  focus-visible:ring-yellow-400
-  focus-visible:border-yellow-400
-  focus-visible:text-slate-900
-  focus-visible:placeholder:text-slate-400
-  placeholder:text-slate-600
+  ${({ $variant }: { $variant: ButtonVariants }) => buttonVariants[$variant]}
 `
 
 export const Chip = tw.button`
@@ -53,6 +47,21 @@ export const Chip = tw.button`
 
 export const Heading = tw.h1`
   font-display text-4xl font-extrabold text-white text-center sm:text-5xl
+`
+
+export const InputContainer = tw.div`
+  flex flex-wrap py-0 px-5 gap-4 items-center
+`
+
+export const Input = tw.input`
+  inline-flex
+  items-center
+  justify-center
+  border-r-4
+  py-0
+  px-3
+  h-8
+  ${() => inputLikeFieldStyles}
 `
 
 export const StatusOverlay = tw.span`
