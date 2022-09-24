@@ -20,8 +20,9 @@ export const Button = tw.button`
   focus-visible:border
   rounded-md
   font-sans
+  font-medium
   text-sm
-  leading-none
+  leading-7
   focus-visible:ring-2
   focus-visible:outline-none
   ${({ $variant }: { $variant: ButtonVariants }) => buttonVariants[$variant]}
