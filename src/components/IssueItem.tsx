@@ -78,7 +78,7 @@ export function IssueItem({
         <div className="col-span-8 lg:col-span-7">
           <div>
             <NavLink to={detailHref}>
-              <Span className="hover:text-yellow-400">{title}</Span>
+              <Span className="hover:text-yellow-400 text-sm">{title}</Span>
             </NavLink>
             <div>
               <Paragraph className="text-base">
