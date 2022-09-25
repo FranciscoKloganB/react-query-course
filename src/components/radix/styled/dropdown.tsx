@@ -9,7 +9,7 @@ import {
 
 const contentStyles = `
   min-w-fit
-  rounded-md
+  rounded
   shadow-md
   bg-navy-blue-400
   p-2

@@ -37,8 +37,7 @@ export function Form({
     onSubmitCallback(data)
   }
 
-  methods.formState.errors
-  const hasErrors = !methods.formState.isValid
+  const isSubmissionDisabbled = disable || !methods.formState.isValid
 
   return (
     <Fragment>
@@ -48,7 +47,10 @@ export function Form({
       >
         {React.Children.map(children, (child) => createElement(child, methods))}
         <div className="flex justify-end pt-3">
-          <Button $variant="primary" disabled={disable || hasErrors}>
+          <Button
+            $variant={isSubmissionDisabbled ? "disabled" : "secondary"}
+            disabled={isSubmissionDisabbled}
+          >
             {submitButtonContent}
           </Button>
         </div>

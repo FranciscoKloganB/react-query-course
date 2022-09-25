@@ -19,6 +19,11 @@ const buttonVariants = {
     enabled:focus-visible:border-red-400
     enabled:focus-visible:text-slate-900
   `,
+  disabled: `
+    bg-slate-200
+    text-slate-400
+    cursor-not-allowed
+  `,
   neutral: `
     text-slate-700
     bg-slate-100

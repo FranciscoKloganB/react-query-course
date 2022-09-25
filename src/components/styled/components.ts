@@ -18,12 +18,12 @@ export const Button = tw.button`
   px-4
   py-1
   focus-visible:border
-  rounded-md
+  rounded
   font-sans
   font-medium
   text-sm
   leading-7
-  focus-visible:ring-2
+  focus-visible:ring
   focus-visible:outline-none
   ${({ $variant }: { $variant: ButtonVariants }) => buttonVariants[$variant]}
 `
@@ -74,7 +74,7 @@ export const StatusOverlay = tw.span`
   right-0
   block
   rounded-full
-  ring-2
+  ring
   ring-white
   ${(p: {
     $size: StatusOverlayVariantsSizes
@@ -100,9 +100,9 @@ export const RoundButton = tw.button`
   text-yellow-400
   bg-white
   shadow-md
-  focus-visible:ring-2
+  focus-visible:ring
   focus-visible:ring-yellow-400
-  hover:ring-2
+  hover:ring
   hover:ring-yellow-400
 `
 

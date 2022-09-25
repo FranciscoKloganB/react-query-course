@@ -5,10 +5,10 @@ export const inputLikeFieldStyles = `
   text-sm
   text-slate-900
   leading-none
-  rounded-md
+  rounded
   placeholder:font-normal
   placeholder:text-slate-500
-  focus-visible:ring-2
+  focus-visible:ring-1
   focus-visible:outline-none
   focus-visible:ring-yellow-400
   focus-visible:border-yellow-400
@@ -33,7 +33,7 @@ export const itemStyles = `
   text-xs
   md:text-sm
   text-white
-  rounded-md
+  rounded
   flex
   items-center
   h-6
@@ -45,7 +45,7 @@ export const itemStyles = `
   radix-disabled:text-slate-400
   radix-highlighted:bg-navy-blue-600
   radix-highlighted:text-white
-  focus-visible:ring-2
+  focus-visible:ring
   focus-visible:outline-none
   focus-visible:ring-yellow-400
 `
