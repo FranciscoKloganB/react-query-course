@@ -14,17 +14,17 @@ export const Border = tw.div`
 `
 
 export const Button = tw.button`
-  max-w-fit
+  min-w-[128px]
+  max-w-[192px]
   px-4
   py-1
-  focus-visible:border
   rounded
   font-sans
   font-medium
   text-sm
   leading-7
-  focus-visible:ring
-  focus-visible:outline-none
+  focus-visible:outline-1
+  focus-visible:outline-yellow-400
   ${({ $variant }: { $variant: ButtonVariants }) => buttonVariants[$variant]}
 `
 

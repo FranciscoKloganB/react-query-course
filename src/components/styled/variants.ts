@@ -10,56 +10,59 @@ const avatarVariants = {
 
 const buttonVariants = {
   danger: `
-    text-red-700
-    bg-red-100
-    disabled:bg-red-100
-    enabled:hover:bg-red-200
-    enabled:hover:border-red-400
-    enabled:focus-visible:ring-red-500
-    enabled:focus-visible:border-red-400
-    enabled:focus-visible:text-slate-900
+    text-white
+    bg-red-600
+    enabled:hover:bg-red-800
+    enabled:hover:ring
+    enabled:hover:ring-red-600
+    enabled:focus-visible:bg-red-800
+    enabled:focus-visible:ring
+    enabled:focus-visible:ring-red-600
   `,
   disabled: `
     bg-slate-200
     text-slate-400
     cursor-not-allowed
   `,
-  neutral: `
-    text-slate-700
+  inverted: `
+    text-navy-blue-600
     bg-slate-100
-    enabled:hover:bg-slate-200
-    enabled:hover:border-slate-400
-    enabled:focus-visible:ring-slate-500
-    enabled:focus-visible:border-slate-400
-    enabled:focus-visible:text-slate-900
+    enabled:hover:bg-slate-300
+    enabled:hover:ring
+    enabled:hover:ring-blue-600
+    enabled:focus-visible:bg-slate-300
+    enabled:focus-visible:ring
+    enabled:focus-visible:ring-blue-600
   `,
   primary: `
-    text-navy-blue-700
-    disabled:bg-red-100
-    bg-navy-blue-100
-    enabled:hover:bg-navy-blue-200
-    enabled:hover:border-navy-blue-400
-    enabled:focus-visible:ring-navy-blue-500
-    enabled:focus-visible:border-navy-blue-400
-    enabled:focus-visible:text-slate-900
+    text-white
+    bg-navy-blue-300
+    enabled:hover:bg-navy-blue-400
+    enabled:hover:ring
+    enabled:hover:ring-blue-600
+    enabled:focus-visible:bg-navy-blue-400
+    enabled:focus-visible:ring
+    enabled:focus-visible:ring-blue-600
   `,
-  secondary: `
-    text-green-700
-    bg-green-100
-    enabled:hover:bg-green-200
-    enabled:hover:border-green-400
-    enabled:focus-visible:ring-green-500
-    enabled:focus-visible:border-green-400
-    enabled:focus-visible:text-slate-900
+  confirm: `
+    text-white
+    bg-green-600
+    enabled:hover:bg-green-800
+    enabled:hover:ring
+    enabled:hover:ring-green-600
+    enabled:focus-visible:bg-green-800
+    enabled:focus-visible:ring
+    enabled:focus-visible:ring-green-600
   `,
   warning: `
-    text-yellow-700
-    bg-yellow-100
-    enabled:hover:bg-yellow-200
-    enabled:hover:border-yellow-400
+    text-white
+    bg-yellow-500
+    enabled:hover:bg-yellow-600
+    enabled:hover:ring
+    enabled:hover:ring-yellow-500
+    enabled:focus-visible:bg-yellow-600
+    enabled:focus-visible:ring
     enabled:focus-visible:ring-yellow-500
-    enabled:focus-visible:border-yellow-400
-    enabled:focus-visible:text-slate-900
   `
 } as const
 

@@ -46,9 +46,9 @@ export function Form({
         onSubmit={(e) => methods.handleSubmit(onSubmit)(e)}
       >
         {React.Children.map(children, (child) => createElement(child, methods))}
-        <div className="flex justify-end pt-3">
+        <div className="flex space-x-4 justify-end pt-3">
           <Button
-            $variant={isSubmissionDisabbled ? "disabled" : "secondary"}
+            $variant={isSubmissionDisabbled ? "disabled" : "confirm"}
             disabled={isSubmissionDisabbled}
           >
             {submitButtonContent}

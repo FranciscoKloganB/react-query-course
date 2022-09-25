@@ -13,7 +13,7 @@ import { toDomainIssue } from "../hooks/issues/toDomainIssue"
 
 const defaultValues = {
   title: "",
-  comment: undefined
+  comment: ""
 }
 
 export function IssueCreate() {
@@ -43,7 +43,16 @@ export function IssueCreate() {
       onSubmitCallback={onSubmit}
       schema={CreateIssueSchema}
       submitButtonContent={
-        issueMutation.isLoading ? <Spinner /> : "Submit new issue"
+        issueMutation.isLoading ? (
+          <div className="inline-flex items-center gap-x-2">
+            Creating
+            <span>
+              <Spinner />
+            </span>
+          </div>
+        ) : (
+          "Create"
+        )
       }
     >
       <Input name="title" label="Title" placeholder="As a user I want..." />
