@@ -1,7 +1,6 @@
 import { Fragment } from "react"
 import { BiCheck, BiChevronDown, BiChevronUp } from "react-icons/bi"
 
-import { IssueStatus } from "@enums"
 import {
   SelectContent,
   SelectGroup,
@@ -31,7 +30,8 @@ type SelectGroup = {
 type SelectProps = {
   ariaLabel: string
   groups: SelectGroup[]
-  placeholder: string
+  controlled?: boolean
+  placeholder?: string
 } & SelectRootProps
 
 function __RenderGroup__({ group }: { group: SelectGroup }) {
@@ -67,15 +67,15 @@ export function Select(props: SelectProps) {
           <SelectIcon>
             <BiChevronDown className="text-xl" />
           </SelectIcon>
-          {props.defaultValue ? (
-            <SelectValue placeholder={props.placeholder} />
-          ) : (
+          {props.controlled ? (
             <SelectValue
-              aria-label={`Select ${props.value}`}
+              aria-label={props.value}
               placeholder={props.placeholder}
             >
-              {IssueStatus[props.value as keyof typeof IssueStatus]}
+              {props.value}
             </SelectValue>
+          ) : (
+            <SelectValue placeholder={props.placeholder} />
           )}
         </SelectTrigger>
         <SelectContent>

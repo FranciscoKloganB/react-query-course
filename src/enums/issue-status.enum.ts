@@ -1,3 +1,7 @@
+import { sentenceCase } from "change-case"
+
+import { getEnumKeys } from "@helpers/getEnumKeys"
+
 export enum IssueStatus {
   /**
    * FIXME:
@@ -13,8 +17,8 @@ export enum IssueStatus {
   TODO = "todo"
 }
 
-export function isIssueStatusFilterReset(status: IssueStatus) {
-  return IssueStatus.__CLEAR_FILTER__ === status
+export function isIssueStatusResetter(value: string) {
+  return IssueStatus.__CLEAR_FILTER__ === value.toLowerCase()
 }
 
 export function isOpenIssue(status: IssueStatus) {
@@ -27,4 +31,14 @@ export function isOpenIssue(status: IssueStatus) {
 
 export function isClosedIssue(status: IssueStatus) {
   return !isOpenIssue(status)
+}
+
+export function issueStatusAsSelectGroup(label = "issue status") {
+  return {
+    label,
+    items: getEnumKeys(IssueStatus).map((key) => ({
+      value: key,
+      display: sentenceCase(IssueStatus[key])
+    }))
+  }
 }

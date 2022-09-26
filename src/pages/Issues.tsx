@@ -1,32 +1,18 @@
-import { sentenceCase } from "change-case"
 import { Fragment, useMemo, useState } from "react"
 
 import IssuesList from "@components/IssuesList"
 import LabelsFilteringChips from "@components/LabelsFilteringChips"
-import { IssueStatus, isIssueStatusFilterReset } from "@enums"
+import { IssueStatus, isIssueStatusResetter } from "@enums"
+import { issueStatusAsSelectGroup } from "@enums"
 import { BaseLayout } from "@layouts"
 import { Subtitle, Title } from "@styled"
 import { Select, Tooltip } from "@ui"
-
-function buildIssueProgressStatuses() {
-  return [
-    {
-      label: "issue status",
-      items: [
-        ...Object.keys(IssueStatus).map((key) => ({
-          display: sentenceCase(IssueStatus[key as keyof typeof IssueStatus]),
-          value: key
-        }))
-      ]
-    }
-  ]
-}
 
 export default function Issues() {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
   const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
 
-  const groups = useMemo(() => buildIssueProgressStatuses(), [])
+  const groups = useMemo(() => [issueStatusAsSelectGroup()], [])
 
   function handleLabelToggle(label: string) {
     setSelectedLabels((currentLabels) =>
@@ -41,7 +27,7 @@ export default function Issues() {
 
     if (newStatus) {
       setSelectedStatus(
-        isIssueStatusFilterReset(newStatus) ? undefined : newStatus
+        isIssueStatusResetter(newStatus) ? undefined : newStatus
       )
     } else {
       console.error(
