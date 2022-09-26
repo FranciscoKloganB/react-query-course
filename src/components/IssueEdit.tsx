@@ -7,7 +7,7 @@ import {
   issueStatusAsSelectGroup
 } from "@enums"
 import { useIssueDetail } from "@hooks"
-import { Select } from "@ui"
+import { Select, SelectGroup } from "@ui"
 
 const placeholder = (
   <div className="w-full md:w-56 2xl:w-64 h-9 animate-pulse rounded bg-slate-600" />
@@ -27,7 +27,7 @@ export function IssueEdit() {
   const { number = "" } = useParams()
   const issueQuery = useIssueDetail(number)
 
-  const groups = useMemo(() => [buildIssueProgressStatuses()], [])
+  const group = useMemo(() => buildIssueProgressStatuses(), [])
 
   function handleSelection(enumKey: string) {
     setSelectedStatus(IssueStatus[enumKey as keyof typeof IssueStatus])
@@ -45,9 +45,12 @@ export function IssueEdit() {
     <Select
       ariaLabel="Change issue status"
       defaultValue={selectedStatus}
-      groups={groups}
       placeholder="Change issue status"
       onValueChange={handleSelection}
-    />
+    >
+      <div key={group.label}>
+        <SelectGroup group={group} />
+      </div>
+    </Select>
   )
 }

@@ -6,13 +6,13 @@ import { IssueStatus, isIssueStatusResetter } from "@enums"
 import { issueStatusAsSelectGroup } from "@enums"
 import { BaseLayout } from "@layouts"
 import { Subtitle, Title } from "@styled"
-import { Select, Tooltip } from "@ui"
+import { Select, SelectGroup, Tooltip } from "@ui"
 
 export default function Issues() {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
   const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
 
-  const groups = useMemo(() => [issueStatusAsSelectGroup()], [])
+  const group = useMemo(() => issueStatusAsSelectGroup(), [])
 
   function handleLabelToggle(label: string) {
     setSelectedLabels((currentLabels) =>
@@ -54,10 +54,13 @@ export default function Issues() {
           <Select
             ariaLabel="Issue label filters"
             placeholder="Filter issues"
-            groups={groups}
             defaultValue={selectedStatus}
             onValueChange={handleStatusSelection}
-          />
+          >
+            <div key={group.label}>
+              <SelectGroup group={group} />
+            </div>
+          </Select>
         </Fragment>
       }
       content={

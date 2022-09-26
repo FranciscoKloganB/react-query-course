@@ -1,4 +1,4 @@
-import { Fragment } from "react"
+import React, { Fragment, forwardRef } from "react"
 import { BiCheck, BiChevronDown, BiChevronUp } from "react-icons/bi"
 
 import {
@@ -12,7 +12,6 @@ import {
   SelectRoot,
   SelectScrollDownButton,
   SelectScrollUpButton,
-  SelectSeparator,
   SelectTrigger,
   SelectValue,
   SelectViewport
@@ -29,72 +28,73 @@ type SelectGroup = {
 
 type SelectProps = {
   ariaLabel: string
-  groups: SelectGroup[]
   controlled?: boolean
   placeholder?: string
 } & SelectRootProps
 
-function __RenderGroup__({ group }: { group: SelectGroup }) {
+type SelectItemProps = {
+  children: React.ReactNode
+  value: unknown
+  props?: { [key: string]: unknown }
+}
+
+/** To take control of the rendering logic use `value` prop instead of `defautlValue` prop */
+const ForwardSelect = forwardRef(
+  ({ children, ...props }: SelectProps, forwardedRef) => {
+    return (
+      <SelectRoot {...props}>
+        <SelectTrigger aria-label={props.ariaLabel} ref={forwardedRef}>
+          <SelectIcon>
+            <BiChevronDown className="text-xl" />
+          </SelectIcon>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectScrollUpButton>
+            <BiChevronUp className="text-xl" />
+          </SelectScrollUpButton>
+          <SelectViewport>{children}</SelectViewport>
+          <SelectScrollDownButton>
+            <BiChevronDown className="text-xl" />
+          </SelectScrollDownButton>
+        </SelectContent>
+      </SelectRoot>
+    )
+  }
+)
+ForwardSelect.displayName = "ForwardSelect"
+
+const ForwardSelectItem = forwardRef(
+  ({ children, value, ...props }: SelectItemProps, forwardedRef) => {
+    return (
+      <SelectItem value={value} {...props} ref={forwardedRef}>
+        <SelectItemText>{children}</SelectItemText>
+        <SelectItemIndicator>
+          <BiCheck />
+        </SelectItemIndicator>
+      </SelectItem>
+    )
+  }
+)
+ForwardSelectItem.displayName = "ForwardSelectItem"
+
+function RenderSelectGroup({ group }: { group: SelectGroup }) {
   return (
     <Fragment>
       <SelectGroup>
         <SelectLabel>{group.label}</SelectLabel>
         {group.items.map((item) => (
-          <SelectItem key={item.value} value={item.value}>
-            <SelectItemText>{item.display}</SelectItemText>
-            <SelectItemIndicator>
-              <BiCheck />
-            </SelectItemIndicator>
-          </SelectItem>
+          <ForwardSelectItem key={item.value} value={item.value}>
+            {item.display}
+          </ForwardSelectItem>
         ))}
       </SelectGroup>
     </Fragment>
   )
 }
 
-/** To take control of the rendering logic use `value` prop instead of `defautlValue` prop */
-export function Select(props: SelectProps) {
-  const lastOfGroups = props.groups.length - 1
-
-  return (
-    <div className="flex">
-      <SelectRoot
-        defaultValue={props.defaultValue}
-        onValueChange={props.onValueChange}
-        value={props.value}
-      >
-        <SelectTrigger aria-label={props.ariaLabel}>
-          <SelectIcon>
-            <BiChevronDown className="text-xl" />
-          </SelectIcon>
-          {props.controlled ? (
-            <SelectValue
-              aria-label={props.value}
-              placeholder={props.placeholder}
-            >
-              {props.value}
-            </SelectValue>
-          ) : (
-            <SelectValue placeholder={props.placeholder} />
-          )}
-        </SelectTrigger>
-        <SelectContent>
-          <SelectScrollUpButton>
-            <BiChevronUp className="text-xl" />
-          </SelectScrollUpButton>
-          <SelectViewport>
-            {props.groups.map((group, index) => (
-              <div key={group.label}>
-                <__RenderGroup__ group={group} />
-                {index !== lastOfGroups && <SelectSeparator />}
-              </div>
-            ))}
-          </SelectViewport>
-          <SelectScrollDownButton>
-            <BiChevronDown className="text-xl" />
-          </SelectScrollDownButton>
-        </SelectContent>
-      </SelectRoot>
-    </div>
-  )
+export {
+  ForwardSelect as Select,
+  ForwardSelectItem as SelectItem,
+  RenderSelectGroup as SelectGroup
 }
