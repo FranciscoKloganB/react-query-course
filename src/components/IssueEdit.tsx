@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { Fragment, useMemo, useState } from "react"
 import { useParams } from "react-router-dom"
 
 import {
@@ -7,7 +7,10 @@ import {
   issueStatusAsSelectGroup
 } from "@enums"
 import { useIssueDetail } from "@hooks"
+import { Label } from "@rdx/label"
 import { Select, SelectGroup } from "@ui"
+
+import { Subtitle } from "./styled"
 
 const placeholder = (
   <div className="w-full md:w-56 2xl:w-64 h-9 animate-pulse rounded bg-slate-600" />
@@ -42,15 +45,20 @@ export function IssueEdit() {
   }
 
   return (
-    <Select
-      ariaLabel="Change issue status"
-      defaultValue={selectedStatus}
-      placeholder="Change issue status"
-      onValueChange={handleSelection}
-    >
-      <div key={group.label}>
-        <SelectGroup group={group} />
-      </div>
-    </Select>
+    <Fragment>
+      <Label htmlFor="change issue status">
+        <Subtitle>Status</Subtitle>
+      </Label>
+      <Select
+        id="change issue status"
+        defaultValue={selectedStatus}
+        placeholder="Change issue status"
+        onValueChange={handleSelection}
+      >
+        <div key={group.label}>
+          <SelectGroup group={group} />
+        </div>
+      </Select>
+    </Fragment>
   )
 }

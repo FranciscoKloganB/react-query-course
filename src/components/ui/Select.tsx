@@ -27,7 +27,7 @@ type SelectGroup = {
 }
 
 type SelectProps = {
-  ariaLabel: string
+  id: string
   controlled?: boolean
   placeholder?: string
 } & SelectRootProps
@@ -43,7 +43,7 @@ const ForwardSelect = forwardRef(
   ({ children, ...props }: SelectProps, forwardedRef) => {
     return (
       <SelectRoot {...props}>
-        <SelectTrigger aria-label={props.ariaLabel} ref={forwardedRef}>
+        <SelectTrigger id={props.id} ref={forwardedRef}>
           <SelectIcon>
             <BiChevronDown className="text-xl" />
           </SelectIcon>

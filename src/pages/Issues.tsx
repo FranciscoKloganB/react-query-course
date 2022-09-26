@@ -5,6 +5,7 @@ import LabelsFilteringChips from "@components/LabelsFilteringChips"
 import { IssueStatus, isIssueStatusResetter } from "@enums"
 import { issueStatusAsSelectGroup } from "@enums"
 import { BaseLayout } from "@layouts"
+import { Label } from "@rdx/label"
 import { Subtitle, Title } from "@styled"
 import { Select, SelectGroup, Tooltip } from "@ui"
 
@@ -50,9 +51,11 @@ export default function Issues() {
             selected={selectedLabels}
             toggle={handleLabelToggle}
           />
-          <Subtitle>Status</Subtitle>
+          <Label htmlFor="issue status filters">
+            <Subtitle>Status</Subtitle>
+          </Label>
           <Select
-            ariaLabel="Issue label filters"
+            id="issue status filters"
             placeholder="Filter issues"
             defaultValue={selectedStatus}
             onValueChange={handleStatusSelection}
