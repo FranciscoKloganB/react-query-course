@@ -5,7 +5,7 @@ import { baseClient } from "@clients"
 import { QKF } from "@common/query-key.factory"
 import { seconds } from "@helpers"
 
-import { toDomainIssue } from "./toDomainIssue"
+import { toDomainIssue } from "../toDomainIssue"
 
 function setIssue(client: QueryClient, issue: Issue) {
   client.setQueryData(QKF.issueDetail(issue.number), issue)
@@ -17,7 +17,7 @@ function fetchIssueDetail(number: string | number, signal?: AbortSignal) {
   )
 }
 
-function useIssueDetail(number: string | number) {
+function useGet(number: string | number) {
   return useQuery(
     QKF.issueDetail(number),
     ({ signal }) => fetchIssueDetail(number, signal),
@@ -27,4 +27,4 @@ function useIssueDetail(number: string | number) {
   )
 }
 
-export { fetchIssueDetail, setIssue, useIssueDetail }
+export { fetchIssueDetail, setIssue, useGet as useGetIssueDetail }

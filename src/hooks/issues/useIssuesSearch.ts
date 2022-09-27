@@ -5,8 +5,8 @@ import { baseClient } from "@clients"
 import { QKF } from "@common/query-key.factory"
 import { seconds } from "@helpers"
 
+import { setIssue } from "./detail"
 import { toDomainIssue } from "./toDomainIssue"
-import { setIssue } from "./useIssueDetail"
 
 function fetchIssuesSearch(
   search: string,

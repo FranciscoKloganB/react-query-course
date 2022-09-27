@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { Comment } from "@components/Comment"
 import { IssueHeader } from "@components/IssueHeader"
 import { seconds } from "@helpers"
-import { useIssueComments, useIssueDetail } from "@hooks"
+import { useGetIssueDetail, useIssueComments } from "@hooks"
 import { Paragraph, Subtitle } from "@styled"
 import { FullSpinner, HorizontalDivider } from "@ui"
 
@@ -17,7 +17,7 @@ export function IssueDetails() {
   const originalPathRef = useRef(location.pathname)
   const redirecting = useRef(false)
 
-  const issueQuery = useIssueDetail(number)
+  const issueQuery = useGetIssueDetail(number)
   const commentsQuery = useIssueComments(number)
 
   if (issueQuery.isLoading) {

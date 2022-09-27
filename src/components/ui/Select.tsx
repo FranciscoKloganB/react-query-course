@@ -40,14 +40,14 @@ type SelectItemProps = {
 
 /** To take control of the rendering logic use `value` prop instead of `defautlValue` prop */
 const ForwardSelect = forwardRef(
-  ({ children, ...props }: SelectProps, forwardedRef) => {
+  ({ children, placeholder, ...props }: SelectProps, forwardedRef) => {
     return (
       <SelectRoot {...props}>
         <SelectTrigger id={props.id} ref={forwardedRef}>
           <SelectIcon>
             <BiChevronDown className="text-xl" />
           </SelectIcon>
-          <SelectValue />
+          <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
           <SelectScrollUpButton>

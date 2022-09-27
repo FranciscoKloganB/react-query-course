@@ -5,8 +5,8 @@ import { baseClient } from "@clients"
 import { QKF } from "@common/query-key.factory"
 import { IssueStatus } from "@enums"
 
+import { setIssue } from "./detail"
 import { toDomainIssue } from "./toDomainIssue"
-import { setIssue } from "./useIssueDetail"
 
 function fetchIssuesList(
   queryString: string,

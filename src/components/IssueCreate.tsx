@@ -1,15 +1,9 @@
 import { CreateIssueDto } from "@interfaces"
 import { CreateIssueSchema } from "@schemas/CreateIssueSchema"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useNavigate } from "react-router-dom"
 
-import { baseClient } from "@clients"
-import { QKF } from "@common/query-key.factory"
-import { setIssue } from "@hooks"
+import { useCreateIssueDetail } from "@hooks"
 import { Spinner } from "@ui"
 import { Form, Input, TextArea } from "@ui/forms"
-
-import { toDomainIssue } from "../hooks/issues/toDomainIssue"
 
 const defaultValues = {
   title: "",
@@ -17,33 +11,21 @@ const defaultValues = {
 }
 
 export function IssueCreate() {
-  const queryClient = useQueryClient()
-  const navigate = useNavigate()
-  const issueMutation = useMutation(
-    (newIssue: CreateIssueDto) =>
-      baseClient<IssueDto>("/api/issues", { data: newIssue }),
-    {
-      onSuccess: (dto) => {
-        queryClient.invalidateQueries(QKF.issues, { exact: true })
-        setIssue(queryClient, toDomainIssue(dto))
-        navigate(`/issues/${dto.number}`)
-      }
-    }
-  )
+  const creator = useCreateIssueDetail()
 
   function onSubmit(data: CreateIssueDto) {
     console.log("About to mutate with:", data)
-    issueMutation.mutate({ ...data })
+    creator.mutate({ ...data })
   }
 
   return (
     <Form
       config={{ ...defaultValues }}
-      disable={issueMutation.isLoading}
+      disable={creator.isLoading}
       onSubmitCallback={onSubmit}
       schema={CreateIssueSchema}
       submitButtonContent={
-        issueMutation.isLoading ? (
+        creator.isLoading ? (
           <div className="inline-flex items-center gap-x-2">
             Creating
             <span>
