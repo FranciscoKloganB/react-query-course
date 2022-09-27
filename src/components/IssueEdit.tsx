@@ -6,7 +6,7 @@ import {
   isIssueStatusResetter,
   issueStatusAsSelectGroup
 } from "@enums"
-import { useIssueDetail } from "@hooks"
+import { useGetIssueDetail, useUpdateIssueDetail } from "@hooks"
 import { Label } from "@rdx/label"
 import { Select, SelectGroup } from "@ui"
 
@@ -28,12 +28,18 @@ function buildIssueProgressStatuses() {
 export function IssueEdit() {
   const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
   const { number = "" } = useParams()
-  const issueQuery = useIssueDetail(number)
 
   const group = useMemo(() => buildIssueProgressStatuses(), [])
 
+  const issueQuery = useGetIssueDetail(number)
+  const issueDetailEditor = useUpdateIssueDetail(number)
+
   function handleSelection(enumKey: string) {
-    setSelectedStatus(IssueStatus[enumKey as keyof typeof IssueStatus])
+    const newStatus = IssueStatus[enumKey as keyof typeof IssueStatus]
+
+    setSelectedStatus(newStatus)
+
+    issueDetailEditor.mutate(newStatus)
   }
 
   if (issueQuery.isError) {
