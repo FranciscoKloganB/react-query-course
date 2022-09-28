@@ -1,14 +1,37 @@
-import { IssueStatus } from "@/src/enums"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import { baseClient } from "@clients"
+import { QKF } from "@common/query-key.factory"
+import { IssueStatus } from "@enums"
 
-function useUpdate(number: string | number) {
-  return useMutation((status: IssueStatus) =>
-    baseClient<IssueDto>(`/api/issues/${number}`, {
-      method: "PUT",
-      data: { status }
-    })
+function useUpdate(number: number | string) {
+  const queryClient = useQueryClient()
+
+  const queryKey = QKF.issueDetail(number)
+
+  return useMutation(
+    (status: IssueStatus) =>
+      baseClient<IssueDto>(`/api/issues/${number}`, {
+        method: "PUT",
+        data: { status }
+      }),
+    {
+      onMutate: (status) => {
+        const oldData = queryClient.getQueryData<Issue>(queryKey)
+
+        queryClient.setQueryData(queryKey, (data) => ({
+          ...(data ?? {}),
+          status
+        }))
+
+        return function rollback() {
+          queryClient.setQueryData(queryKey, (data) => ({
+            ...(data ?? {}),
+            status: oldData?.status
+          }))
+        }
+      }
+    }
   )
 }
 

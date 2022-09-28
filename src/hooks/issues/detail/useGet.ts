@@ -11,13 +11,13 @@ function setIssue(client: QueryClient, issue: Issue) {
   client.setQueryData(QKF.issueDetail(issue.number), issue)
 }
 
-function fetchIssueDetail(number: string | number, signal?: AbortSignal) {
+function fetchIssueDetail(number: number | string, signal?: AbortSignal) {
   return baseClient<IssueDto>(`/api/issues/${number}`, { signal }).then((dto) =>
     toDomainIssue(dto)
   )
 }
 
-function useGet(number: string | number) {
+function useGet(number: number | string) {
   return useQuery(
     QKF.issueDetail(number),
     ({ signal }) => fetchIssueDetail(number, signal),

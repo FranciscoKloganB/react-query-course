@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useState } from "react"
+import { Fragment, useMemo } from "react"
 import { useParams } from "react-router-dom"
 
 import {
@@ -6,7 +6,7 @@ import {
   isIssueStatusResetter,
   issueStatusAsSelectGroup
 } from "@enums"
-import { useGetIssueDetail, useUpdateIssueDetail } from "@hooks"
+import { useUpdateIssueDetail } from "@hooks"
 import { Label } from "@rdx/label"
 import { Select, SelectGroup } from "@ui"
 
@@ -26,28 +26,14 @@ function buildIssueProgressStatuses() {
 }
 
 export function IssueEdit() {
-  const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
   const { number = "" } = useParams()
 
   const group = useMemo(() => buildIssueProgressStatuses(), [])
 
-  const issueQuery = useGetIssueDetail(number)
   const issueDetailEditor = useUpdateIssueDetail(number)
 
-  function handleSelection(enumKey: string) {
-    const newStatus = IssueStatus[enumKey as keyof typeof IssueStatus]
-
-    setSelectedStatus(newStatus)
-
-    issueDetailEditor.mutate(newStatus)
-  }
-
-  if (issueQuery.isError) {
-    return null
-  }
-
-  if (issueQuery.isLoading) {
-    return placeholder
+  function handleSelection(key: string) {
+    issueDetailEditor.mutate(IssueStatus[key as keyof typeof IssueStatus])
   }
 
   return (
@@ -57,7 +43,6 @@ export function IssueEdit() {
       </Label>
       <Select
         id="change issue status"
-        defaultValue={selectedStatus}
         placeholder="Change issue status"
         onValueChange={handleSelection}
       >
