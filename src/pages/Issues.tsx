@@ -57,7 +57,6 @@ export default function Issues() {
           <Select
             id="issue status filters"
             placeholder="Filter issues"
-            defaultValue={selectedStatus}
             onValueChange={handleStatusSelection}
           >
             <div key={group.label}>
