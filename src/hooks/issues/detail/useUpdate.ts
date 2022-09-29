@@ -30,6 +30,12 @@ function useUpdate(number: number | string) {
             status: oldData?.status
           }))
         }
+      },
+      onError: (_error, _variables, rollback) => {
+        rollback?.()
+      },
+      onSettled: (_error, _variables) => {
+        queryClient.invalidateQueries(queryKey, { exact: true })
       }
     }
   )
