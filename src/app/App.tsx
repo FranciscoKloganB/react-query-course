@@ -1,35 +1,21 @@
-import { Fragment } from "react"
+import { useEffect, useMemo } from "react"
+import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
-import { AuthenticatedApp } from "@app/AuthenticatedApp"
-import { UnauthenticatedApp } from "@app/UnauthenticatedApp"
+import { routes } from "@common/routes"
 import { useAuthContext } from "@hooks"
-import { ActionsMenu } from "@nav"
-import { Heading } from "@styled"
-import { Breadcrumbs } from "@ui"
-import { ProgressBar } from "@ui"
+import { useBreadcrumbRoutesContext } from "@hooks"
 
 function App() {
   const { isAuthenticated } = useAuthContext()
 
-  return (
-    <Fragment>
-      <ProgressBar />
-      <div className="max-w-screen min-h-screen bg-slate-900">
-        <div className="flex justify-end p-4 md:justify-between">
-          <div className="hidden justify-start md:inline-block">
-            <Breadcrumbs />
-          </div>
-          <div>
-            <ActionsMenu />
-          </div>
-        </div>
-        <div className="container mx-auto px-4 py-3 lg:pt-6 xl:px-14 2xl:px-16">
-          <Heading className="mb-2 lg:mb-6">Issue Tracker</Heading>
-          {isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />}
-        </div>
-      </div>
-    </Fragment>
-  )
+  const crumbsContext = useBreadcrumbRoutesContext()
+  const browserRouter = useMemo(() => createBrowserRouter(routes), [])
+
+  useEffect(() => {
+    crumbsContext.setObjects(routes)
+  }, [])
+
+  return <RouterProvider router={browserRouter} />
 }
 
 export default App
