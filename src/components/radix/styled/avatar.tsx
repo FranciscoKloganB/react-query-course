@@ -40,6 +40,7 @@ const StyledRoot = tw(AvatarPrimitive.Root)`
   ${({ $size }: { $size: AvatarVariantsSizes }) => avatarVariants.sizes[$size]}
 `
 
+export const AvatarContainer = tw.span`relative inline-block`
 export const AvatarFallback = StyledFallback
 export const AvatarFallBackInitials = StyledFallbackInitials
 export const AvatarImage = StyledImage

@@ -1,5 +1,7 @@
+import { OnlineStatus } from "@enums"
+import { getRandomOfEnum } from "@helpers/getRandomOfEnum"
 import { useUser } from "@hooks"
-import { ProfilePicture } from "@ui"
+import { Avatar } from "@ui"
 
 export function AssigneeProfilePicture({ userId }: { userId: string }) {
   if (!userId) {
@@ -9,9 +11,12 @@ export function AssigneeProfilePicture({ userId }: { userId: string }) {
   const userQuery = useUser(userId)
 
   return (
-    <ProfilePicture
+    <Avatar
       alt={`Assignee ${userQuery.data?.id} profile picture`}
       src={userQuery.data?.profilePictureUrl}
+      shape="circle"
+      size="md"
+      status={getRandomOfEnum(OnlineStatus)}
     />
   )
 }

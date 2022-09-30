@@ -5,10 +5,7 @@ import { RectShape } from "react-placeholder/lib/placeholders"
 import { relativeDate } from "@helpers"
 import { useUser } from "@hooks"
 import { Border, Paragraph, Small, Span } from "@styled"
-import { ProfilePicture } from "@ui"
-import { HorizontalDivider } from "@ui"
-
-const profilePictureSize = "lg"
+import { Avatar, HorizontalDivider } from "@ui"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const placeholder = (
@@ -32,10 +29,11 @@ export function Comment({ comment, createdBy, createdDate }: UserComment) {
     <div className="mt-3">
       <div className="flex items-center gap-x-2">
         <div className="min-w-fit">
-          <ProfilePicture
+          <Avatar
             src={userQuery.data?.profilePictureUrl}
             alt={`Commenter ${userQuery.data?.name} profile picture`}
-            size={profilePictureSize}
+            shape="circle"
+            size="lg"
           />
         </div>
         {

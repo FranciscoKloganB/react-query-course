@@ -3,6 +3,7 @@ import { FaUserAstronaut } from "react-icons/fa"
 
 import { OnlineStatus } from "@enums"
 import {
+  AvatarContainer,
   AvatarFallBackInitials,
   AvatarFallback,
   AvatarImage,
@@ -13,10 +14,10 @@ import type { AvatarVariantsShapes, AvatarVariantsSizes } from "@styled"
 
 type AvatarProps = {
   alt: string
-  src: string
   initials?: string
   size?: AvatarVariantsSizes
   shape?: AvatarVariantsShapes
+  src?: string | URL
   status?: OnlineStatus
 }
 
@@ -27,30 +28,32 @@ type AvatarProps = {
  */
 export function Avatar({
   initials,
-  src,
+  src = "",
   alt = "avatar",
   shape = "rounded",
   size = "md",
   status = OnlineStatus.INACTIVE
 }: AvatarProps) {
   return (
-    <AvatarRoot $size={size}>
-      <AvatarImage $shape={shape} alt={alt} src={src} />
-      <StatusOverlay $size={size} $status={status} />
-      <AvatarFallback $shape={shape} delayMs={600}>
-        {initials ? (
-          <AvatarFallBackInitials>{initials}</AvatarFallBackInitials>
-        ) : (
-          <Span>
-            <FaUserAstronaut
-              className={clsx(
-                avatarVariants.sizes[size],
-                "rounded-full bg-slate-400"
-              )}
-            />
-          </Span>
-        )}
-      </AvatarFallback>
-    </AvatarRoot>
+    <AvatarContainer>
+      <AvatarRoot $size={size}>
+        <AvatarImage $shape={shape} alt={alt} src={src} />
+        <StatusOverlay $size={size} $status={status} />
+        <AvatarFallback $shape={shape} delayMs={600}>
+          {initials ? (
+            <AvatarFallBackInitials>{initials}</AvatarFallBackInitials>
+          ) : (
+            <Span>
+              <FaUserAstronaut
+                className={clsx(
+                  avatarVariants.sizes[size],
+                  "rounded-full bg-slate-400"
+                )}
+              />
+            </Span>
+          )}
+        </AvatarFallback>
+      </AvatarRoot>
+    </AvatarContainer>
   )
 }
