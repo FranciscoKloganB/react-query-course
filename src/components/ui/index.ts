@@ -1,3 +1,4 @@
+export * from "./Avatar"
 export * from "./Breadcrumbs"
 export * from "./Dots"
 export * from "./Dropdown"

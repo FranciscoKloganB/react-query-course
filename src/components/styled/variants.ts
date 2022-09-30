@@ -1,11 +1,17 @@
 /* eslint-disable max-len */
 const avatarVariants = {
-  xs: "h-6 w-6",
-  sm: "h-8 w-8",
-  md: "h-10 w-10",
-  lg: "h-12 w-12",
-  xl: "h-14 w-14",
-  "2xl": "h-16 w-16"
+  shapes: {
+    circle: "rounded-full",
+    rounded: "rounded"
+  },
+  sizes: {
+    xs: "h-6 w-6",
+    sm: "h-8 w-8",
+    md: "h-10 w-10",
+    lg: "h-12 w-12",
+    xl: "h-14 w-14",
+    "2xl": "h-16 w-16"
+  }
 } as const
 
 const buttonVariants = {
@@ -96,7 +102,8 @@ const statusOverlayVariants = {
   }
 } as const
 
-type AvatarVariants = keyof typeof avatarVariants
+type AvatarVariantsShapes = keyof typeof avatarVariants["shapes"]
+type AvatarVariantsSizes = keyof typeof avatarVariants["sizes"]
 type ButtonVariants = keyof typeof buttonVariants
 type LabelVariants = keyof typeof labelVariants
 type LabelVariantsColors = keyof typeof labelVariants["colors"]
@@ -107,7 +114,8 @@ type StatusOverlayVariantsSizes = keyof typeof statusOverlayVariants["sizes"]
 export { avatarVariants, buttonVariants, labelVariants, statusOverlayVariants }
 
 export type {
-  AvatarVariants,
+  AvatarVariantsShapes,
+  AvatarVariantsSizes,
   ButtonVariants,
   LabelVariants,
   LabelVariantsColors,
