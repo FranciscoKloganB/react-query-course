@@ -1,4 +1,5 @@
 import { Fragment, useMemo } from "react"
+import { GoGear } from "react-icons/go"
 import { useParams } from "react-router-dom"
 
 import {
@@ -8,9 +9,8 @@ import {
 } from "@enums"
 import { useUpdateIssueDetail } from "@hooks"
 import { Label } from "@rdx/label"
-import { Select, SelectGroup } from "@ui"
-
-import { Subtitle } from "./styled"
+import { Subtitle } from "@styled"
+import { Avatar, Icon, Select, SelectGroup } from "@ui"
 
 const placeholder = (
   <div className="w-full md:w-56 2xl:w-64 h-9 animate-pulse rounded bg-slate-600" />
@@ -50,6 +50,20 @@ export function IssueEdit() {
           <SelectGroup group={group} />
         </div>
       </Select>
+      <Subtitle>Assignee</Subtitle>
+      <div className="flex items-center">
+        <Avatar
+          src={""}
+          alt={`Current assignee profile picture`}
+          shape="circle"
+          size="sm"
+        />
+        <Label htmlFor="change assignee">
+          <Icon label="change assignee button">
+            <GoGear aria-role="button" />
+          </Icon>
+        </Label>
+      </div>
     </Fragment>
   )
 }
