@@ -36,7 +36,7 @@ const StyledImage = tw(AvatarPrimitive.Image)`
 `
 
 const StyledRoot = tw(AvatarPrimitive.Root)`
-  relative inline-flex
+  relative inline-flex align-middle
   ${({ $size }: { $size: AvatarVariantsSizes }) => avatarVariants.sizes[$size]}
 `
 
