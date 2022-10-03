@@ -1,10 +1,17 @@
 import * as AccessibleIcon from "@radix-ui/react-accessible-icon"
 
-type IconProps = {
-  children: React.ReactNode
+import { Span } from "@styled"
+
+export type IconProps = {
+  children: React.ReactElement
   label: string
+  [x: string]: unknown
 }
 
-export function Icon({ children, label }: IconProps) {
-  return <AccessibleIcon.Root label={label}>{children}</AccessibleIcon.Root>
+export function Icon({ children, label, ...rest }: IconProps) {
+  return (
+    <AccessibleIcon.Root label={label}>
+      <Span {...rest}>{children}</Span>
+    </AccessibleIcon.Root>
+  )
 }

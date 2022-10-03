@@ -28,17 +28,17 @@ type AvatarProps = {
  */
 export function Avatar({
   initials,
-  src = "",
+  src,
+  status,
   alt = "avatar",
   shape = "rounded",
-  size = "md",
-  status = OnlineStatus.INACTIVE
+  size = "md"
 }: AvatarProps) {
   return (
     <AvatarContainer>
       <AvatarRoot $size={size}>
         <AvatarImage $shape={shape} alt={alt} src={src} />
-        <StatusOverlay $size={size} $status={status} />
+        {!!status && <StatusOverlay $size={size} $status={status} />}
         <AvatarFallback $shape={shape} delayMs={600}>
           {initials ? (
             <AvatarFallBackInitials>{initials}</AvatarFallBackInitials>
@@ -47,7 +47,7 @@ export function Avatar({
               <FaUserAstronaut
                 className={clsx(
                   avatarVariants.sizes[size],
-                  "rounded-full bg-slate-400"
+                  "rounded-full bg-slate-400 self-center"
                 )}
               />
             </Span>

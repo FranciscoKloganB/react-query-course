@@ -4,7 +4,7 @@ import { baseClient } from "@clients"
 import { QKF } from "@common/query-key.factory"
 
 function fetchUserList(signal?: AbortSignal) {
-  return baseClient<User>(`/api/users`, { signal })
+  return baseClient<User[]>(`/api/users`, { signal })
 }
 
 function useUsersList() {

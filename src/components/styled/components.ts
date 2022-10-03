@@ -28,6 +28,18 @@ export const Button = tw.button`
   ${({ $variant }: { $variant: ButtonVariants }) => buttonVariants[$variant]}
 `
 
+export const ButtonIcon = tw.button`
+  flex-shrink-0
+  p-2
+  bg-transparent
+  rounded-full
+  focus:outline-none
+  enabled:hover:ring
+  enabled:hover:ring-yellow-400
+  enabled:focus-visible:ring
+  enabled:focus-visible:ring-yellow-400
+`
+
 export const Chip = tw.button`
   flex
   max-w-xs
