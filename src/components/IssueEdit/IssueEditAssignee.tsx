@@ -1,24 +1,30 @@
 import { useUsersList } from "@/src/hooks"
+import { useQueryClient } from "@tanstack/react-query"
+import { useState } from "react"
 import { GoGear } from "react-icons/go"
-import ReactPlaceholder from "react-placeholder/lib"
 
 import { Label } from "@rdx/label"
 import { ButtonIcon, Subtitle } from "@styled"
 import { Avatar, Icon } from "@ui"
 
 type IssueEdigAssigneeProps = {
-  assigneeId?: string
+  initialAssigneeId?: string
 }
 
-const placeholder = (
-  <div className="h-8 w-8 animate-pulse rounded-full bg-slate-600" />
-)
-
-export function IssueEditAssignee({ assigneeId }: IssueEdigAssigneeProps) {
+export function IssueEditAssignee({
+  initialAssigneeId
+}: IssueEdigAssigneeProps) {
+  const [assigneeId, setAssigneeId] = useState(initialAssigneeId)
+  const queryClient = useQueryClient()
   const usersQuery = useUsersList()
 
-  if (usersQuery.isError) {
-    return null
+  if (usersQuery.isLoading) {
+    return (
+      <div>
+        <Subtitle>Assignee</Subtitle>
+        <div className="h-8 w-8 animate-pulse rounded-full bg-slate-600" />
+      </div>
+    )
   }
 
   const candidates = usersQuery.data ?? []
@@ -30,23 +36,27 @@ export function IssueEditAssignee({ assigneeId }: IssueEdigAssigneeProps) {
         <Subtitle>Assignee</Subtitle>
       </Label>
       <div className="flex space-x-3 lg:justify-between">
-        <ReactPlaceholder
-          customPlaceholder={placeholder}
-          ready={usersQuery.isSuccess}
-        >
-          <Avatar
-            src={assignee?.profilePictureUrl}
-            alt={`Current assignee profile picture`}
-            shape="circle"
-            size="sm"
-          />
-          <ButtonIcon className="ml-4 hover:animate-spin-slow">
-            <Icon label="change assignee button">
-              <GoGear />
-            </Icon>
-          </ButtonIcon>
-        </ReactPlaceholder>
+        <Avatar
+          src={assignee?.profilePictureUrl}
+          alt={`Current assignee profile picture`}
+          shape="circle"
+          size="sm"
+        />
+        <ButtonIcon className="ml-4 hover:animate-spin-slow">
+          <Icon label="change assignee button">
+            <GoGear />
+          </Icon>
+        </ButtonIcon>
       </div>
+      {/* <Select
+            id="issue status filters"
+            placeholder="Filter issues"
+            onValueChange={setAssigneeId}
+          >
+            <div key={group.label}>
+              <SelectGroup group={group} />
+            </div>
+          </Select> */}
     </div>
   )
 }
