@@ -1,7 +1,7 @@
+import LabelChipButtons from "@/src/components/LabelChipButtons"
 import { Fragment, useMemo, useState } from "react"
 
 import IssuesList from "@components/IssuesList"
-import LabelsFilteringChips from "@components/LabelsFilteringChips"
 import { IssueStatus, isIssueStatusResetter } from "@enums"
 import { issueStatusAsSelectGroup } from "@enums"
 import { BaseLayout } from "@layouts"
@@ -42,11 +42,11 @@ export default function Issues() {
   return (
     <BaseLayout
       aside={
-        <Fragment>
-          <Tooltip message="Click the label chips to toggle filter by their name">
+        <div className="gap-y-3">
+          <Tooltip message="Toggle the label chips to control which issues are displayed">
             <Subtitle>Labels</Subtitle>
           </Tooltip>
-          <LabelsFilteringChips
+          <LabelChipButtons
             className="mt-2 justify-center gap-x-2 gap-y-3 md:justify-start"
             selected={selectedLabels}
             toggle={handleLabelToggle}
@@ -56,14 +56,14 @@ export default function Issues() {
           </Label>
           <Select
             id="issue status filters"
-            placeholder="Filter issues"
+            placeholder="Showing all statuses"
             onValueChange={handleStatusSelection}
           >
             <div key={group.label}>
               <SelectGroup group={group} />
             </div>
           </Select>
-        </Fragment>
+        </div>
       }
       content={
         <Fragment>

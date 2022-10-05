@@ -1,15 +1,15 @@
+import clsx from "clsx"
+
 import { useLabels } from "@hooks"
 import { Chip } from "@styled"
 
-export function LabelChip({
-  name,
-  className,
-  onClick
-}: {
+type LabelChipProps = {
   name: string
-  className?: string
+  active?: boolean
   onClick?: (s: string) => void
-}) {
+}
+
+export function LabelChip({ active, name, onClick }: LabelChipProps) {
   const labelsQuery = useLabels()
 
   if (labelsQuery.isSuccess) {
@@ -27,7 +27,10 @@ export function LabelChip({
     const props = {
       $as: isNotInteractive ? "span" : "button",
       $color: label.color,
-      className: className,
+      className: clsx(
+        "hover:border-yellow-600 hover:brightness-125",
+        !!active && "border-yellow-600 brightness-200"
+      ),
       onClick
     }
 

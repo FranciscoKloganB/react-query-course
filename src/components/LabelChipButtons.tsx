@@ -3,17 +3,17 @@ import clsx from "clsx"
 import { LabelChip } from "@components/LabelChip"
 import { useLabels } from "@hooks"
 
-type LabelsFilteringChipsProps = {
+type LabelChipButtonsProps = {
   selected: string[]
   toggle: (label: string) => void
   className?: string
 }
 
-export default function LabelsFilteringChips({
-  selected,
+export default function LabelChipButtons({
   className,
+  selected,
   toggle
-}: LabelsFilteringChipsProps) {
+}: LabelChipButtonsProps) {
   const labels = useLabels()
 
   if (labels.isError) {
@@ -27,14 +27,14 @@ export default function LabelsFilteringChips({
   return (
     <ul className={clsx("flex flex-wrap", className)}>
       {labels.data?.map((label) => {
+        const isActive = selected.includes(label.name)
+
         return (
           <li key={label.id}>
             <LabelChip
-              className={clsx(
-                selected.includes(label.name) &&
-                  "border-yellow-600 brightness-200",
-                "hover:border-yellow-600 hover:brightness-125"
-              )}
+              aria-role="button"
+              aria-pressed={isActive.toString()}
+              active={isActive}
               name={label.name}
               onClick={() => toggle(label.name)}
             />

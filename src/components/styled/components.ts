@@ -151,7 +151,8 @@ export const Span = tw.span`
 export const Subtitle = tw.h3`
   font-display
   font-semibold
-  text-white py-4
+  text-white
+  my-2
   text-xl
   md:text-left
   tracking-tight
@@ -165,7 +166,7 @@ export const TextArea = tw.textarea`
 `
 
 export const Title = tw.h2`
-  pt-4
+  mt-4
   font-display
   font-bold
   text-white

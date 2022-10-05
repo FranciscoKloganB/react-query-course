@@ -33,7 +33,7 @@ export function Search({
     <SearchContainer>
       <div className="max-w-full">
         <label htmlFor="search" className="sr-only">
-          Search issue
+          Search issues by text
         </label>
         <div className="relative">
           <SearchIconContainer>{children}</SearchIconContainer>
@@ -42,7 +42,7 @@ export function Search({
             onChange={(e: ISearchEvent) => debouncedSetState(e.target.value)}
             id="search"
             name="search"
-            placeholder="Search issues"
+            placeholder="Search issues by text"
             type="search"
           />
         </div>
