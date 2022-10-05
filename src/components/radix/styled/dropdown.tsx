@@ -53,6 +53,25 @@ const StyledSubTrigger = tw(DropdownMenuPrimitive.SubTrigger)`
 const StyledItem = tw(DropdownMenuPrimitive.Item)`
   ${() => itemStyles}
 `
+const StyledItemAlt = tw(DropdownMenuPrimitive.Item)`
+  flex
+  font-sans
+  leading-none
+  text-xs
+  md:text-sm
+  text-white
+  rounded
+  min-h-fit
+  py-1
+  px-3
+  relative
+  select-none
+  radix-disabled:pointer-events-none
+  radix-disabled:text-slate-400
+  radix-highlighted:bg-navy-blue-600
+  radix-highlighted:text-white
+  focus-visible:outline-none
+`
 
 /**
  * Renders a checkable item within the selection panel when Dropdown state is open.
@@ -110,6 +129,7 @@ export const DropdownMenuTrigger = StyledTrigger
 export const DropdownMenuContent = Content
 
 export const DropdownMenuItem = StyledItem
+export const DropdownMenuItemAlt = StyledItemAlt
 
 /** Example usage:
  *

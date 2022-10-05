@@ -1,22 +1,31 @@
 import { useUsersList } from "@/src/hooks"
 import { useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
-import { GoGear } from "react-icons/go"
 
 import { Label } from "@rdx/label"
-import { ButtonIcon, Subtitle } from "@styled"
-import { Avatar, Icon } from "@ui"
+import { Span, Subtitle } from "@styled"
+import { Avatar, Dropdown, DropdownMenuItemAlt } from "@ui"
+
+import { CogwheelButton } from "../ui/CogwheelButton"
 
 type IssueEdigAssigneeProps = {
   initialAssigneeId?: string
 }
 
+const avatarClasses = `
+  group-radix-highlighted:ring-2
+  group-radix-highlighted:ring-yellow-400
+  group-radix-focus-visible:ring-2
+  group-radix-focus-visible:ring-yellow-400"
+`
+
 export function IssueEditAssignee({
   initialAssigneeId
 }: IssueEdigAssigneeProps) {
+  console.log("initialAssigneeId", initialAssigneeId)
   const [assigneeId, setAssigneeId] = useState(initialAssigneeId)
-  const queryClient = useQueryClient()
   const usersQuery = useUsersList()
+  const queryClient = useQueryClient()
 
   if (usersQuery.isLoading) {
     return (
@@ -39,24 +48,29 @@ export function IssueEditAssignee({
         <Avatar
           src={assignee?.profilePictureUrl}
           alt={`Current assignee profile picture`}
+          initials=""
           shape="circle"
           size="sm"
         />
-        <ButtonIcon className="ml-4 hover:animate-spin-slow">
-          <Icon label="change assignee button">
-            <GoGear />
-          </Icon>
-        </ButtonIcon>
+        <Dropdown triggerButton={CogwheelButton}>
+          {candidates.map(({ id, name, profilePictureUrl }) => (
+            <DropdownMenuItemAlt
+              key={id}
+              className="gap-x-3 items-center group"
+              onSelect={() => setAssigneeId(id)}
+            >
+              <Avatar
+                src={profilePictureUrl}
+                alt={`Current assignee profile picture`}
+                className={avatarClasses}
+                shape="circle"
+                size="sm"
+              />
+              <Span>{name}</Span>
+            </DropdownMenuItemAlt>
+          ))}
+        </Dropdown>
       </div>
-      {/* <Select
-            id="issue status filters"
-            placeholder="Filter issues"
-            onValueChange={setAssigneeId}
-          >
-            <div key={group.label}>
-              <SelectGroup group={group} />
-            </div>
-          </Select> */}
     </div>
   )
 }

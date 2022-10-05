@@ -19,6 +19,8 @@ type AvatarProps = {
   shape?: AvatarVariantsShapes
   src?: string | URL
   status?: OnlineStatus
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [x: string]: any
 }
 
 /**
@@ -32,21 +34,26 @@ export function Avatar({
   status,
   alt = "avatar",
   shape = "rounded",
-  size = "md"
+  size = "md",
+  ...rest
 }: AvatarProps) {
   return (
     <AvatarContainer>
       <AvatarRoot $size={size}>
-        <AvatarImage $shape={shape} alt={alt} src={src} />
+        <AvatarImage $shape={shape} alt={alt} src={src} {...rest} />
         {!!status && <StatusOverlay $size={size} $status={status} />}
         <AvatarFallback $shape={shape} delayMs={600}>
-          {initials ? (
-            <AvatarFallBackInitials>{initials}</AvatarFallBackInitials>
+          {typeof initials === "string" ? (
+            <AvatarFallBackInitials {...rest}>
+              {initials}
+            </AvatarFallBackInitials>
           ) : (
             <Span>
               <FaUserAstronaut
+                {...rest}
                 className={clsx(
                   avatarVariants.sizes[size],
+                  rest.className,
                   "rounded-full bg-slate-400 self-center"
                 )}
               />

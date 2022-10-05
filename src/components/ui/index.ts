@@ -1,5 +1,6 @@
 export * from "./Avatar"
 export * from "./Breadcrumbs"
+export * from "./CogwheelButton"
 export * from "./Dots"
 export * from "./Dropdown"
 export * from "./forms"

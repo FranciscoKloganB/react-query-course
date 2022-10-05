@@ -26,7 +26,7 @@ export function IssueEdit() {
   return (
     <Fragment>
       <IssueEditStatus onStatusSelect={handleSelection} />
-      <IssueEditAssignee assigneeId={issueGetQuery.data?.assignee} />
+      <IssueEditAssignee initialAssigneeId={issueGetQuery.data?.assignee} />
       <Label htmlFor="change labels">
         <Subtitle>Labels</Subtitle>
       </Label>

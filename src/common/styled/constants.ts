@@ -45,9 +45,9 @@ export const itemStyles = `
   radix-disabled:text-slate-400
   radix-highlighted:bg-navy-blue-600
   radix-highlighted:text-white
-  radix-highlighted:ring
+  radix-highlighted:ring-2
   radix-highlighted:ring-yellow-400
-  focus-visible:ring
+  focus-visible:ring-2
   focus-visible:outline-none
   focus-visible:ring-yellow-400
 `
