@@ -1,6 +1,5 @@
+import { getEnumKeys } from "@/src/helpers/getEnumKeys"
 import { sentenceCase } from "change-case"
-
-import { getEnumKeys } from "@helpers/getEnumKeys"
 
 export enum IssueStatus {
   /**

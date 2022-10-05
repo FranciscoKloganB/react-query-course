@@ -1,6 +1,5 @@
 import { useUsersList } from "@/src/hooks"
 import { useQueryClient } from "@tanstack/react-query"
-import { useState } from "react"
 
 import { Label } from "@rdx/label"
 import { Span, Subtitle } from "@styled"
@@ -9,7 +8,8 @@ import { Avatar, Dropdown, DropdownMenuItemAlt } from "@ui"
 import { CogwheelButton } from "../ui/CogwheelButton"
 
 type IssueEdigAssigneeProps = {
-  initialAssigneeId?: string
+  onAssigneeSelect: (assineeId: string) => void
+  assigneeId?: string
 }
 
 const avatarClasses = `
@@ -20,10 +20,10 @@ const avatarClasses = `
 `
 
 export function IssueEditAssignee({
-  initialAssigneeId
+  assigneeId,
+  onAssigneeSelect
 }: IssueEdigAssigneeProps) {
-  console.log("initialAssigneeId", initialAssigneeId)
-  const [assigneeId, setAssigneeId] = useState(initialAssigneeId)
+  console.log("Current assigneeId", assigneeId)
   const usersQuery = useUsersList()
   const queryClient = useQueryClient()
 
@@ -57,7 +57,7 @@ export function IssueEditAssignee({
             <DropdownMenuItemAlt
               key={id}
               className="gap-x-3 items-center group"
-              onSelect={() => setAssigneeId(id)}
+              onSelect={() => onAssigneeSelect(id)}
             >
               <Avatar
                 src={profilePictureUrl}

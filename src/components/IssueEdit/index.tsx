@@ -2,7 +2,7 @@ import { Fragment } from "react"
 import { useParams } from "react-router-dom"
 
 import { IssueStatus } from "@enums"
-import { useGetIssueDetail, useUpdateIssueDetail } from "@hooks"
+import { useGetIssueDetail, usePatchIssueDetail } from "@hooks"
 import { Label } from "@rdx/label"
 import { Subtitle } from "@styled"
 
@@ -17,16 +17,25 @@ export function IssueEdit() {
   const { number = "" } = useParams()
 
   const issueGetQuery = useGetIssueDetail(number)
-  const issueEditQuery = useUpdateIssueDetail(number)
+  const issuePatchMutation = usePatchIssueDetail(number)
 
-  function handleSelection(key: string) {
-    issueEditQuery.mutate(IssueStatus[key as keyof typeof IssueStatus])
+  function handleStatusChange(key: string) {
+    issuePatchMutation.mutate({
+      status: IssueStatus[key as keyof typeof IssueStatus]
+    })
+  }
+
+  function handleAssigneeChange(assigneeId: string) {
+    issuePatchMutation.mutate({ assignee: assigneeId })
   }
 
   return (
     <Fragment>
-      <IssueEditStatus onStatusSelect={handleSelection} />
-      <IssueEditAssignee initialAssigneeId={issueGetQuery.data?.assignee} />
+      <IssueEditStatus onStatusSelect={handleStatusChange} />
+      <IssueEditAssignee
+        assigneeId={issueGetQuery.data?.assignee}
+        onAssigneeSelect={handleAssigneeChange}
+      />
       <Label htmlFor="change labels">
         <Subtitle>Labels</Subtitle>
       </Label>
