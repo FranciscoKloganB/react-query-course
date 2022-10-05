@@ -1,5 +1,4 @@
 import { useUsersList } from "@/src/hooks"
-import { useQueryClient } from "@tanstack/react-query"
 
 import { Label } from "@rdx/label"
 import { Span, Subtitle } from "@styled"
@@ -25,7 +24,6 @@ export function IssueEditAssignee({
 }: IssueEdigAssigneeProps) {
   console.log("Current assigneeId", assigneeId)
   const usersQuery = useUsersList()
-  const queryClient = useQueryClient()
 
   if (usersQuery.isLoading) {
     return (

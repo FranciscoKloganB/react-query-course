@@ -1,6 +1,4 @@
 import { Fragment } from "react"
-import ReactPlaceholder from "react-placeholder"
-import { RectShape } from "react-placeholder/lib/placeholders"
 
 import { relativeDate } from "@helpers"
 import { useUser } from "@hooks"
@@ -10,15 +8,9 @@ import { Avatar, HorizontalDivider } from "@ui"
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const placeholder = (
   <Fragment>
-    <RectShape
-      className="w-100 animate-pulse rounded bg-slate-600"
-      style={{ height: 24 }}
-    />
+    <div className="w-100 h-6 animate-pulse rounded bg-slate-600" />
     <HorizontalDivider />
-    <RectShape
-      className="w-100 animate-pulse rounded bg-slate-600"
-      style={{ height: 24 }}
-    />
+    <div className="w-100 h-6 animate-pulse rounded bg-slate-600" />
   </Fragment>
 )
 
@@ -38,25 +30,22 @@ export function Comment({ comment, createdBy, createdDate }: UserComment) {
         </div>
         {
           <Border className="grow">
-            {userQuery.isError ? (
+            {userQuery.isLoading ? (
+              placeholder
+            ) : userQuery.isError ? (
               <Paragraph>
                 <i className="text-sm text-red-200">
                   Could not load user comment
                 </i>
               </Paragraph>
             ) : (
-              <ReactPlaceholder
-                customPlaceholder={placeholder}
-                ready={userQuery.isSuccess}
-              >
-                <Fragment>
-                  <Small>{`${userQuery.data?.name} commented ${relativeDate(
-                    createdDate
-                  )}`}</Small>
-                  <HorizontalDivider />
-                  <Span>{comment}</Span>
-                </Fragment>
-              </ReactPlaceholder>
+              <Fragment>
+                <Small>{`${userQuery.data?.name} commented ${relativeDate(
+                  createdDate
+                )}`}</Small>
+                <HorizontalDivider />
+                <Span>{comment}</Span>
+              </Fragment>
             )}
           </Border>
         }

@@ -20,6 +20,16 @@ export function IssueEdit() {
   const issueGetQuery = useGetIssueDetail(number)
   const issuePatchMutation = usePatchIssueDetail(number)
 
+  if (issueGetQuery.isLoading) {
+    return placeholder
+  }
+
+  if (issueGetQuery.isError) {
+    return null
+  }
+
+  const labelIds = issueGetQuery.data.labelIDs
+
   function handleStatusChange(key: string) {
     issuePatchMutation.mutate({
       status: IssueStatus[key as keyof typeof IssueStatus]
@@ -30,17 +40,25 @@ export function IssueEdit() {
     issuePatchMutation.mutate({ assignee: assigneeId })
   }
 
+  function handleLabelChange(id: string) {
+    issuePatchMutation.mutate({
+      labels: labelIds.includes(id)
+        ? labelIds.filter((labelId) => labelId !== id)
+        : labelIds.concat(id)
+    })
+  }
+
   return (
     <Fragment>
       <IssueEditStatus onStatusSelect={handleStatusChange} />
       <IssueEditAssignee
-        assigneeId={issueGetQuery.data?.assignee}
+        assigneeId={issueGetQuery.data.assignee}
         onAssigneeSelect={handleAssigneeChange}
       />
       <Label htmlFor="change labels">
         <Subtitle>Labels</Subtitle>
       </Label>
-      <IssueEditLabels />
+      <IssueEditLabels activeIds={labelIds} onLabelClick={handleLabelChange} />
     </Fragment>
   )
 }

@@ -16,7 +16,7 @@ function usePatch(number: number | string) {
   const queryClient = useQueryClient()
 
   return useMutation((data) => patchIssue(number, data), {
-    onMutate: (newData: Partial<Issue>) => {
+    onMutate: (newData: Partial<IssueDto>) => {
       // Get cached data at the moment this mutation starts
       const oldData = queryClient.getQueryData<Issue>(queryKey)
 
