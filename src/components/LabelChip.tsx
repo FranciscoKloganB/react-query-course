@@ -4,20 +4,25 @@ import { useLabels } from "@hooks"
 import { Chip } from "@styled"
 
 type LabelChipProps = {
-  name: string
+  children: string
   active?: boolean
   onClick?: (s: string) => void
 }
 
-export function LabelChip({ active, name, onClick }: LabelChipProps) {
+export function LabelChip({
+  active,
+  children: child,
+  onClick
+}: LabelChipProps) {
   const labelsQuery = useLabels()
 
   if (labelsQuery.isSuccess) {
-    const label = labelsQuery.data.find((label) => label.name === name)
+    const label = labelsQuery.data.find((label) => label.name === child)
 
     if (!label) {
       console.warn(
-        "LabelChip could not find label using name='${name}' in the labels obtained from useLabels. Are you sure the provided name filter exists?"
+        `LabelChip could not find label using name='${child}' in the labels
+        obtained from useLabels. Are you sure the provided name filter exists?`
       )
 
       return null
@@ -34,7 +39,7 @@ export function LabelChip({ active, name, onClick }: LabelChipProps) {
       onClick
     }
 
-    return <Chip {...props}>{label.name}</Chip>
+    return <Chip {...props}>{child}</Chip>
   }
 
   return null

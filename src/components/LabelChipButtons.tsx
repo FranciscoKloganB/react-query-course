@@ -4,14 +4,16 @@ import { LabelChip } from "@components/LabelChip"
 import { useLabels } from "@hooks"
 
 type LabelChipButtonsProps = {
-  selected: string[]
-  toggle: (label: string) => void
+  activeButtons: string[]
   className?: string
+  selector?: "id" | "name"
+  toggle: (idOrName: string) => void
 }
 
 export default function LabelChipButtons({
+  activeButtons,
   className,
-  selected,
+  selector = "name",
   toggle
 }: LabelChipButtonsProps) {
   const labels = useLabels()
@@ -27,7 +29,7 @@ export default function LabelChipButtons({
   return (
     <ul className={clsx("flex flex-wrap", className)}>
       {labels.data?.map((label) => {
-        const isActive = selected.includes(label.name)
+        const isActive = activeButtons.includes(label[selector])
 
         return (
           <li key={label.id}>
@@ -35,9 +37,10 @@ export default function LabelChipButtons({
               aria-role="button"
               aria-pressed={isActive.toString()}
               active={isActive}
-              name={label.name}
-              onClick={() => toggle(label.name)}
-            />
+              onClick={() => toggle(label[selector])}
+            >
+              {label.name}
+            </LabelChip>
           </li>
         )
       })}

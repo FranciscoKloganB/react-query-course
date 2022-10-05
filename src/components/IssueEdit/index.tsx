@@ -7,6 +7,7 @@ import { Label } from "@rdx/label"
 import { Subtitle } from "@styled"
 
 import { IssueEditAssignee } from "./IssueEditAssignee"
+import { IssueEditLabels } from "./IssueEditLabels"
 import { IssueEditStatus } from "./IssueEditStatus"
 
 const placeholder = (
@@ -39,7 +40,7 @@ export function IssueEdit() {
       <Label htmlFor="change labels">
         <Subtitle>Labels</Subtitle>
       </Label>
-      <div className="flex space-x-3 lg:justify-between"></div>
+      <IssueEditLabels />
     </Fragment>
   )
 }

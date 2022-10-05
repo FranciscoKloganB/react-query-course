@@ -48,7 +48,7 @@ export default function Issues() {
           </Tooltip>
           <LabelChipButtons
             className="mt-2 justify-center gap-x-2 gap-y-3 md:justify-start"
-            selected={selectedLabels}
+            activeButtons={selectedLabels}
             toggle={handleLabelToggle}
           />
           <Label htmlFor="issue status filters">

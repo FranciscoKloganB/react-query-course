@@ -26,7 +26,7 @@ export default function LabelsList({ selected, className }: LabelsListProps) {
       {labels?.map((label) => {
         return (
           <li key={label.id}>
-            <LabelChip name={label.name} />
+            <LabelChip>{label.name}</LabelChip>
           </li>
         )
       })}
