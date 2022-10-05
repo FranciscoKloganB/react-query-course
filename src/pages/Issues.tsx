@@ -47,7 +47,6 @@ export default function Issues() {
             <Subtitle>Labels</Subtitle>
           </Tooltip>
           <LabelChipButtons
-            className="mt-2 justify-center gap-x-2 gap-y-3 md:justify-start"
             activeButtons={selectedLabels}
             toggle={handleLabelToggle}
           />

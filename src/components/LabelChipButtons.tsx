@@ -10,6 +10,16 @@ type LabelChipButtonsProps = {
   toggle: (idOrName: string) => void
 }
 
+const defaultButtonListClasses = `
+  flex
+  flex-wrap
+  mt-2
+  justify-center
+  gap-x-2
+  gap-y-3
+  md:justify-start
+`
+
 export default function LabelChipButtons({
   activeButtons,
   className,
@@ -27,7 +37,7 @@ export default function LabelChipButtons({
   }
 
   return (
-    <ul className={clsx("flex flex-wrap", className)}>
+    <ul className={clsx(defaultButtonListClasses, className)}>
       {labels.data?.map((label) => {
         const isActive = activeButtons.includes(label[selector])
 
