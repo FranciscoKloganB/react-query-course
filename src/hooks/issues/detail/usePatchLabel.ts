@@ -11,39 +11,44 @@ const patchIssue = (number: number | string, data: unknown) =>
     data
   }).then((dto) => toDomainIssue(dto))
 
-function usePatch(number: number | string) {
+function usePatchLabel(number: number | string) {
   const queryKey = QKF.issueDetail(number)
   const queryClient = useQueryClient()
 
   return useMutation((data) => patchIssue(number, data), {
-    onMutate: (data: Partial<IssueDto>) => {
+    onMutate: (labelID: string) => {
       // Get cached data at the moment this mutation starts
-      const oldIssue = queryClient.getQueryData<Issue>(queryKey)
+      const oldLabels =
+        queryClient.getQueryData<Issue>(queryKey)?.labelIDs ?? []
+
+      const futureLabels = oldLabels.includes(labelID)
+        ? oldLabels.filter((id) => id !== labelID)
+        : oldLabels.concat(labelID)
 
       // Performs an optimistic update
-      queryClient.setQueryData(queryKey, (cached: Issue | undefined) => {
-        if (cached) {
+      queryClient.setQueryData(
+        queryKey,
+        (cached: Partial<Issue> | undefined) => {
           return {
-            ...cached,
-            ...data,
-            labels: data.labels ?? cached.labelIDs
+            ...(cached ?? {}),
+            labelIDs: futureLabels
           }
         }
-      })
+      )
 
       // Provides a rollback function for onError
       return () => {
         queryClient.setQueryData(queryKey, (cached: Issue | undefined) => {
           // If there was cached data when the mutation started, merge with current cache
-          if (oldIssue) {
-            if (cached) {
-              return {
-                ...cached,
-                ...oldIssue
-              }
-            }
+          if (cached) {
+            const rollbackLabels = oldLabels.includes(labelID)
+              ? cached.labelIDs.concat(labelID)
+              : cached.labelIDs.filter((id) => id !== labelID)
 
-            return oldIssue
+            return {
+              ...cached,
+              labelIDs: rollbackLabels
+            }
           }
         })
       }
@@ -57,4 +62,4 @@ function usePatch(number: number | string) {
   })
 }
 
-export { usePatch as usePatchIssueDetail }
+export { usePatchLabel as usePatchIssueLabel }
