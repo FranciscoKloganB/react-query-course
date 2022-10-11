@@ -28,7 +28,6 @@ export function IssueEdit() {
     return null
   }
 
-  const labelIDs = issueGetQuery.data.labelIDs
   const isLabelEditDisabled =
     issuePatchMutation.isLoading || issueGetQuery.fetchStatus === "fetching"
 
@@ -42,12 +41,8 @@ export function IssueEdit() {
     issuePatchMutation.mutate({ assignee: assigneeId })
   }
 
-  function handleLabelChange(id: string) {
-    issuePatchMutation.mutate({
-      labels: labelIDs.includes(id)
-        ? labelIDs.filter((labelId) => labelId !== id)
-        : labelIDs.concat(id)
-    })
+  function handleLabelChange(labels: Array<Issue["id"]>) {
+    issuePatchMutation.mutate({ labels })
   }
 
   return (
@@ -61,7 +56,7 @@ export function IssueEdit() {
         <Subtitle>Labels</Subtitle>
       </Label>
       <IssueEditLabels
-        activeIds={labelIDs}
+        initiallyActiveIds={issueGetQuery.data.labelIDs ?? []}
         working={isLabelEditDisabled}
         onLabelClick={handleLabelChange}
       />
