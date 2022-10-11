@@ -22,7 +22,6 @@ export function IssueEditAssignee({
   assigneeId,
   onAssigneeSelect
 }: IssueEdigAssigneeProps) {
-  console.log("Current assigneeId", assigneeId)
   const usersQuery = useUsersList()
 
   if (usersQuery.isLoading) {
