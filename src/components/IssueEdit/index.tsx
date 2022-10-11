@@ -28,7 +28,9 @@ export function IssueEdit() {
     return null
   }
 
-  const labelIds = issueGetQuery.data.labelIDs
+  const labelIDs = issueGetQuery.data.labelIDs
+  const isLabelEditDisabled =
+    issuePatchMutation.isLoading || issueGetQuery.fetchStatus === "fetching"
 
   function handleStatusChange(key: string) {
     issuePatchMutation.mutate({
@@ -41,10 +43,11 @@ export function IssueEdit() {
   }
 
   function handleLabelChange(id: string) {
+    // FIXME: help wanted label does not get high lighted no matter what happens
     issuePatchMutation.mutate({
-      labels: labelIds.includes(id)
-        ? labelIds.filter((labelId) => labelId !== id)
-        : labelIds.concat(id)
+      labels: labelIDs.includes(id)
+        ? labelIDs.filter((labelId) => labelId !== id)
+        : labelIDs.concat(id)
     })
   }
 
@@ -58,7 +61,11 @@ export function IssueEdit() {
       <Label htmlFor="change labels">
         <Subtitle>Labels</Subtitle>
       </Label>
-      <IssueEditLabels activeIds={labelIds} onLabelClick={handleLabelChange} />
+      <IssueEditLabels
+        activeIds={labelIDs}
+        working={isLabelEditDisabled}
+        onLabelClick={handleLabelChange}
+      />
     </Fragment>
   )
 }

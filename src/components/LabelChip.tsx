@@ -6,13 +6,17 @@ import { Chip } from "@styled"
 type LabelChipProps = {
   children: string
   active?: boolean
+  disabled?: boolean
   onClick?: (s: string) => void
+  working?: boolean
 }
 
 export function LabelChip({
   active,
+  disabled,
   children: child,
-  onClick
+  onClick,
+  working
 }: LabelChipProps) {
   const labelsQuery = useLabels()
 
@@ -28,13 +32,23 @@ export function LabelChip({
       return null
     }
 
-    const isNotInteractive = !onClick
+    const isWorkInProgress = working
+    const isNotInteractive = !onClick || disabled || working
+
+    let cursor = "cursor-pointer"
+    if (isWorkInProgress) {
+      cursor = "cursor-progress"
+    } else if (isNotInteractive) {
+      cursor = "cursor-not-allowed"
+    }
+
     const props = {
       $as: isNotInteractive ? "span" : "button",
       $color: label.color,
       className: clsx(
         "hover:border-yellow-600 hover:brightness-125",
-        !!active && "border-yellow-600 brightness-200"
+        !!active && "border-yellow-600 brightness-200",
+        cursor
       ),
       onClick
     }

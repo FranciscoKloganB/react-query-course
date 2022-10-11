@@ -5,9 +5,11 @@ import { useLabels } from "@hooks"
 
 type LabelChipButtonsProps = {
   activeButtons: string[]
+  disabled?: boolean
   className?: string
   selector?: "id" | "name"
   toggle: (idOrName: string) => void
+  working?: boolean
 }
 
 const defaultButtonListClasses = `
@@ -22,6 +24,8 @@ const defaultButtonListClasses = `
 
 export default function LabelChipButtons({
   activeButtons,
+  disabled = false,
+  working = false,
   className,
   selector = "name",
   toggle
@@ -47,7 +51,9 @@ export default function LabelChipButtons({
               aria-role="button"
               aria-pressed={isActive.toString()}
               active={isActive}
+              disabled={disabled}
               onClick={() => toggle(label[selector])}
+              working={working}
             >
               {label.name}
             </LabelChip>
