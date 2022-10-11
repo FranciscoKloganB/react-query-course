@@ -14,6 +14,7 @@ export function IssueEditLabels({
   return (
     <LabelChipButtons
       activeButtons={activeIds}
+      selector="id"
       working={working}
       toggle={onLabelClick}
     />

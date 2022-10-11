@@ -43,7 +43,6 @@ export function IssueEdit() {
   }
 
   function handleLabelChange(id: string) {
-    // FIXME: help wanted label does not get high lighted no matter what happens
     issuePatchMutation.mutate({
       labels: labelIDs.includes(id)
         ? labelIDs.filter((labelId) => labelId !== id)
