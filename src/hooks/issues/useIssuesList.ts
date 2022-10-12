@@ -45,4 +45,4 @@ function useIssuesList({
   })
 }
 
-export { fetchIssuesList, useIssuesList as useIssues }
+export { fetchIssuesList, useIssuesList }

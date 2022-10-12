@@ -3,13 +3,16 @@ import { BiSearchAlt } from "react-icons/bi"
 
 import { IssueItem } from "@components/IssueItem"
 import { IssueStatus } from "@enums"
-import { useIssues, useIssuesSearch } from "@hooks"
+import { useIssuesList, useIssuesSearch } from "@hooks"
 import { Border, Paragraph } from "@styled"
 import { FullSpinner, Search } from "@ui"
 
 type IssuesListProps = {
   filterByLabels: string[]
   filterByStatus?: IssueStatus
+  page: number
+  perPage: number
+  setPage: (newPage: number) => void
 }
 
 function __RenderList__({ issues }: { issues: Issue[] }) {
@@ -41,11 +44,12 @@ export default function IssuesList({
   filterByStatus
 }: IssuesListProps) {
   const [search, setSearch] = useState<string>("")
-  const issuesQuery = useIssues({
+
+  const searchQuery = useIssuesSearch(search)
+  const issuesListQuery = useIssuesList({
     labels: filterByLabels,
     status: filterByStatus
   })
-  const searchQuery = useIssuesSearch(search)
 
   let searchResult: Issue[] = []
   if (searchQuery.isSuccess) {
@@ -69,12 +73,12 @@ export default function IssuesList({
       <Search state={search} setState={setSearch}>
         <BiSearchAlt className="text-md ml-1" />
       </Search>
-      {issuesQuery.isLoading ? (
+      {issuesListQuery.isLoading ? (
         <FullSpinner />
-      ) : searchQuery.isDisabled && issuesQuery.isSuccess ? (
+      ) : searchQuery.isDisabled && issuesListQuery.isSuccess ? (
         <Fragment>
-          <Paragraph>{issuesQuery.data.length} results</Paragraph>
-          <__RenderList__ issues={issuesQuery.data} />
+          <Paragraph>{issuesListQuery.data.length} results</Paragraph>
+          <__RenderList__ issues={issuesListQuery.data} />
         </Fragment>
       ) : searchQuery.isLoading ? (
         <FullSpinner />

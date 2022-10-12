@@ -12,6 +12,7 @@ import { Select, SelectGroup, Tooltip } from "@ui"
 export default function Issues() {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
   const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
+  const [page, setPage] = useState<number>(1)
 
   const group = useMemo(() => issueStatusAsSelectGroup(), [])
 
@@ -70,6 +71,9 @@ export default function Issues() {
           <IssuesList
             filterByLabels={selectedLabels}
             filterByStatus={selectedStatus}
+            page={page}
+            perPage={+import.meta.env.VITE_PAGINATION_PER_PAGE}
+            setPage={setPage}
           />
         </Fragment>
       }

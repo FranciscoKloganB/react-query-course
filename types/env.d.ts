@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_AUTH_URL: string
+  readonly VITE_PAGINATION_PER_PAGE: number
 }
 
 interface ImportMeta {
