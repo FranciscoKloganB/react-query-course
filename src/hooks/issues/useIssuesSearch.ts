@@ -46,17 +46,23 @@ function useIssuesSearch(search: string) {
    * by the query cache any time a query is refetched, including the first time.
    */
 
-  // Query does not need to run (the query is disabled or already has `data`)
-  const isIdle = query.fetchStatus === "idle"
-  // Not currently fetching and we do not have `data`, sure sign the query is disabled
-  const isDisabled = query.fetchStatus === "idle" && query.status === "loading"
-  // Query is attempting to obtain new `data`
-  const isLoading =
-    query.fetchStatus === "fetching" && query.status === "loading"
-  // Query is not currently working but has data to display (typescript incorrectly warns data might be undefined)
+  // Query is not currently working but has 'data' to display (typescript incorrectly warns 'data' might be undefined)
   const isComplete = query.fetchStatus === "idle" && query.status === "success"
+  // Query is not currently fetching 'data' and we do not have `data` from previous fetch, sure sign the query is disabled
+  const isDisabled = query.fetchStatus === "idle" && query.status === "loading"
+  // Query does not need to run (the query is either disabled or if enabled already has `data`)
+  const isIdle = query.fetchStatus === "idle"
+  // Query is trying to obbtain new data, but it's doing so for the first time
+  const isFirstFetching =
+    query.fetchStatus === "fetching" && query.status === "loading"
 
-  return { ...query, isIdle, isDisabled, isLoading, isComplete }
+  return {
+    ...query,
+    isIdle,
+    isDisabled,
+    isComplete,
+    isFirstFetching
+  }
 }
 
 export { fetchIssuesSearch, useIssuesSearch }

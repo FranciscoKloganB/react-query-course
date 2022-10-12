@@ -84,7 +84,7 @@ export default function IssuesList({
           <Paragraph>{issuesListQuery.data.length} results</Paragraph>
           <__RenderList__ issues={issuesListQuery.data} />
         </Fragment>
-      ) : searchQuery.isLoading ? (
+      ) : searchQuery.isFirstFetching ? (
         <FullSpinner />
       ) : searchQuery.isSuccess ? (
         <Fragment>
