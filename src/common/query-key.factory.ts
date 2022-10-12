@@ -6,8 +6,12 @@ export const QKF = {
     [...QKF.issueDetail(issueNum), "comments"] as const,
   issueDetail: (num: string | number) =>
     [...QKF.issues, num.toString()] as const,
-  issuesFiltered: (labels: string[], status?: IssueStatus) =>
-    [...QKF.issues, { labels, status }] as const,
+  issuesFiltered: (
+    labels: string[],
+    status?: IssueStatus,
+    page?: number,
+    perPage?: number
+  ) => [...QKF.issues, { labels, status, page, perPage }] as const,
   issuesSearched: (search: string) =>
     [...QKF.issues, "search", search] as const,
   labels: ["labels"] as const,

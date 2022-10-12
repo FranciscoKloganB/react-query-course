@@ -25,24 +25,36 @@ function fetchIssuesList(
   )
 }
 
-function useIssuesList({
-  labels,
-  status
-}: {
+type UseIssuesListProps = {
   labels: string[]
   status?: IssueStatus
-}) {
+  page?: number
+  perPage?: number
+}
+
+function useIssuesList({ labels, status, page, perPage }: UseIssuesListProps) {
   const queryClient = useQueryClient()
 
-  return useQuery(QKF.issuesFiltered(labels, status), ({ signal }) => {
-    let queryString = labels.map((label) => `labels[]=${label}`).join("&")
+  return useQuery(
+    QKF.issuesFiltered(labels, status, page, perPage),
+    ({ signal }) => {
+      let queryString = labels.map((label) => `labels[]=${label}`).join("&")
 
-    if (status) {
-      queryString += `&status=${status}`
+      if (status) {
+        queryString += `&status=${status}`
+      }
+
+      if (page) {
+        queryString += `&page=${page}`
+
+        if (perPage) {
+          queryString += `&per_page=${perPage}`
+        }
+      }
+
+      return fetchIssuesList(queryString, queryClient, signal)
     }
-
-    return fetchIssuesList(queryString, queryClient, signal)
-  })
+  )
 }
 
 export { fetchIssuesList, useIssuesList }

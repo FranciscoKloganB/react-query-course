@@ -41,14 +41,18 @@ function __RenderList__({ issues }: { issues: Issue[] }) {
 
 export default function IssuesList({
   filterByLabels,
-  filterByStatus
+  filterByStatus,
+  page,
+  perPage
 }: IssuesListProps) {
   const [search, setSearch] = useState<string>("")
 
   const searchQuery = useIssuesSearch(search)
   const issuesListQuery = useIssuesList({
     labels: filterByLabels,
-    status: filterByStatus
+    status: filterByStatus,
+    page,
+    perPage
   })
 
   let searchResult: Issue[] = []
