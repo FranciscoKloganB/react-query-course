@@ -9,12 +9,16 @@ import { Label } from "@rdx/label"
 import { Subtitle, Title } from "@styled"
 import { Select, SelectGroup, Tooltip } from "@ui"
 
+const FIRST_PAGE = 1
+const PER_PAGE = +import.meta.env.VITE_PAGINATION_PER_PAGE ?? 10
+
 export default function Issues() {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
   const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
-  const [page, setPage] = useState<number>(1)
+  const [page, setPage] = useState<number>(FIRST_PAGE)
 
   const group = useMemo(() => issueStatusAsSelectGroup(), [])
+  const gotoPageOne = () => setPage(FIRST_PAGE)
 
   function handleLabelToggle(label: string) {
     setSelectedLabels((currentLabels) =>
@@ -22,6 +26,7 @@ export default function Issues() {
         ? currentLabels.filter((currentLabel) => currentLabel !== label)
         : currentLabels.concat(label)
     )
+    gotoPageOne()
   }
 
   function handleStatusSelection(enumKey: string) {
@@ -31,6 +36,7 @@ export default function Issues() {
       setSelectedStatus(
         isIssueStatusResetter(newStatus) ? undefined : newStatus
       )
+      gotoPageOne()
     } else {
       console.error(
         "Issues page could not filter issues by status because of invalid selection",
@@ -72,7 +78,7 @@ export default function Issues() {
             filterByLabels={selectedLabels}
             filterByStatus={selectedStatus}
             page={page}
-            perPage={+import.meta.env.VITE_PAGINATION_PER_PAGE}
+            perPage={PER_PAGE}
             setPage={setPage}
           />
         </Fragment>
