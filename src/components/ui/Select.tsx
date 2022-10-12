@@ -1,4 +1,4 @@
-import React, { Fragment, forwardRef } from "react"
+import { forwardRef } from "react"
 import { BiCheck, BiChevronDown, BiChevronUp } from "react-icons/bi"
 
 import {
@@ -80,7 +80,7 @@ ForwardSelectItem.displayName = "ForwardSelectItem"
 
 function RenderSelectGroup({ group }: { group: SelectGroup }) {
   return (
-    <Fragment>
+    <>
       <SelectGroup>
         <SelectLabel>{group.label}</SelectLabel>
         {group.items.map((item) => (
@@ -89,7 +89,7 @@ function RenderSelectGroup({ group }: { group: SelectGroup }) {
           </ForwardSelectItem>
         ))}
       </SelectGroup>
-    </Fragment>
+    </>
   )
 }
 

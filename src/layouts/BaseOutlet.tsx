@@ -1,4 +1,3 @@
-import { Fragment } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 
 import { useScroll } from "@hooks"
@@ -13,7 +12,7 @@ export function BaseOutlet() {
   useScroll({ behavior: "smooth" }, [location.key, location.pathname])
 
   return (
-    <Fragment>
+    <>
       <ProgressBar />
       <div className="max-w-screen min-h-screen bg-slate-900">
         <div className="flex justify-end p-4 md:justify-between">
@@ -31,6 +30,6 @@ export function BaseOutlet() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   )
 }

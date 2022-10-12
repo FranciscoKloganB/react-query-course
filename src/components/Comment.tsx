@@ -1,5 +1,3 @@
-import { Fragment } from "react"
-
 import { relativeDate } from "@helpers"
 import { useUser } from "@hooks"
 import { Border, Paragraph, Small, Span } from "@styled"
@@ -7,11 +5,11 @@ import { Avatar, HorizontalDivider } from "@ui"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const placeholder = (
-  <Fragment>
+  <>
     <div className="w-100 h-6 animate-pulse rounded bg-slate-600" />
     <HorizontalDivider />
     <div className="w-100 h-6 animate-pulse rounded bg-slate-600" />
-  </Fragment>
+  </>
 )
 
 export function Comment({ comment, createdBy, createdDate }: UserComment) {
@@ -39,13 +37,13 @@ export function Comment({ comment, createdBy, createdDate }: UserComment) {
                 </i>
               </Paragraph>
             ) : (
-              <Fragment>
+              <>
                 <Small>{`${userQuery.data?.name} commented ${relativeDate(
                   createdDate
                 )}`}</Small>
                 <HorizontalDivider />
                 <Span>{comment}</Span>
-              </Fragment>
+              </>
             )}
           </Border>
         }

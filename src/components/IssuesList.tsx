@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react"
+import { useState } from "react"
 import { BiSearchAlt } from "react-icons/bi"
 
 import { IssueItem } from "@components/IssueItem"
@@ -15,7 +15,7 @@ type IssuesListProps = {
   setPage: (newPage: number) => void
 }
 
-function __RenderList__({ issues }: { issues: Issue[] }) {
+function RenderIssues({ issues }: { issues: Issue[] }) {
   return (
     <ul className="mt-4 space-y-3">
       {issues.map((issue: Issue) => (
@@ -80,17 +80,17 @@ export default function IssuesList({
       {issuesListQuery.isLoading ? (
         <FullSpinner />
       ) : searchQuery.isDisabled && issuesListQuery.isSuccess ? (
-        <Fragment>
+        <>
           <Paragraph>{issuesListQuery.data.length} results</Paragraph>
-          <__RenderList__ issues={issuesListQuery.data} />
-        </Fragment>
+          <RenderIssues issues={issuesListQuery.data} />
+        </>
       ) : searchQuery.isFirstFetching ? (
         <FullSpinner />
       ) : searchQuery.isSuccess ? (
-        <Fragment>
+        <>
           <Paragraph>{searchResult.length} results</Paragraph>
-          <__RenderList__ issues={searchResult} />
-        </Fragment>
+          <RenderIssues issues={searchResult} />
+        </>
       ) : (
         <Paragraph>Unable to load issues...</Paragraph>
       )}

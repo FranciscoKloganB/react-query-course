@@ -1,4 +1,3 @@
-import { Fragment } from "react"
 import { useParams } from "react-router-dom"
 
 import { IssueStatus } from "@enums"
@@ -46,7 +45,7 @@ export function IssueEdit() {
   }
 
   return (
-    <Fragment>
+    <>
       <IssueEditStatus onStatusSelect={handleStatusChange} />
       <IssueEditAssignee
         assigneeId={issueGetQuery.data.assignee}
@@ -60,6 +59,6 @@ export function IssueEdit() {
         working={isLabelEditDisabled}
         onLabelClick={handleLabelChange}
       />
-    </Fragment>
+    </>
   )
 }

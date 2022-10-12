@@ -2,7 +2,7 @@
 import { DevTool } from "@hookform/devtools"
 import { joiResolver } from "@hookform/resolvers/joi"
 import Joi from "joi"
-import React, { Fragment } from "react"
+import React from "react"
 import { useForm } from "react-hook-form"
 
 import { Button } from "@styled"
@@ -40,7 +40,7 @@ export function Form({
   const isSubmissionDisabbled = disable || !methods.formState.isValid
 
   return (
-    <Fragment>
+    <>
       <form
         className="mt-4 space-y-3"
         onSubmit={(e) => methods.handleSubmit(onSubmit)(e)}
@@ -56,6 +56,6 @@ export function Form({
         </div>
       </form>
       <DevTool control={methods.control} />
-    </Fragment>
+    </>
   )
 }

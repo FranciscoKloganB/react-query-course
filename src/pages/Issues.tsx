@@ -1,5 +1,5 @@
 import LabelChipButtons from "@/src/components/LabelChipButtons"
-import { Fragment, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 
 import IssuesList from "@components/IssuesList"
 import { IssueStatus, isIssueStatusResetter } from "@enums"
@@ -72,7 +72,7 @@ export default function Issues() {
         </div>
       }
       content={
-        <Fragment>
+        <>
           <Title>Issues</Title>
           <IssuesList
             filterByLabels={selectedLabels}
@@ -81,7 +81,7 @@ export default function Issues() {
             perPage={PER_PAGE}
             setPage={setPage}
           />
-        </Fragment>
+        </>
       }
     />
   )
