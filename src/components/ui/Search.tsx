@@ -32,9 +32,6 @@ export function Search({
   return (
     <SearchContainer>
       <div className="max-w-full">
-        <label htmlFor="search" className="sr-only">
-          Search issues by text
-        </label>
         <div className="relative">
           <SearchIconContainer>{children}</SearchIconContainer>
           <SearchStyled

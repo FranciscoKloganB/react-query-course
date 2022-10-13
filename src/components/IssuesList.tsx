@@ -5,7 +5,7 @@ import { IssueItem } from "@components/IssueItem"
 import { IssueStatus } from "@enums"
 import { useIssuesList, useIssuesSearch } from "@hooks"
 import { Border, Paragraph } from "@styled"
-import { FullSpinner, Search } from "@ui"
+import { FullSpinner, Paginator, Search } from "@ui"
 
 type IssuesListProps = {
   filterByLabels: string[]
@@ -43,7 +43,8 @@ export default function IssuesList({
   filterByLabels,
   filterByStatus,
   page,
-  perPage
+  perPage,
+  setPage
 }: IssuesListProps) {
   const [search, setSearch] = useState<string>("")
 
@@ -83,6 +84,7 @@ export default function IssuesList({
         <>
           <Paragraph>{issuesListQuery.data.length} results</Paragraph>
           <RenderIssues issues={issuesListQuery.data} />
+          <Paginator page={page} pageSetter={setPage} maxPages={10} />
         </>
       ) : searchQuery.isFirstFetching ? (
         <FullSpinner />
