@@ -13,8 +13,6 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "paths": {
-      "@": ["."],
-      "@/*": ["./*"],
       "@mocks": ["./mocks"],
       "@mocks/*": ["./mocks/*"],
       "@types": ["./types"],
@@ -58,7 +56,9 @@
       "@themes": ["./src/themes"],
       "@themes/*": ["./src/themes/*"],
       "@ui": ["./src/components/ui"],
-      "@ui/*": ["./src/components/ui/*"]
+      "@ui/*": ["./src/components/ui/*"],
+      "@": ["."],
+      "@/*": ["./*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

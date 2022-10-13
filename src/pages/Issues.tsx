@@ -1,6 +1,7 @@
 import LabelChipButtons from "@/src/components/LabelChipButtons"
 import { useMemo, useState } from "react"
 
+import { FIRST_PAGE, PER_PAGE } from "@common/pagination"
 import IssuesList from "@components/IssuesList"
 import { IssueStatus, isIssueStatusResetter } from "@enums"
 import { issueStatusAsSelectGroup } from "@enums"
@@ -8,9 +9,6 @@ import { BaseLayout } from "@layouts"
 import { Label } from "@rdx/label"
 import { Subtitle, Title } from "@styled"
 import { Select, SelectGroup, Tooltip } from "@ui"
-
-const FIRST_PAGE = 1
-const PER_PAGE = +import.meta.env.VITE_PAGINATION_PER_PAGE ?? 10
 
 export default function Issues() {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
