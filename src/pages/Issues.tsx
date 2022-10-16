@@ -5,17 +5,28 @@ import { FIRST_PAGE, PER_PAGE } from "@common/pagination"
 import IssuesList from "@components/IssuesList"
 import { IssueStatus, isIssueStatusResetter } from "@enums"
 import { issueStatusAsSelectGroup } from "@enums"
+import { usePaginationParams } from "@hooks/usePaginationParams"
 import { BaseLayout } from "@layouts"
 import { Label } from "@rdx/label"
 import { Subtitle, Title } from "@styled"
 import { Select, SelectGroup, Tooltip } from "@ui"
 
+const defaultPage = FIRST_PAGE.toString()
+const defaultPerPage = PER_PAGE.toString()
+
+const initialSearchParams = {
+  page: defaultPage,
+  perPage: defaultPerPage
+} as const
+
 export default function Issues() {
+  const { page, perPage, setPage } = usePaginationParams(initialSearchParams)
+
   const [selectedLabels, setSelectedLabels] = useState<string[]>([])
   const [selectedStatus, setSelectedStatus] = useState<IssueStatus>()
-  const [page, setPage] = useState<number>(FIRST_PAGE)
 
   const group = useMemo(() => issueStatusAsSelectGroup(), [])
+
   const gotoPageOne = () => setPage(FIRST_PAGE)
 
   function handleLabelToggle(label: string) {
@@ -37,7 +48,7 @@ export default function Issues() {
       gotoPageOne()
     } else {
       console.error(
-        "Issues page could not filter issues by status because of invalid selection",
+        "Issues could not be filtered by status. Invalid selection (enumKey, newStatus).",
         enumKey,
         newStatus
       )
@@ -76,7 +87,7 @@ export default function Issues() {
             filterByLabels={selectedLabels}
             filterByStatus={selectedStatus}
             page={page}
-            perPage={PER_PAGE}
+            perPage={perPage}
             setPage={setPage}
           />
         </>
