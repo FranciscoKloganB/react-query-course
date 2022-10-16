@@ -84,7 +84,11 @@ export default function IssuesList({
         <>
           <Paragraph>{issuesListQuery.data.length} results</Paragraph>
           <RenderIssues issues={issuesListQuery.data} />
-          <Paginator page={page} pageSetter={setPage} maxPages={10} />
+          <Paginator
+            config={{ disableNext: issuesListQuery.data.length < perPage }}
+            page={page}
+            pageSetter={setPage}
+          />
         </>
       ) : searchQuery.isFirstFetching ? (
         <FullSpinner />
