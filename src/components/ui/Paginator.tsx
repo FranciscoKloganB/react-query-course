@@ -107,14 +107,16 @@ export function Paginator({
       >
         <FaAngleRight />
       </ArrowButton>
-      {/* TODO: When API returns the existing number of pages we can remove the enforced true value */}
-      <ArrowButton
-        ariaLabel="Last issues page"
-        disable={true || isNextDisabled}
-        onClick={() => pageSetter(maxPages)}
-      >
-        <FaAngleDoubleRight />
-      </ArrowButton>
+      {!!maxPages && (
+        /* FIXME: When API returns the existing number of pages we can remove the enforced true value */
+        <ArrowButton
+          ariaLabel="Last issues page"
+          disable={true || isNextDisabled}
+          onClick={() => pageSetter(maxPages)}
+        >
+          <FaAngleDoubleRight />
+        </ArrowButton>
+      )}
     </div>
   )
 }
