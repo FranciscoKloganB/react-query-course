@@ -97,8 +97,30 @@ export const StatusOverlay = tw.span`
     }`}
 `
 
+export const PageAnchor = tw.a`
+  font-sans text-base text-white
+`
+
+export const PageAnchorContainer = tw.div`
+bg-navy-blue-600
+  px-2
+  ring-1
+  rounded-lg
+  place-items-center
+  focus-visible:outline-yellow-400
+  ${(p: { $isActive: boolean }) =>
+    p.$isActive
+      ? "ring-yellow-400"
+      : `
+        ring-white
+        hover:ring-yellow-400
+        focus-visible:ring-1
+        focus-visible:ring-yellow-400
+      `}
+`
+
 export const Paragraph = tw.p`
-  font-sans text-base tracking-tight text-white
+  font-sans text-base tracking-tight text-white bg-transparent
 `
 
 export const RoundButton = tw.button`
