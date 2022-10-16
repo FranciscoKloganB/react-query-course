@@ -42,7 +42,7 @@ export const itemStyles = `
   relative
   select-none
   radix-disabled:pointer-events-none
-  radix-disabled:text-slate-400
+  radix-disabled:text-slate-600
   radix-highlighted:bg-navy-blue-600
   radix-highlighted:text-white
   radix-highlighted:ring-2
