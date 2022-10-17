@@ -1,6 +1,7 @@
 import clsx from "clsx"
 
 import { useLabels } from "@hooks"
+import { useCursorPointer } from "@hooks/useCursorPointer"
 import { Chip } from "@styled"
 
 type LabelChipProps = {
@@ -25,6 +26,12 @@ export function LabelChip({
 }: LabelChipProps) {
   const labelsQuery = useLabels()
 
+  const { cursor, isInteractive, isNotInteractive } = useCursorPointer({
+    clickable: !!onClick,
+    disabled,
+    working
+  })
+
   if (labelsQuery.isSuccess) {
     const label = labelsQuery.data.find((label) => label.name === child)
 
@@ -35,19 +42,6 @@ export function LabelChip({
       )
 
       return null
-    }
-
-    const isWorkInProgress = working
-    const isInteractive = !!onClick
-    const isNotInteractive = !isInteractive
-
-    let cursor = "cursor-pointer"
-    if (isWorkInProgress) {
-      cursor = "cursor-progress"
-    } else if (isNotInteractive) {
-      cursor = "cursor-auto"
-    } else if (disabled || working) {
-      cursor = "cursor-not-allowed"
     }
 
     const props = {
