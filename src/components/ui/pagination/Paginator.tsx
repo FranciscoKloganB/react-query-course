@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import {
   FaAngleDoubleLeft,
   FaAngleDoubleRight,
@@ -9,29 +8,8 @@ import {
 import { FIRST_PAGE } from "@common/pagination"
 import { PageAnchorContainer, Span } from "@styled"
 
-import { ArrowButton } from "./ArrowButton"
-
-type PageAnchorProps = {
-  children: number
-  isActive: boolean
-  pageNum: number
-  pageSetter: (n: number) => void
-}
-
-function PageAnchor({
-  children,
-  isActive,
-  pageSetter,
-  pageNum
-}: PageAnchorProps) {
-  const pageNumClasses = clsx(isActive && "text-yellow-400")
-
-  return (
-    <a onClick={() => pageSetter(pageNum)}>
-      <Span className={pageNumClasses}>{children}</Span>
-    </a>
-  )
-}
+import { ArrowButton } from "../ArrowButton"
+import { PageAnchor } from "./PageAnchor"
 
 type PaginatorConfig = Partial<{
   disableNext: boolean
@@ -39,6 +17,7 @@ type PaginatorConfig = Partial<{
 }>
 
 type PaginatorProps = {
+  loadingPage: boolean
   page: number
   pageSetter: (n: number) => void
   cols?: number
@@ -47,6 +26,7 @@ type PaginatorProps = {
 }
 
 export function Paginator({
+  loadingPage,
   maxPages,
   page,
   pageSetter,
@@ -55,6 +35,26 @@ export function Paginator({
 }: PaginatorProps) {
   const isPreviousDisabled = config.disablePrevious || page === FIRST_PAGE
   const isNextDisabled = config.disableNext || page === maxPages
+
+  /**
+   * FIXME:
+   * Given isNextDisabled we can prevent showing buttons for pages we know for
+   * sure will not have any data. The UX is not very consistent, because:
+   *
+   * 1. Suddenly the active page is no longer highlighted on the left and is instead
+   * highlighted on the right
+   * 2. If the user navigates to a page with no data, and previous page is also
+   * empty, we will allow him to navigate to a use page (previous empty page).
+   *
+   * It is hard to fix this behaviour without max pages being defined.
+   */
+  function calculatePageOffset(n: number) {
+    if (!isNextDisabled) {
+      return n
+    }
+
+    return n - cols + 1
+  }
 
   return (
     <div
@@ -79,18 +79,21 @@ export function Paginator({
         <Span>{page}</Span>
       </div>
       <div className="hidden sm:flex sm:items-center sm:justify-between sm:space-x-2">
+        {/* TODO: If isNextDisabled we are on last page so, ensure it is positioned on last col */}
         {Array.from({ length: cols }).map((_, i) => {
-          const pageNum = page + i
+          const pageNum = page + calculatePageOffset(i)
           const isActive = pageNum === page
 
           return (
             <PageAnchorContainer
               $isActive={isActive}
+              $isLoadingPage={loadingPage}
               key={pageNum}
               tabIndex={0}
             >
               <PageAnchor
                 isActive={isActive}
+                loadingPage={loadingPage}
                 pageNum={pageNum}
                 pageSetter={pageSetter}
               >

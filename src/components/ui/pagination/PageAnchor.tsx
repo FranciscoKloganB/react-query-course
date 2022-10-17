@@ -17,10 +17,7 @@ export function PageAnchor({
   pageSetter,
   pageNum
 }: PageAnchorProps) {
-  const pageNumClasses = clsx(
-    isActive && "text-yellow-400",
-    loadingPage ? "cursor-progress" : "cursor-pointer"
-  )
+  const pageNumClasses = clsx(isActive && "text-yellow-400")
 
   function handleClick() {
     if (!loadingPage) {

@@ -3,7 +3,9 @@ import { BiSearchAlt } from "react-icons/bi"
 
 import { IssueItem } from "@components/IssueItem"
 import { IssueStatus } from "@enums"
+import { seconds } from "@helpers"
 import { useIssuesList, useIssuesSearch } from "@hooks"
+import { useTimedRedirect } from "@hooks/useTimedRedirect"
 import { Border, Paragraph } from "@styled"
 import { FullSpinner, Paginator, Search } from "@ui"
 
@@ -48,6 +50,8 @@ export default function IssuesList({
 }: IssuesListProps) {
   const [search, setSearch] = useState<string>("")
 
+  const timedRedirect = useTimedRedirect()
+
   const searchQuery = useIssuesSearch(search)
   const issuesListQuery = useIssuesList({
     labels: filterByLabels,
@@ -55,6 +59,9 @@ export default function IssuesList({
     page,
     perPage
   })
+
+  const loadingNewPage =
+    issuesListQuery.isFetching && issuesListQuery.isPreviousData
 
   let searchResult: Issue[] = []
   if (searchQuery.isSuccess) {
@@ -73,6 +80,10 @@ export default function IssuesList({
     }
   }
 
+  if (searchQuery.isError || issuesListQuery.isError) {
+    timedRedirect({ after: seconds(5) })
+  }
+
   return (
     <div className="mt-3 space-y-3">
       <Search state={search} setState={setSearch}>
@@ -86,6 +97,7 @@ export default function IssuesList({
           <RenderIssues issues={issuesListQuery.data} />
           <Paginator
             config={{ disableNext: issuesListQuery.data.length < perPage }}
+            loadingPage={loadingNewPage}
             page={page}
             pageSetter={setPage}
           />
@@ -98,7 +110,9 @@ export default function IssuesList({
           <RenderIssues issues={searchResult} />
         </>
       ) : (
-        <Paragraph>Unable to load issues...</Paragraph>
+        <Paragraph>
+          Unable to load issues... You will be redirected in 5 seconds
+        </Paragraph>
       )}
     </div>
   )

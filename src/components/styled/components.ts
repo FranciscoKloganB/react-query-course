@@ -108,15 +108,22 @@ bg-navy-blue-600
   rounded-lg
   place-items-center
   focus-visible:outline-yellow-400
-  ${(p: { $isActive: boolean }) =>
-    p.$isActive
+  ${(p: { $isActive: boolean; $isLoadingPage: boolean }) => {
+    let classes = ""
+
+    classes += p.$isActive
       ? "ring-yellow-400"
       : `
         ring-white
         hover:ring-yellow-400
         focus-visible:ring-1
         focus-visible:ring-yellow-400
-      `}
+      `
+
+    classes += p.$isLoadingPage ? "cursor-progress" : "cursor-pointer"
+
+    return classes
+  }}
 `
 
 export const Paragraph = tw.p`
