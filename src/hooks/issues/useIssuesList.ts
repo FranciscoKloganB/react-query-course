@@ -30,9 +30,16 @@ type UseIssuesListProps = {
   status?: IssueStatus
   page?: number
   perPage?: number
+  queryConfig?: Record<string, unknown>
 }
 
-function useIssuesList({ labels, status, page, perPage }: UseIssuesListProps) {
+function useIssuesList({
+  labels,
+  status,
+  page,
+  perPage,
+  queryConfig = {}
+}: UseIssuesListProps) {
   const queryClient = useQueryClient()
 
   return useQuery(
@@ -53,6 +60,10 @@ function useIssuesList({ labels, status, page, perPage }: UseIssuesListProps) {
       }
 
       return fetchIssuesList(queryString, queryClient, signal)
+    },
+    {
+      keepPreviousData: true,
+      ...queryConfig
     }
   )
 }
