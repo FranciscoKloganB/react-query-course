@@ -24,6 +24,8 @@ export function useTimedRedirect() {
           if (location.pathname === originalPathRef.current) {
             navigate(to, { replace })
           }
+
+          redirecting.current = false
         }, seconds(after))
       }
     },

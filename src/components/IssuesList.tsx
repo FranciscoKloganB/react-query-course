@@ -6,7 +6,7 @@ import { IssueStatus } from "@enums"
 import { seconds } from "@helpers"
 import { useIssuesList, useIssuesSearch } from "@hooks"
 import { useTimedRedirect } from "@hooks/useTimedRedirect"
-import { Border, Paragraph } from "@styled"
+import { Border, Paragraph, Subtitle } from "@styled"
 import { FullSpinner, Paginator, Search } from "@ui"
 
 type IssuesListProps = {
@@ -80,7 +80,16 @@ export default function IssuesList({
   }
 
   if (searchQuery.isError || issuesListQuery.isError) {
-    timedRedirect({ after: seconds(5) })
+    timedRedirect({ after: seconds(10) })
+
+    return (
+      <div>
+        <Subtitle>Sorry. We could not load the requested issues.</Subtitle>
+        <Paragraph>
+          You will be redirected to the main page in 10 seconds.
+        </Paragraph>
+      </div>
+    )
   }
 
   return (
@@ -108,11 +117,7 @@ export default function IssuesList({
           <Paragraph>{searchResult.length} results</Paragraph>
           <RenderIssues issues={searchResult} />
         </>
-      ) : (
-        <Paragraph>
-          Unable to load issues... You will be redirected in 5 seconds
-        </Paragraph>
-      )}
+      ) : null}
     </div>
   )
 }

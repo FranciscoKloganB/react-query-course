@@ -84,6 +84,10 @@ export function Paginator({
           const pageNum = page + calculatePageOffset(i)
           const isActive = pageNum === page
 
+          if (pageNum <= 0) {
+            return null
+          }
+
           return (
             <PageAnchorContainer
               $isActive={isActive}
