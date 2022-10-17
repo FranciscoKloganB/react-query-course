@@ -51,7 +51,6 @@ export default function IssuesList({
   const [search, setSearch] = useState<string>("")
 
   const timedRedirect = useTimedRedirect()
-
   const searchQuery = useIssuesSearch(search)
   const issuesListQuery = useIssuesList({
     labels: filterByLabels,

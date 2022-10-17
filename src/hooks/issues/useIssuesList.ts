@@ -8,6 +8,37 @@ import { IssueStatus } from "@enums"
 import { setIssue } from "./detail"
 import { toDomainIssue } from "./toDomainIssue"
 
+type UseIssuesListProps = {
+  labels: string[]
+  status?: IssueStatus
+  page?: number
+  perPage?: number
+  queryConfig?: Record<string, unknown>
+}
+
+function buildSearchParams({
+  labels,
+  status,
+  page,
+  perPage
+}: Omit<UseIssuesListProps, "queryConfig">) {
+  let queryString = labels.map((label) => `labels[]=${label}`).join("&")
+
+  if (status) {
+    queryString += `&status=${status}`
+  }
+
+  if (page) {
+    queryString += `&page=${page}`
+
+    if (perPage) {
+      queryString += `&per_page=${perPage}`
+    }
+  }
+
+  return queryString
+}
+
 function fetchIssuesList(
   queryString: string,
   queryClient: QueryClient,
@@ -25,14 +56,6 @@ function fetchIssuesList(
   )
 }
 
-type UseIssuesListProps = {
-  labels: string[]
-  status?: IssueStatus
-  page?: number
-  perPage?: number
-  queryConfig?: Record<string, unknown>
-}
-
 function useIssuesList({
   labels,
   status,
@@ -44,25 +67,29 @@ function useIssuesList({
 
   return useQuery(
     QKF.issuesFiltered(labels, status, page, perPage),
-    ({ signal }) => {
-      let queryString = labels.map((label) => `labels[]=${label}`).join("&")
-
-      if (status) {
-        queryString += `&status=${status}`
-      }
-
-      if (page) {
-        queryString += `&page=${page}`
-
-        if (perPage) {
-          queryString += `&per_page=${perPage}`
-        }
-      }
-
-      return fetchIssuesList(queryString, queryClient, signal)
-    },
+    ({ signal }) =>
+      fetchIssuesList(
+        buildSearchParams({ labels, status, page, perPage }),
+        queryClient,
+        signal
+      ),
     {
       keepPreviousData: true,
+      onSettled: (data, _error) => {
+        if (page && perPage && data && data.length === perPage) {
+          const nextPage = page + 1
+
+          return queryClient.prefetchQuery(
+            QKF.issuesFiltered(labels, status, nextPage, perPage),
+            ({ signal }) =>
+              fetchIssuesList(
+                buildSearchParams({ labels, status, page: nextPage, perPage }),
+                queryClient,
+                signal
+              )
+          )
+        }
+      },
       ...queryConfig
     }
   )
