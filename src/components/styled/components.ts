@@ -97,8 +97,8 @@ export const StatusOverlay = tw.span`
     }`}
 `
 
-export const PageAnchor = tw.a`
-  font-sans text-base text-white
+export const PageAnchorStyled = tw.a`
+  font-sans select-none	text-base text-white
 `
 
 export const PageAnchorContainer = tw.div`
