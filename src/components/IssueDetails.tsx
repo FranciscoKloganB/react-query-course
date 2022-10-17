@@ -1,38 +1,26 @@
-import { useRef } from "react"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 import { Comment } from "@components/Comment"
 import { IssueHeader } from "@components/IssueHeader"
-import { seconds } from "@helpers"
 import { useGetIssueDetail, useIssueComments } from "@hooks"
+import { useTimedRedirect } from "@hooks/useTimedRedirect"
 import { Paragraph, Subtitle } from "@styled"
 import { FullSpinner, HorizontalDivider } from "@ui"
 
 export function IssueDetails() {
   const { number = "" } = useParams()
 
-  const location = useLocation()
-  const navigate = useNavigate()
-
-  const originalPathRef = useRef(location.pathname)
-  const redirecting = useRef(false)
-
   const issueQuery = useGetIssueDetail(number)
   const commentsQuery = useIssueComments(number)
+
+  const timedRedirect = useTimedRedirect()
 
   if (issueQuery.isLoading) {
     return <FullSpinner />
   }
 
   if (issueQuery.isError) {
-    if (!redirecting.current) {
-      redirecting.current = true
-      setTimeout(() => {
-        if (location.pathname === originalPathRef.current) {
-          navigate("/", { replace: true })
-        }
-      }, seconds(10))
-    }
+    timedRedirect()
 
     return (
       <div>
