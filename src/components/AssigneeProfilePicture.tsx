@@ -1,5 +1,5 @@
 import { OnlineStatus } from "@enums"
-import { getRandomOfEnum } from "@helpers/getRandomOfEnum"
+import { getRandomOfEnum } from "@helpers"
 import { useUser } from "@hooks"
 import { Avatar } from "@ui"
 
