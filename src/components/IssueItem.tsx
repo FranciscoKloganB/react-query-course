@@ -55,8 +55,10 @@ export function IssueItem({
     queryClient.prefetchQuery(QKF.issueDetail(number), ({ signal }) =>
       fetchIssueDetail(number, signal)
     )
-    queryClient.prefetchQuery(QKF.issueComments(number), ({ signal }) =>
-      fetchIssueComments(number, signal)
+    queryClient.prefetchInfiniteQuery(
+      QKF.issueComments(number),
+      ({ pageParam = 1, signal }) =>
+        fetchIssueComments(number, pageParam, signal)
     )
   }
 

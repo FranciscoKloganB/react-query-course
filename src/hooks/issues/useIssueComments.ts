@@ -1,4 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query"
+import { useEffect } from "react"
+import { useInView } from "react-intersection-observer"
 
 import { baseClient } from "@clients"
 import { QKF } from "@common/query-key.factory"
@@ -14,8 +16,22 @@ function fetchIssueComments(
   )
 }
 
-function useIssueComments(number: string | number) {
-  return useInfiniteQuery(
+/**
+ * When data is available, pages will contain an issue's users' comments.
+ *
+ * When `controlledPagination` is set to false (default), and the returned
+ * `React.useRefs` (`previousLoaderRef` and/or `nextLoaderRef`) are attributed
+ * to an HTML element, then, the hook automatically fetches next and/or previous
+ * pages as those elements enter the browser viewport.
+ */
+function useIssueComments(
+  number: string | number,
+  controlledPagination = false
+) {
+  const [nextRef, nextVisible] = useInView()
+  const [previousRef, previousVisible] = useInView()
+
+  const infiniteQuery = useInfiniteQuery(
     QKF.issueComments(number),
     ({ signal, pageParam = 1 }) =>
       fetchIssueComments(number, pageParam, signal),
@@ -36,6 +52,31 @@ function useIssueComments(number: string | number) {
       }
     }
   )
+
+  useEffect(() => {
+    if (controlledPagination) {
+      return
+    }
+
+    if (previousVisible) {
+      infiniteQuery.fetchPreviousPage()
+    } else if (nextVisible) {
+      infiniteQuery.fetchNextPage()
+    }
+  }, [controlledPagination, previousVisible, nextVisible])
+
+  const shouldShowFetchingNext =
+    infiniteQuery.isFetchingNextPage && !infiniteQuery.isLoading
+  const shouldShowFetchingPrevious =
+    infiniteQuery.isFetchingPreviousPage && !infiniteQuery.isLoading
+
+  return {
+    infiniteQuery,
+    nextRef,
+    previousRef,
+    shouldShowFetchingNext,
+    shouldShowFetchingPrevious
+  }
 }
 
 export { fetchIssueComments, useIssueComments }

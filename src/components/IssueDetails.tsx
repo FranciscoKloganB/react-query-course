@@ -6,7 +6,7 @@ import { IssueHeader } from "@components/IssueHeader"
 import { useGetIssueDetail, useIssueComments } from "@hooks"
 import { useTimedRedirect } from "@hooks/useTimedRedirect"
 import { Paragraph, Subtitle } from "@styled"
-import { FullSpinner, HorizontalDivider, Spinner } from "@ui"
+import { Dots, FullSpinner, HorizontalDivider } from "@ui"
 
 export function IssueDetails() {
   const { number = "" } = useParams()
@@ -14,13 +14,15 @@ export function IssueDetails() {
   const timedRedirect = useTimedRedirect()
 
   const issueQuery = useGetIssueDetail(number)
-  const commentsQuery = useIssueComments(number)
+  const {
+    infiniteQuery: commentsQuery,
+    nextRef,
+    previousRef,
+    shouldShowFetchingNext,
+    shouldShowFetchingPrevious
+  } = useIssueComments(number)
 
   const commentsPages = commentsQuery.data?.pages ?? []
-  const shouldShowFetchingNext =
-    commentsQuery.isFetchingNextPage && !commentsQuery.isLoading
-  const shouldShowFetchingPrevious =
-    commentsQuery.isFetchingPreviousPage && !commentsQuery.isLoading
 
   if (issueQuery.isLoading) {
     return <FullSpinner />
@@ -47,7 +49,9 @@ export function IssueDetails() {
       <IssueHeader {...issueQuery.data} />
       <HorizontalDivider />
       <div>
-        {shouldShowFetchingPrevious && <Spinner />}
+        <div className="text-center" ref={previousRef}>
+          {shouldShowFetchingPrevious && <Dots />}
+        </div>
         {commentsQuery.isLoading ? (
           <FullSpinner />
         ) : (
@@ -59,7 +63,9 @@ export function IssueDetails() {
             </Fragment>
           ))
         )}
-        {shouldShowFetchingNext && <Spinner />}
+        <div className="text-center" ref={nextRef}>
+          {shouldShowFetchingNext && <Dots />}
+        </div>
       </div>
     </div>
   )
