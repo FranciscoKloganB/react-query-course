@@ -16,7 +16,7 @@ export function BaseOutlet() {
       <ProgressBar />
       <div className="max-w-screen min-h-screen bg-slate-900">
         <div className="flex justify-end p-4 md:justify-between">
-          <div className="hidden justify-start md:inline-block">
+          <div className="w-full">
             <Breadcrumbs />
           </div>
           <div>

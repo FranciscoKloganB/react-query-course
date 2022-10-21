@@ -16,10 +16,10 @@ export function Breadcrumbs() {
 
   return (
     <nav className="flex" aria-label="Breadcrumb">
-      <ol role="list" className="flex items-center space-x-4">
+      <ol role="list" className="flex items-center md:space-x-3">
         {crumbs.map(({ breadcrumb, match }, index) => (
           <li key={match.pathname}>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center md:space-x-3">
               {index > 0 && (
                 <BiChevronRight className="h-5 w-5 text-yellow-400" />
               )}
