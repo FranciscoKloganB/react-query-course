@@ -23,7 +23,5 @@ In particular this repository slightly changes the tooling:
   - Prettier
   - Husky (pre-commit, pre-push)
   - Typechecking on build
-- Vitest
-  - Unit and Integration (no E2E)
 
 The original course can be found at **[https://ui.dev/checkout/react-query?from=tanstack]** and the originally final app at **[https://react-query-issue-tracker.ui.dev]**
